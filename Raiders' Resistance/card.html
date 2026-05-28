@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raiders' Resistance – Yu-Gi-Oh! Card</title>
+  <meta name="description" content="Raiders' Resistance – Continuous Spell Card. A custom card bridging The Phantom Knights, Xyz Dragon, and Raidraptors, representing the friendship of Shun and Yuto."/>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at 50% 30%, #031512 0%, #010807 60%, #000 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      font-family: 'Crimson Text', serif;
+      overflow-x: hidden;
+    }
+
+    /* ── CARD SCENE & CONTAINER ── */
+    .card-scene {
+      perspective: 1000px;
+      z-index: 2;
+    }
+
+    .card {
+      position: relative;
+      width: 380px;
+      border-radius: 14px;
+      padding: 10px;
+      /* Spell Card Teal/Green */
+      background: linear-gradient(160deg, #1fa38a 0%, #106a57 40%, #083b30 100%);
+      box-shadow:
+        0 0 0 3px #5bf5d6,
+        0 0 0 5px #003328,
+        0 0 0 7px #095948,
+        0 0 40px rgba(30, 200, 160, 0.7),
+        0 0 90px rgba(130, 30, 200, 0.4),
+        0 25px 70px rgba(0,0,0,0.95);
+      border: 2px solid #99ffeb;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      animation: pulseGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from {
+        box-shadow:
+          0 0 0 3px #5bf5d6,
+          0 0 0 5px #003328,
+          0 0 0 7px #095948,
+          0 0 40px rgba(30, 200, 160, 0.6),
+          0 0 90px rgba(130, 30, 200, 0.35),
+          0 25px 70px rgba(0,0,0,0.95);
+      }
+      to {
+        box-shadow:
+          0 0 0 3px #bb66ff,
+          0 0 0 5px #1a0033,
+          0 0 0 7px #4a127a,
+          0 0 55px rgba(180, 80, 255, 0.8),
+          0 0 110px rgba(30, 200, 160, 0.6),
+          0 25px 70px rgba(0,0,0,0.95);
+      }
+    }
+
+    /* Holographic shimmer overlay */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: radial-gradient(
+        circle 220px at var(--shimmer-x, 50%) var(--shimmer-y, 50%),
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(150, 255, 200, 0.08) 35%,
+        rgba(180, 80, 255, 0.05) 60%,
+        transparent 90%
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── INNER FRAME ── */
+    .inner {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #051c16;
+      border: 1px solid #104d3d;
+      transform: translateZ(15px); /* Push details out slightly in 3D */
+    }
+
+    /* ── HEADER ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+      background: linear-gradient(90deg, #22826a 0%, #135746 50%, #22826a 100%);
+      border-bottom: 1px solid #09362a;
+    }
+
+    .card-name {
+      font-family: 'Crimson Text', serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #f0fffb;
+      text-shadow: 0 0 5px #66ffdb, 0 0 10px #00cc99, 0 1px 2px #000;
+      letter-spacing: 0.2px;
+      flex: 1;
+      line-height: 1.1;
+    }
+
+    .attribute-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #108c73 0%, #004033 100%);
+      border: 2px solid #33ffcc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 700;
+      color: #b3ffeb;
+      letter-spacing: 0.2px;
+      text-shadow: 0 0 8px #33ffcc;
+      flex-shrink: 0;
+      margin-left: 8px;
+      box-shadow: 0 0 14px rgba(50,255,200,0.7), inset 0 0 8px rgba(50,255,200,0.2);
+    }
+
+    /* ── SPELL ORNAMENT BAR ── */
+    .level-bar-spell {
+      background: #030f0c;
+      padding: 8px 10px;
+      border-bottom: 1px solid #104d3d;
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .level-bar-spell::after {
+      content: '✦ 魔 ✦';
+      color: #66ffdb;
+      font-size: 10px;
+      letter-spacing: 4px;
+      opacity: 0.4;
+      text-shadow: 0 0 5px #66ffdb;
+    }
+
+    /* ── ARTWORK FRAME ── */
+    .artwork-frame {
+      margin: 6px 8px;
+      border-radius: 5px;
+      border: 2px solid #24b391;
+      overflow: hidden;
+      position: relative;
+      height: 245px;
+      background: radial-gradient(circle at 50% 40%, #07151e 0%, #02070a 60%, #000000 100%);
+      box-shadow:
+        inset 0 0 45px rgba(50,255,200,0.2),
+        0 0 20px rgba(50,255,200,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Twinkling Stars in Night Sky */
+    .stars-sky {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 20% 30%, #fff 0.8px, transparent 1px),
+        radial-gradient(circle at 80% 25%, #fff 0.8px, transparent 1px),
+        radial-gradient(circle at 40% 15%, #fff 0.6px, transparent 1px),
+        radial-gradient(circle at 75% 55%, #fff 0.5px, transparent 1px),
+        radial-gradient(circle at 15% 75%, #fff 0.5px, transparent 1px);
+      opacity: 0.35;
+      animation: skyTwinkle 5s alternate infinite ease-in-out;
+    }
+
+    @keyframes skyTwinkle {
+      0% { opacity: 0.25; }
+      100% { opacity: 0.55; }
+    }
+
+    /* Ruins of Heartland City */
+    .heartland-ruins {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 75px;
+      z-index: 2;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .heartland-ruins svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Flame ashes rising from ruins */
+    .ember {
+      position: absolute;
+      bottom: -10px;
+      width: 3px;
+      height: 3px;
+      background: #ff5500;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 3px #ff3300);
+      opacity: 0;
+      animation: riseEmber var(--dur) linear var(--delay) infinite;
+      z-index: 3;
+    }
+
+    @keyframes riseEmber {
+      0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+      20% { opacity: 0.7; }
+      80% { opacity: 0.3; }
+      100% { transform: translateY(-240px) translateX(25px) scale(0.3); opacity: 0; }
+    }
+
+    /* Ambient Nebulous Glows */
+    .nebulas {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 70%, rgba(153, 51, 255, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 60%, rgba(0, 255, 220, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 50% 40%, rgba(255, 0, 128, 0.12) 0%, transparent 45%);
+      filter: blur(10px);
+      animation: nebulaDrift 8s alternate infinite ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes nebulaDrift {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.1) rotate(6deg); }
+    }
+
+    /* ── WINGS ASSEMBLY ── */
+    /* Shun's Mechanical Raidraptor Wing */
+    .raidraptor-wing {
+      position: absolute;
+      left: 45px;
+      top: 80px;
+      width: 80px;
+      height: 80px;
+      transform-origin: right center;
+      animation: flapMechanical 3.5s ease-in-out infinite alternate;
+      z-index: 4;
+    }
+
+    .mechanical-feather {
+      position: absolute;
+      background-size: 100% 100%;
+      filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.4));
+    }
+
+    /* Segmented mechanical steel/gold blades */
+    .mech-1 {
+      width: 60px;
+      height: 18px;
+      background: linear-gradient(90deg, #d4af37 0%, #a67c1e 40%, #473204 100%);
+      clip-path: polygon(0 0, 100% 30%, 85% 100%, 0 80%);
+      transform: rotate(-15deg);
+      top: 10px;
+      left: 5px;
+    }
+
+    .mech-2 {
+      width: 52px;
+      height: 16px;
+      background: linear-gradient(90deg, #7b2cbf 0%, #4a127a 40%, #1e0033 100%);
+      clip-path: polygon(0 0, 100% 30%, 85% 100%, 0 80%);
+      transform: rotate(2deg);
+      top: 26px;
+      left: 15px;
+      box-shadow: inset 0 0 4px #aa55ff;
+    }
+
+    .mech-3 {
+      width: 42px;
+      height: 14px;
+      background: linear-gradient(90deg, #d4af37 0%, #8c6414 45%, #2b1f02 100%);
+      clip-path: polygon(0 0, 100% 30%, 85% 100%, 0 80%);
+      transform: rotate(18deg);
+      top: 40px;
+      left: 20px;
+    }
+
+    /* Yuto's Ethereal Phantom Knights Wing */
+    .phantom-wing {
+      position: absolute;
+      right: 45px;
+      top: 80px;
+      width: 80px;
+      height: 80px;
+      transform-origin: left center;
+      animation: flickerSpectral 2.8s ease-in-out infinite alternate;
+      z-index: 4;
+    }
+
+    .spectral-wisp {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(4px) brightness(1.25);
+      opacity: 0.8;
+      transform-origin: left center;
+    }
+
+    .wisp-1 {
+      width: 65px;
+      height: 24px;
+      background: radial-gradient(circle, rgba(0, 255, 220, 0.95) 0%, rgba(100, 30, 255, 0.4) 65%, transparent 100%);
+      transform: rotate(15deg) scaleX(1.4);
+      top: 8px;
+      right: 8px;
+    }
+
+    .wisp-2 {
+      width: 58px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(130, 50, 255, 0.95) 0%, rgba(0, 255, 220, 0.4) 65%, transparent 100%);
+      transform: rotate(-3deg) scaleX(1.3);
+      top: 24px;
+      right: 12px;
+    }
+
+    .wisp-3 {
+      width: 48px;
+      height: 18px;
+      background: radial-gradient(circle, rgba(0, 255, 220, 0.85) 0%, rgba(100, 30, 255, 0.3) 65%, transparent 100%);
+      transform: rotate(-20deg) scaleX(1.2);
+      top: 38px;
+      right: 16px;
+    }
+
+    /* Animations for the wings */
+    @keyframes flapMechanical {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.04) rotate(-6deg); }
+    }
+
+    @keyframes flickerSpectral {
+      0% { transform: scale(0.95) rotate(0deg) skewX(0deg); opacity: 0.7; }
+      100% { transform: scale(1.06) rotate(5deg) skewX(4deg); opacity: 0.95; }
+    }
+
+    /* ── CENTRAL CREST Assembly ── */
+    .center-crest {
+      position: absolute;
+      left: 50%;
+      top: 48%;
+      transform: translate(-50%, -50%);
+      width: 90px;
+      height: 90px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: floatCrest 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatCrest {
+      0% { transform: translate(-50%, -50%) translateY(0px) scale(0.96); }
+      100% { transform: translate(-50%, -50%) translateY(-6px) scale(1.04); }
+    }
+
+    /* Xyz Dragon Core */
+    .xyz-core {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #ff00ff 40%, #820082 75%, #180018 100%);
+      box-shadow: 
+        0 0 16px #ff00ff, 
+        0 0 30px rgba(255, 0, 255, 0.5), 
+        inset 0 0 6px rgba(255, 255, 255, 0.8);
+      z-index: 4;
+    }
+
+    /* Lightning threads wrapping the core */
+    .xyz-core::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px dotted #00ffff;
+      animation: spinReverse 3s linear infinite;
+      opacity: 0.6;
+      box-shadow: 0 0 8px #00ffff;
+    }
+
+    /* Cross Elements (Friendship) */
+    /* Yuto's spectral sword */
+    .cross-sword {
+      position: absolute;
+      width: 80px;
+      height: 3.5px;
+      background: linear-gradient(90deg, transparent, #00ffff 30%, #ffffff 50%, #00ffff 70%, transparent);
+      transform: rotate(45deg);
+      z-index: 2;
+      filter: drop-shadow(0 0 5px #00ffff);
+    }
+
+    /* Shun's falcon claw crossguard */
+    .cross-talon {
+      position: absolute;
+      width: 80px;
+      height: 3.5px;
+      background: linear-gradient(90deg, transparent, #d4af37 30%, #ffffff 50%, #d4af37 70%, transparent);
+      transform: rotate(-45deg);
+      z-index: 2;
+      filter: drop-shadow(0 0 5px #d4af37);
+    }
+
+    .energy-ring {
+      position: absolute;
+      width: 66px;
+      height: 66px;
+      border: 1.5px dashed rgba(0, 255, 220, 0.6);
+      border-radius: 50%;
+      animation: spinForward 9s linear infinite;
+      z-index: 1;
+      box-shadow: 0 0 8px rgba(0, 255, 220, 0.25);
+    }
+
+    @keyframes spinForward {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes spinReverse {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+
+    /* Corner ornaments for frame */
+    .artwork-frame::before,
+    .artwork-frame::after {
+      content: '✦';
+      position: absolute;
+      font-size: 11px;
+      color: #66ffcc;
+      opacity: 0.8;
+      text-shadow: 0 0 6px #00ffcc;
+      z-index: 3;
+    }
+    .artwork-frame::before { top: 4px; left: 5px; }
+    .artwork-frame::after  { top: 4px; right: 5px; }
+
+    /* ── TYPE LINE ── */
+    .type-line {
+      background: linear-gradient(90deg, #104d3d 0%, #031a14 100%);
+      padding: 4px 10px;
+      border-top: 1px solid #1c8266;
+      border-bottom: 1px solid #1c8266;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .type-text {
+      font-size: 11.5px;
+      color: #b3ffeb;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .continuous-icon {
+      width: 16px;
+      height: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #66ffdb;
+      filter: drop-shadow(0 0 3px #66ffdb);
+    }
+
+    .continuous-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── EFFECT BOX ── */
+    .effect-box {
+      margin: 4px 8px 6px;
+      padding: 8px 10px;
+      background: rgba(5, 26, 20, 0.88);
+      border: 1px solid #104d3d;
+      border-radius: 4px;
+      min-height: 175px;
+    }
+
+    .effect-text {
+      font-size: 9.6px;
+      color: #d1f2e9;
+      line-height: 1.45;
+      text-align: justify;
+    }
+
+    .effect-text p {
+      margin-bottom: 5px;
+    }
+    
+    .effect-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── FOOTER ── */
+    .card-footer {
+      background: #020d0a;
+      padding: 4px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #092e24;
+    }
+
+    .set-code {
+      font-size: 9px;
+      color: #59b39d;
+      letter-spacing: 1px;
+    }
+
+    .rarity-badge {
+      font-size: 9px;
+      color: #99ffeb;
+      letter-spacing: 1px;
+      font-style: italic;
+    }
+
+    /* ── BOTTOM LABEL ── */
+    .card-label {
+      margin-top: 20px;
+      font-family: 'Crimson Text', serif;
+      font-size: 13.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #5bf5d6;
+      opacity: 0.5;
+      text-shadow: 0 0 8px rgba(91, 245, 214, 0.4);
+      z-index: 1;
+      pointer-events: none;
+      animation: pulseLabel 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseLabel {
+      from { opacity: 0.4; }
+      to { opacity: 0.75; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card-scene">
+  <div class="card" id="yugioh-card">
+    <div class="inner">
+
+      <!-- Header -->
+      <div class="card-header">
+        <div class="card-name">Raiders' Resistance</div>
+        <div class="attribute-badge">SPELL</div>
+      </div>
+
+      <!-- Spell Ornament Bar -->
+      <div class="level-bar-spell"></div>
+
+      <!-- Artwork -->
+      <div class="artwork-frame">
+        <div class="stars-sky"></div>
+        <div class="nebulas"></div>
+        
+        <!-- Flame ashes rising -->
+        <div class="ember" style="left: 10%; --delay: 0s; --dur: 4.8s;"></div>
+        <div class="ember" style="left: 28%; --delay: 1.2s; --dur: 3.9s;"></div>
+        <div class="ember" style="left: 45%; --delay: 0.5s; --dur: 4.3s;"></div>
+        <div class="ember" style="left: 62%; --delay: 2.1s; --dur: 3.5s;"></div>
+        <div class="ember" style="left: 78%; --delay: 0.8s; --dur: 5.1s;"></div>
+        <div class="ember" style="left: 90%; --delay: 1.7s; --dur: 4.2s;"></div>
+
+        <!-- Shun's mechanical wing -->
+        <div class="raidraptor-wing">
+          <div class="mechanical-feather mech-1"></div>
+          <div class="mechanical-feather mech-2"></div>
+          <div class="mechanical-feather mech-3"></div>
+        </div>
+
+        <!-- Yuto's spectral flame wing -->
+        <div class="phantom-wing">
+          <div class="spectral-wisp wisp-1"></div>
+          <div class="spectral-wisp wisp-2"></div>
+          <div class="spectral-wisp wisp-3"></div>
+        </div>
+
+        <!-- Central core representing Xyz Dragon and their bond -->
+        <div class="center-crest">
+          <div class="cross-sword"></div>
+          <div class="cross-talon"></div>
+          <div class="energy-ring"></div>
+          <div class="xyz-core"></div>
+        </div>
+
+        <!-- Ruins of Heartland City Skyline at the bottom -->
+        <div class="heartland-ruins">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="none">
+            <path d="M0,200 L0,152 L35,152 L35,160 L45,160 L45,125 L58,105 L58,143 L72,143 L72,200 Z" fill="#020e0a"/>
+            <path d="M60,200 L60,118 L78,92 L96,118 L96,134 L106,134 L106,200 Z" fill="#031510"/>
+            <path d="M100,200 L100,165 L118,165 L128,135 L148,155 L158,135 L168,165 L180,165 L180,200 Z" fill="#010a08"/>
+            <path d="M180,200 L180,82 L198,72 L208,98 L208,118 L225,118 L225,200 Z" fill="#02140f"/>
+            <path d="M220,200 L220,135 L238,125 L248,135 L258,135 L268,98 L286,128 L286,200 Z" fill="#020f0b"/>
+            <path d="M280,200 L280,145 L308,145 L326,108 L345,145 L365,130 L375,148 L400,148 L400,200 Z" fill="#010605"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Type Line -->
+      <div class="type-line">
+        <div class="type-text">
+          [ Spell Card / Continuous <div class="continuous-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 1 0 0-8c-2 0-4 1.33-6 4Z"/></svg></div> ]
+        </div>
+      </div>
+
+      <!-- Effect -->
+      <div class="effect-box">
+        <div class="effect-text">
+          <p>(This card is always treated as a "Phantom Knights", "Xyz Dragon", and "Raidraptor" card.)</p>
+          <p>Neither player can activate cards or effects in response to this card's activation.</p>
+          <p>You cannot Special Summon monsters from the Extra Deck, except DARK Xyz Monsters, the turn you activate this card or any of its effects.</p>
+          <p>When this card is activated: You can send 1 "Phantom Knights" or "Raidraptor" card from your hand or face-up field to the GY; add 1 "Phantom Knights" or "Raidraptor" card (except "Raiders' Resistance"), or 1 "Rank-Up-Magic" Spell, from your Deck to your hand.</p>
+          <p>If a "The Phantom Knights", "Xyz Dragon", or "Raidraptor" monster is Special Summoned from the Extra Deck (except during the Damage Step): You can target 1 card on the field; negate its effects (if it is face-up), and if you do, destroy it.</p>
+          <p>During your Main Phase: You can target up to 3 of your "The Phantom Knights", "Xyz Dragon", and/or "Raidraptor" cards that are banished and/or in your GY (except "Raiders' Resistance"); shuffle them into the Deck, then draw 1 card.</p>
+          <p>During your Main Phase, except the turn this card was sent to the GY: You can banish this card from your GY, then target 1 "The Phantom Knights", "Xyz Dragon", or "Raidraptor" Xyz Monster you control; until the end of this turn, it is unaffected by other card effects.</p>
+          <p>You can only activate 1 "Raiders' Resistance" per turn. You can only use each effect of "Raiders' Resistance" once per turn.</p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="card-footer">
+        <span class="set-code">PHNI-EN048</span>
+        <span class="rarity-badge">Secret Rare</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="card-label">— Raiders' Resistance —</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const card = document.getElementById('yugioh-card');
+    
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const width = rect.width;
+      const height = rect.height;
+      
+      // Calculate tilt angles (max tilt ~15 degrees)
+      const rotateX = ((y / height) - 0.5) * -16;
+      const rotateY = ((x / width) - 0.5) * 16;
+      
+      // Update transform style in real-time
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+      
+      // Calculate relative coordinate percentages for holographic shimmer positioning
+      const shimmerX = (x / width) * 100;
+      const shimmerY = (y / height) * 100;
+      card.style.setProperty('--shimmer-x', `${shimmerX}%`);
+      card.style.setProperty('--shimmer-y', `${shimmerY}%`);
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      // Reset card tilt with smooth transition
+      card.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0px)';
+      // Reset shimmer highlight to the center
+      card.style.setProperty('--shimmer-x', '50%');
+      card.style.setProperty('--shimmer-y', '50%');
+    });
+  });
+</script>
+
+</body>
+</html>

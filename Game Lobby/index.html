@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamers' Grind - Cyberworld</title>
+    <meta name="description" content="Centralized Game Lobby and Project Hub for Gamers' Grind.">
+    <!-- Modern Cyber Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Jack In Entry Sequence Overlay -->
+    <div id="jack-in-screen">
+        <div class="jack-in-bg"></div>
+        <div class="jack-in-content">
+            <h1 class="glitch-text" data-text="PET TERMINAL_">PET TERMINAL_</h1>
+            <p class="status-text">SYSTEM STANDBY...</p>
+            <button id="jack-in-btn">JACK IN!! EXECUTE</button>
+        </div>
+        <div class="jack-in-flash hidden"></div>
+        <div class="jack-in-tunnel hidden"></div>
+    </div>
+
+    <!-- Main Cyberworld UI -->
+    <div id="cyber-world" class="hidden">
+        <!-- Isometric Grid Background -->
+        <div class="cyber-bg">
+            <div class="grid-plane"></div>
+        </div>
+        <!-- CRT/Scanline Overlay -->
+        <div class="scanlines"></div>
+        
+        <div class="pet-container">
+            <header class="cyber-header">
+                <div class="header-edge left-edge"></div>
+                <div class="header-center">
+                    <h1>Gamers' <span class="highlight">Grind</span></h1>
+                    <p class="subtitle">NET AREA // CENTRAL HUB</p>
+                </div>
+                <div class="header-edge right-edge"></div>
+            </header>
+
+            <div class="ui-panel">
+                <nav class="filters cyber-nav">
+                    <button class="filter-btn active" data-filter="all">ALL DATA</button>
+                    <button class="filter-btn" data-filter="card-games">BATTLE CARDS</button>
+                    <button class="filter-btn" data-filter="board-games">BOARD SIM</button>
+                    <button class="filter-btn" data-filter="mobile-games">MOBILE NET</button>
+                    <button class="filter-btn" data-filter="console-games">CONSOLE LINK</button>
+                    <button class="filter-btn" data-filter="misc">MISC DATA</button>
+                </nav>
+
+                <nav class="sub-filters hidden" id="sub-filters">
+                    <!-- Sub-filters dynamically injected by JS -->
+                </nav>
+
+                <main class="grid cyber-grid-container" id="project-grid">
+                    <!-- Project cards will be injected here by JavaScript -->
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

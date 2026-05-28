@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dark Renaissance Xyz Dragon – Yu-Gi-Oh Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Palatino+Linotype&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at center, #1a0a2e 0%, #0d0d0d 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      font-family: 'Crimson Text', serif;
+    }
+
+    /* ── CARD SHELL ── */
+    .card {
+      position: relative;
+      width: 380px;
+      border-radius: 14px;
+      padding: 10px;
+      background: linear-gradient(160deg, #2a2a2a 0%, #111 40%, #1a1a1a 100%);
+      box-shadow:
+        0 0 0 3px #6b6b6b,
+        0 0 0 5px #2a2a2a,
+        0 0 30px rgba(120, 60, 220, 0.6),
+        0 0 70px rgba(80, 20, 160, 0.4),
+        0 20px 60px rgba(0,0,0,0.9);
+      border: 2px solid #444;
+    }
+
+    /* holographic shimmer overlay */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.04) 0%,
+        rgba(150,80,255,0.06) 30%,
+        rgba(255,200,80,0.04) 60%,
+        rgba(255,255,255,0.02) 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── INNER FRAME ── */
+    .inner {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0e0e0e;
+      border: 1px solid #333;
+    }
+
+    /* ── HEADER ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+      background: linear-gradient(90deg, #1a0030 0%, #0d0020 50%, #1a0030 100%);
+      border-bottom: 1px solid #3a1a6a;
+    }
+
+    .card-name {
+      font-family: 'Crimson Text', serif;
+      font-weight: 700;
+      font-size: 14.5px;
+      color: #d4af37;
+      text-shadow: 0 0 8px rgba(212,175,55,0.8), 0 1px 2px #000;
+      letter-spacing: 0.3px;
+      flex: 1;
+      line-height: 1.2;
+    }
+
+    .attribute-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #2a0050 0%, #0d0020 100%);
+      border: 2px solid #8b4fce;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      color: #c97dff;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 6px #a020f0;
+      flex-shrink: 0;
+      margin-left: 8px;
+      box-shadow: 0 0 10px rgba(160,32,240,0.5);
+    }
+
+    /* ── RANK STARS ── */
+    .rank-bar {
+      background: #0a0015;
+      padding: 3px 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border-bottom: 1px solid #1e0040;
+    }
+
+    .rank-label {
+      font-size: 9px;
+      color: #888;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-right: 4px;
+    }
+
+    .rank-star {
+      font-size: 15px;
+      color: #d4af37;
+      text-shadow: 0 0 6px rgba(212,175,55,0.9);
+      line-height: 1;
+    }
+
+    /* ── ARTWORK ── */
+    .artwork-frame {
+      margin: 6px 8px;
+      border-radius: 5px;
+      border: 2px solid #4a2080;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 0 20px rgba(100,40,200,0.3);
+    }
+
+    .artwork-frame img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* corner ornaments */
+    .artwork-frame::before,
+    .artwork-frame::after {
+      content: '✦';
+      position: absolute;
+      font-size: 10px;
+      color: #d4af37;
+      opacity: 0.7;
+    }
+    .artwork-frame::before { top: 4px; left: 5px; }
+    .artwork-frame::after  { top: 4px; right: 5px; }
+
+    /* ── TYPE LINE ── */
+    .type-line {
+      background: linear-gradient(90deg, #100025 0%, #0a0018 100%);
+      padding: 4px 10px;
+      border-top: 1px solid #2a0060;
+      border-bottom: 1px solid #2a0060;
+    }
+
+    .type-text {
+      font-size: 10px;
+      color: #c0a0e0;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── MATERIALS ── */
+    .materials-box {
+      margin: 4px 8px 0;
+      padding: 4px 8px;
+      background: rgba(212,175,55,0.06);
+      border-left: 2px solid #d4af37;
+      border-radius: 0 3px 3px 0;
+    }
+
+    .materials-text {
+      font-size: 10px;
+      color: #b8922a;
+      font-style: italic;
+      font-family: 'Crimson Text', serif;
+    }
+
+    /* ── EFFECT BOX ── */
+    .effect-box {
+      margin: 4px 8px 6px;
+      padding: 6px 8px;
+      background: rgba(20,5,40,0.7);
+      border: 1px solid #2a1050;
+      border-radius: 4px;
+    }
+
+    .effect-condition {
+      font-size: 10px;
+      color: #a080c0;
+      font-style: italic;
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+
+    .effect-bullet {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 5px;
+      font-size: 9.8px;
+      color: #d0c0e8;
+      line-height: 1.45;
+    }
+
+    .effect-bullet:last-child { margin-bottom: 0; }
+
+    .bullet-dot {
+      color: #a060ff;
+      flex-shrink: 0;
+      font-size: 11px;
+      margin-top: -1px;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: linear-gradient(90deg, #100025 0%, #0a0018 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 12px;
+      border-top: 1px solid #2a0060;
+    }
+
+    .stat {
+      font-size: 12px;
+      font-weight: 700;
+      color: #d4af37;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 6px rgba(212,175,55,0.6);
+      font-family: 'Crimson Text', serif;
+    }
+
+    .stat span {
+      color: #fff;
+      text-shadow: 0 0 8px rgba(255,255,255,0.5);
+    }
+
+    .stat-divider {
+      color: #4a2080;
+      font-size: 16px;
+    }
+
+    /* ── FOOTER ── */
+    .card-footer {
+      background: #080010;
+      padding: 3px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #1a0030;
+    }
+
+    .set-code {
+      font-size: 8px;
+      color: #554466;
+      letter-spacing: 1px;
+    }
+
+    .rarity-badge {
+      font-size: 8px;
+      color: #8b6fc4;
+      letter-spacing: 1px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="yugioh-card">
+  <div class="inner">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="card-name">Dark Renaissance Xyz Dragon</div>
+      <div class="attribute-badge">DARK</div>
+    </div>
+
+    <!-- Rank Stars -->
+    <div class="rank-bar">
+      <span class="rank-label">Rank</span>
+      <span class="rank-star">★</span>
+      <span class="rank-star">★</span>
+      <span class="rank-star">★</span>
+      <span class="rank-star">★</span>
+      <span class="rank-star">★</span>
+    </div>
+
+    <!-- Artwork -->
+    <div class="artwork-frame">
+      <img src="dark_renaissance_xyz_dragon.png" alt="Dark Renaissance Xyz Dragon Artwork"/>
+    </div>
+
+    <!-- Type Line -->
+    <div class="type-line">
+      <div class="type-text">[ Dragon / Xyz / Effect ]</div>
+    </div>
+
+    <!-- Materials -->
+    <div class="materials-box">
+      <div class="materials-text">3 Level 5 DARK monsters</div>
+    </div>
+
+    <!-- Effects -->
+    <div class="effect-box">
+      <div class="effect-condition">
+        If this card has "Dark Rebellion Xyz Dragon" as Xyz Material, it gains these effects.
+      </div>
+      <div class="effect-bullet">
+        <span class="bullet-dot">●</span>
+        <span>Once per turn: You can detach 1 Xyz Material from this card, then target 1 face-up monster your opponent controls; change its ATK to 0, and if you do, you gain Life Points equal to half that monster's original ATK.</span>
+      </div>
+      <div class="effect-bullet">
+        <span class="bullet-dot">●</span>
+        <span>When your opponent activates a Spell/Trap card or effect (Quick Effect): You can detach 1 Xyz Material from this card; negate the activation, and if you do, destroy that card, then target 1 "The Phantom Knights" or "Xyz Dragon" monster in your GY; Special Summon it to your side of the field or attach it to this card as Xyz Material.</span>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat">ATK / <span>3000</span></div>
+      <div class="stat-divider">|</div>
+      <div class="stat">DEF / <span>2500</span></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <span class="set-code">DARK-EN001</span>
+      <span class="rarity-badge">Secret Rare</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

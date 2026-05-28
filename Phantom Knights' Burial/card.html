@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Knights' Burial</title>
+    <meta name="description" content="A custom Yu-Gi-Oh! Normal Trap card — Phantom Knights' Burial. Support for The Phantom Knights Archetype.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card-scene">
+        <div class="card-container" id="phantom-knights-burial-card" role="article" aria-label="Phantom Knights' Burial Card">
+
+            <!-- Corner rune decorations -->
+            <div class="rune-corner tl" aria-hidden="true"></div>
+            <div class="rune-corner tr" aria-hidden="true"></div>
+            <div class="rune-corner bl" aria-hidden="true"></div>
+            <div class="rune-corner br" aria-hidden="true"></div>
+
+            <!-- ── Header ─────────────────────────────────── -->
+            <header class="card-header">
+                <h1 class="card-name">Phantom Knights' Burial</h1>
+                <div class="card-attribute" title="TRAP Attribute" aria-label="TRAP Attribute">
+                    <span class="attribute-icon">罠</span>
+                </div>
+            </header>
+
+            <!-- Trap type badge -->
+            <div class="trap-badge" aria-label="Continuous Trap Card">
+                <span class="trap-badge-icon">♾</span>
+                <span class="trap-badge-label">Continuous Trap</span>
+            </div>
+
+            <!-- ── Card Art ───────────────────────────────── -->
+            <div class="card-art-frame" aria-label="Card artwork: A spectral, tattered knight standing before an ancient stone grave in a dark, glowing purple and blue fog, holding a shovel-like broken weapon">
+                <img
+                    src="card_art.png"
+                    alt="A spectral, tattered knight standing before an ancient stone grave in a dark, glowing purple and blue fog, holding a shovel-like broken weapon"
+                    id="card-artwork"
+                    onerror="this.parentElement.classList.add('art-fallback')"
+                >
+                <!-- Animated overlay -->
+                <div class="art-overlay" aria-hidden="true"></div>
+                <!-- Phantom flame particles -->
+                <div class="flame-particle" style="left:12%; --dur:3.5s; --delay:0s; height:18px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:26%; --dur:2.8s; --delay:0.5s; height:24px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:42%; --dur:4.0s; --delay:0.2s; height:14px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:58%; --dur:3.0s; --delay:1.0s; height:20px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:72%; --dur:3.6s; --delay:0.4s; height:16px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:86%; --dur:2.6s; --delay:0.8s; height:22px;" aria-hidden="true"></div>
+            </div>
+
+            <!-- ── Effect Text Box ───────────────────────── -->
+            <div class="effect-box" id="effect-text-box">
+                <span class="effect-type-label">[ Trap / Continuous ]</span>
+
+                <p class="effect-line">
+                    Target 1 Effect Monster on the field; negate its effects, also it cannot attack or change its battle position. Monsters cannot target that face-up monster for attacks, also it cannot be used for a Tribute, Fusion, Synchro, Xyz, or Link Summon. When that monster leaves the field, destroy this card. You can banish this card from your GY, then target 1 "The Phantom Knights" or "Xyz Dragon" monster in your GY; Special Summon it, or shuffle it into the Deck, but if you Special Summon it, banish it when it leaves the field.
+                </p>
+
+                <span class="once-per-turn">
+                    You can only use 1 "Phantom Knights' Burial" effect per turn, and only once that turn.
+                </span>
+            </div>
+
+            <!-- ── Footer ────────────────────────────────── -->
+            <footer class="card-footer">
+                <span class="card-set-info">PK-EN004 &nbsp;|&nbsp; Secret Rare</span>
+                <span class="card-copyright">©Custom Design — Phantom Knights Series</span>
+            </footer>
+
+        </div>
+    </div>
+
+    <p class="card-title-label" aria-hidden="true">— Phantom Knights' Burial —</p>
+
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Phantom Knights' Rebellious Soul – Yu-Gi-Oh! Card</title>
+  <meta name="description" content="The Phantom Knights' Rebellious Soul – Level 4 DARK Warrior Effect Monster. ATK 1500 / DEF 1000."/>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at 50% 30%, #1a1a1a 0%, #0d0d0d 60%, #000 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      font-family: 'Crimson Text', serif;
+    }
+
+    /* ── CARD SHELL ── */
+    .card {
+      position: relative;
+      width: 380px;
+      border-radius: 14px;
+      padding: 10px;
+      background: linear-gradient(160deg, #c47c44 0%, #a65e2e 40%, #d88b48 100%);
+      box-shadow:
+        0 0 0 3px #8c471c,
+        0 0 0 5px #3a1e0b,
+        0 0 0 7px #6a3415,
+        0 0 40px rgba(200, 100, 50, 0.4),
+        0 0 90px rgba(180, 80, 20, 0.3),
+        0 25px 70px rgba(0,0,0,0.95);
+      border: 2px solid #5c2b12;
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { box-shadow: 0 0 0 3px #8c471c, 0 0 0 5px #3a1e0b, 0 0 0 7px #6a3415, 0 0 40px rgba(200,100,50,0.4), 0 0 90px rgba(180,80,20,0.3), 0 25px 70px rgba(0,0,0,0.95); }
+      to   { box-shadow: 0 0 0 3px #a65e2e, 0 0 0 5px #3a1e0b, 0 0 0 7px #8c471c, 0 0 60px rgba(220,120,60,0.6), 0 0 120px rgba(200,100,40,0.4), 0 25px 70px rgba(0,0,0,0.95); }
+    }
+
+    /* holographic shimmer overlay */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.05) 0%,
+        rgba(255,150,80,0.08) 25%,
+        rgba(255,200,100,0.05) 55%,
+        rgba(200,100,50,0.05) 80%,
+        rgba(255,255,255,0.03) 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── INNER FRAME ── */
+    .inner {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #b56e36;
+      border: 1px solid #7c4420;
+    }
+
+    /* ── HEADER ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+      background: linear-gradient(90deg, #d48f52 0%, #c47c44 50%, #d48f52 100%);
+      border-bottom: 1px solid #8c471c;
+    }
+
+    .card-name {
+      font-family: 'Crimson Text', serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #1a0f0a;
+      text-shadow: 0 0 10px rgba(255,200,150,0.9), 0 0 20px rgba(255,180,100,0.5), 0 1px 1px rgba(255,255,255,0.5);
+      letter-spacing: 0.3px;
+      flex: 1;
+      line-height: 1.2;
+    }
+
+    .attribute-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #3a0070 0%, #100020 100%);
+      border: 2px solid #9040e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #d09aff;
+      letter-spacing: 0.4px;
+      text-shadow: 0 0 8px #c040ff;
+      flex-shrink: 0;
+      margin-left: 8px;
+      box-shadow: 0 0 14px rgba(180,40,255,0.7), inset 0 0 8px rgba(200,100,255,0.2);
+    }
+
+    /* ── LEVEL STARS ── */
+    .level-bar {
+      background: rgba(181, 110, 54, 0.5);
+      padding: 3px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 3px;
+      border-bottom: 1px solid #9a5426;
+    }
+
+    .level-star {
+      font-size: 16px;
+      color: #ffcc00;
+      text-shadow: 0 0 8px #d94b00, 0 0 2px #d94b00, 0 1px 2px rgba(0,0,0,0.8);
+      line-height: 1;
+      position: relative;
+    }
+
+    /* ── ARTWORK ── */
+    .artwork-frame {
+      margin: 6px 8px;
+      border-radius: 5px;
+      border: 2px solid #7c4420;
+      overflow: hidden;
+      position: relative;
+      box-shadow:
+        inset 0 0 30px rgba(140,40,255,0.15),
+        0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .artwork-frame img {
+      width: 100%;
+      height: 215px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: saturate(1.1) contrast(1.05);
+    }
+
+    /* corner ornaments */
+    .artwork-frame::before,
+    .artwork-frame::after {
+      content: '✦';
+      position: absolute;
+      font-size: 11px;
+      color: #ffaa44;
+      opacity: 0.8;
+      text-shadow: 0 0 6px #ff8800;
+      z-index: 2;
+    }
+    .artwork-frame::before { top: 4px; left: 5px; }
+    .artwork-frame::after  { top: 4px; right: 5px; }
+
+    /* ── TYPE LINE ── */
+    .type-line {
+      background: linear-gradient(90deg, #d48f52 0%, #c47c44 100%);
+      padding: 4px 10px;
+      border-top: 1px solid #9a5426;
+      border-bottom: 1px solid #9a5426;
+    }
+
+    .type-text {
+      font-size: 11px;
+      color: #1a0f0a;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── EFFECT BOX ── */
+    .effect-box {
+      margin: 4px 8px 6px;
+      padding: 7px 9px;
+      background: rgba(240, 230, 210, 0.9);
+      border: 1px solid #a65e2e;
+      border-radius: 4px;
+      min-height: 70px;
+    }
+
+    .effect-text {
+      font-size: 9px;
+      color: #2a1a10;
+      line-height: 1.35;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: linear-gradient(90deg, #d48f52 0%, #c47c44 100%);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 6px 14px;
+      border-top: 1px solid #9a5426;
+      gap: 15px;
+    }
+
+    .stat {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a0f0a;
+      letter-spacing: 0.5px;
+      font-family: 'Crimson Text', serif;
+    }
+
+    .stat span {
+      color: #000;
+    }
+
+    /* ── FOOTER ── */
+    .card-footer {
+      background: #8c471c;
+      padding: 3px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #5c2b12;
+    }
+
+    .set-code {
+      font-size: 8px;
+      color: #e0d0c0;
+      letter-spacing: 1px;
+    }
+
+    .rarity-badge {
+      font-size: 8px;
+      color: #ffcc88;
+      letter-spacing: 1px;
+      font-style: italic;
+      text-shadow: 0 0 6px rgba(255,150,50,0.5);
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="yugioh-card">
+  <div class="inner">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="card-name">The Phantom Knights' Rebellious Soul</div>
+      <div class="attribute-badge">DARK</div>
+    </div>
+
+    <!-- Level Stars (Level 4 — displayed right-to-left like real Level cards) -->
+    <div class="level-bar">
+      <span class="level-star">★</span>
+      <span class="level-star">★</span>
+      <span class="level-star">★</span>
+      <span class="level-star">★</span>
+    </div>
+
+    <!-- Artwork -->
+    <div class="artwork-frame">
+      <img src="phantom_hunter_artwork.png" alt="The Phantom Knights' Rebellious Soul Artwork"/>
+    </div>
+
+    <!-- Type Line -->
+    <div class="type-line">
+      <div class="type-text">[ Warrior / Effect ]</div>
+    </div>
+
+    <!-- Effects -->
+    <div class="effect-box">
+      <div class="effect-text">
+        (This card is always treated as an "Xyz Dragon" card.)<br>
+        This card is unaffected by the effects of Fusion Monsters, also it cannot be destroyed by battle with a Fusion Monster.<br>
+        You can reveal 1 "The Phantom Knights" or "Xyz Dragon" card in your hand or Extra Deck; Special Summon this card from your hand. You can only Special Summon "The Phantom Knights' Rebellious Soul" once per turn this way.<br>
+        If this card is Normal or Special Summoned: You can add to your hand or Special Summon 1 "The Phantom Knights" or "Xyz Dragon" monster from your hand or GY, but if it is Special Summoned from the GY, its effects are negated.<br>
+        If this card is used to Xyz Summon a "The Phantom Knights" or "Xyz Dragon" monster, it can be treated as a Level 3 or 4 monster. A "The Phantom Knights" or "Xyz Dragon" Xyz Monster Xyz Summoned using this card as material gains this effect:<br>
+        ● If this card is Xyz Summoned: It cannot be destroyed by battle.<br>
+        You can banish this card from your GY; add 1 "The Phantom Knights" or "Xyz Dragon" card from your Deck, GY, or banished cards to your hand, except this card, but you cannot activate that card, or cards with the same name, for the rest of this turn.<br>
+        You can only use each effect of this card once per turn.
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat">ATK/ <span>1500</span></div>
+      <div class="stat">DEF/ <span>1000</span></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <span class="set-code">PHRA-EN000</span>
+      <span class="rarity-badge">Secret Rare</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

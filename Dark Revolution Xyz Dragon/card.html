@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dark Revolution Xyz Dragon – Yu-Gi-Oh! Card</title>
+  <meta name="description" content="Dark Revolution Xyz Dragon – Rank 6 DARK Dragon Xyz Effect Monster. ATK 3500 / DEF 3000. The final evolution of Dark Rebellion Xyz Dragon, mirroring Raidraptor - Revolution Falcon."/>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at 50% 30%, #110025 0%, #07000f 60%, #000 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      font-family: 'Crimson Text', serif;
+    }
+
+    /* ── CARD SHELL ── */
+    .card {
+      position: relative;
+      width: 380px;
+      border-radius: 14px;
+      padding: 10px;
+      background: linear-gradient(160deg, #1a0030 0%, #0a0015 40%, #150025 100%);
+      box-shadow:
+        0 0 0 3px #7a3aaa,
+        0 0 0 5px #1e0040,
+        0 0 0 7px #4a1a80,
+        0 0 40px rgba(160, 40, 255, 0.7),
+        0 0 90px rgba(100, 0, 200, 0.5),
+        0 25px 70px rgba(0,0,0,0.95);
+      border: 2px solid #5a2090;
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { box-shadow: 0 0 0 3px #7a3aaa, 0 0 0 5px #1e0040, 0 0 0 7px #4a1a80, 0 0 40px rgba(160,40,255,0.7), 0 0 90px rgba(100,0,200,0.5), 0 25px 70px rgba(0,0,0,0.95); }
+      to   { box-shadow: 0 0 0 3px #9a5acc, 0 0 0 5px #1e0040, 0 0 0 7px #6a2ab0, 0 0 60px rgba(180,60,255,0.9), 0 0 120px rgba(120,0,240,0.65), 0 25px 70px rgba(0,0,0,0.95); }
+    }
+
+    /* holographic shimmer overlay */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.05) 0%,
+        rgba(180,80,255,0.08) 25%,
+        rgba(255,180,80,0.05) 55%,
+        rgba(80,200,255,0.05) 80%,
+        rgba(255,255,255,0.03) 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── INNER FRAME ── */
+    .inner {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #080010;
+      border: 1px solid #3a1060;
+    }
+
+    /* ── HEADER ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+      background: linear-gradient(90deg, #1f003a 0%, #0e0020 50%, #1f003a 100%);
+      border-bottom: 1px solid #4a1a80;
+    }
+
+    .card-name {
+      font-family: 'Crimson Text', serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #c878ff;
+      text-shadow: 0 0 10px rgba(200,120,255,0.9), 0 0 20px rgba(160,40,255,0.5), 0 1px 2px #000;
+      letter-spacing: 0.3px;
+      flex: 1;
+      line-height: 1.2;
+    }
+
+    .attribute-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #3a0070 0%, #100020 100%);
+      border: 2px solid #9040e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #d09aff;
+      letter-spacing: 0.4px;
+      text-shadow: 0 0 8px #c040ff;
+      flex-shrink: 0;
+      margin-left: 8px;
+      box-shadow: 0 0 14px rgba(180,40,255,0.7), inset 0 0 8px rgba(200,100,255,0.2);
+    }
+
+    /* ── RANK STARS ── */
+    .rank-bar {
+      background: #060010;
+      padding: 3px 10px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      border-bottom: 1px solid #200040;
+    }
+
+    .rank-label {
+      font-size: 9px;
+      color: #7050a0;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-right: 4px;
+    }
+
+    .rank-star {
+      font-size: 16px;
+      color: #c050ff;
+      text-shadow: 0 0 8px rgba(200,80,255,0.9), 0 0 16px rgba(160,0,255,0.5);
+      line-height: 1;
+    }
+
+    /* ── ARTWORK ── */
+    .artwork-frame {
+      margin: 6px 8px;
+      border-radius: 5px;
+      border: 2px solid #5a20a0;
+      overflow: hidden;
+      position: relative;
+      box-shadow:
+        inset 0 0 30px rgba(140,40,255,0.35),
+        0 0 20px rgba(140,40,255,0.2);
+    }
+
+    .artwork-frame img {
+      width: 100%;
+      height: 215px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: saturate(1.1) contrast(1.05);
+    }
+
+    /* corner ornaments */
+    .artwork-frame::before,
+    .artwork-frame::after {
+      content: '✦';
+      position: absolute;
+      font-size: 11px;
+      color: #c050ff;
+      opacity: 0.8;
+      text-shadow: 0 0 6px #a000ff;
+      z-index: 2;
+    }
+    .artwork-frame::before { top: 4px; left: 5px; }
+    .artwork-frame::after  { top: 4px; right: 5px; }
+
+    /* ── TYPE LINE ── */
+    .type-line {
+      background: linear-gradient(90deg, #110020 0%, #080015 100%);
+      padding: 4px 10px;
+      border-top: 1px solid #2e0060;
+      border-bottom: 1px solid #2e0060;
+    }
+
+    .type-text {
+      font-size: 10px;
+      color: #b080d8;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── MATERIALS / SUMMON CONDITION ── */
+    .materials-box {
+      margin: 4px 8px 0;
+      padding: 5px 8px;
+      background: rgba(180,120,255,0.07);
+      border-left: 2px solid #9040e0;
+      border-radius: 0 3px 3px 0;
+    }
+
+    .materials-text {
+      font-size: 9.5px;
+      color: #a060d0;
+      font-style: italic;
+      font-family: 'Crimson Text', serif;
+      line-height: 1.45;
+    }
+
+    /* ── EFFECT BOX ── */
+    .effect-box {
+      margin: 4px 8px 6px;
+      padding: 7px 9px;
+      background: rgba(15, 3, 35, 0.8);
+      border: 1px solid #2a1055;
+      border-radius: 4px;
+    }
+
+    /* Continuous label */
+    .effect-continuous-label {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: 700;
+      color: #080010;
+      background: #9040e0;
+      padding: 1px 5px;
+      border-radius: 2px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .effect-continuous {
+      font-size: 9.6px;
+      color: #d0b0f0;
+      line-height: 1.45;
+      margin-bottom: 6px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed #2a1055;
+    }
+
+    .effect-num {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 5px;
+      font-size: 9.6px;
+      color: #ccc0e0;
+      line-height: 1.45;
+    }
+
+    .effect-num:last-child { margin-bottom: 0; }
+
+    .num-badge {
+      flex-shrink: 0;
+      color: #b060ff;
+      font-weight: 700;
+      font-size: 11px;
+      margin-top: -1px;
+      min-width: 14px;
+    }
+
+    .effect-subbullet {
+      display: flex;
+      gap: 5px;
+      margin-top: 4px;
+      font-size: 9.4px;
+      color: #c0a8e0;
+      line-height: 1.4;
+      padding-left: 14px;
+    }
+
+    .bullet-dot {
+      color: #9040e0;
+      flex-shrink: 0;
+      font-size: 11px;
+      margin-top: -1px;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: linear-gradient(90deg, #110020 0%, #080015 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 14px;
+      border-top: 1px solid #2e0060;
+    }
+
+    .stat {
+      font-size: 13px;
+      font-weight: 700;
+      color: #9040e0;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 8px rgba(180,60,255,0.6);
+      font-family: 'Crimson Text', serif;
+    }
+
+    .stat span {
+      color: #e8c8ff;
+      text-shadow: 0 0 10px rgba(220,160,255,0.7);
+    }
+
+    .stat-divider {
+      color: #3a1060;
+      font-size: 18px;
+    }
+
+    /* ── FOOTER ── */
+    .card-footer {
+      background: #05000e;
+      padding: 3px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #1a0035;
+    }
+
+    .set-code {
+      font-size: 8px;
+      color: #4a2870;
+      letter-spacing: 1px;
+    }
+
+    .rarity-badge {
+      font-size: 8px;
+      color: #a060d0;
+      letter-spacing: 1px;
+      font-style: italic;
+      text-shadow: 0 0 6px rgba(180,80,255,0.5);
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="yugioh-card">
+  <div class="inner">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="card-name">Dark Revolution Xyz Dragon</div>
+      <div class="attribute-badge">DARK</div>
+    </div>
+
+    <!-- Rank Stars (Rank 6 — displayed right-to-left like real Xyz cards) -->
+    <div class="rank-bar">
+      <span class="rank-label">Rank</span>
+      <span class="rank-star">★</span>
+      <span class="rank-star">★</span>
+      <span class="rank-star">★</span>
+      <span class="rank-star">★</span>
+      <span class="rank-star">★</span>
+      <span class="rank-star">★</span>
+    </div>
+
+    <!-- Artwork -->
+    <div class="artwork-frame">
+      <img src="dark_revolution_xyz_dragon.png" alt="Dark Revolution Xyz Dragon Artwork"/>
+    </div>
+
+    <!-- Type Line -->
+    <div class="type-line">
+      <div class="type-text">[ Dragon / Xyz / Effect ]</div>
+    </div>
+
+    <!-- Summoning Condition -->
+    <div class="materials-box">
+      <div class="materials-text">Must first be Xyz Summoned by using a "Rank-Up-Magic" Spell targeting a "The Phantom Knights" Xyz Monster or an "Xyz Dragon" Xyz Monster you control. (Transfer its materials to this card.) Cannot be Special Summoned by other ways.</div>
+    </div>
+
+    <!-- Effects -->
+    <div class="effect-box">
+
+      <!-- Continuous Effects -->
+      <div>
+        <span class="effect-continuous-label">Continuous</span>
+        <div class="effect-continuous">
+          This card is unaffected by other cards' effects. This card can attack all monsters your opponent controls, once each. At the start of the Damage Step, if this card battles a face-up Special Summoned monster: that monster's ATK and DEF become 0.
+        </div>
+      </div>
+
+      <!-- Effect ① -->
+      <div class="effect-num">
+        <span class="num-badge">①</span>
+        <span>If this card is Xyz Summoned: you can target face-up monsters your opponent controls, up to the number of Xyz monsters this card has as material, inflict damage to your opponent equal to half the combined original atk those monsters had on the field before this effect's activation.</span>
+      </div>
+
+      <!-- Effect ② -->
+      <div class="effect-num">
+        <span class="num-badge">②</span>
+        <span>(Quick Effect): You can detach 1 material from this card; all face-up monsters your opponent controls lose ATK equal to half their current ATK, this card gains ATK equal to the total ATK lost by those monsters, and your opponent cannot activate cards or effects in response to this card's attacks until the End Phase.</span>
+      </div>
+
+      <!-- Effect ③ -->
+      <div class="effect-num">
+        <span class="num-badge">③</span>
+        <span>If this card has a "The Phantom Knights" Xyz Monster as material, it gains these effects:</span>
+      </div>
+      <div class="effect-subbullet">
+        <span class="bullet-dot">●</span>
+        <span>Once per turn: You can detach 1 material from this card, then target 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster in your GY; this card gains that monster's effects until the End Phase, then attach that targeted monster to this card as material.</span>
+      </div>
+      <div class="effect-subbullet">
+        <span class="bullet-dot">●</span>
+        <span>If this card is destroyed by an opponent's card effect and sent to the GY: You can Special Summon 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster from your GY, ignoring its Summoning conditions, and if you do, attach this card to the Special Summoned monster as material.</span>
+      </div>
+
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat">ATK / <span>3500</span></div>
+      <div class="stat-divider">|</div>
+      <div class="stat">DEF / <span>3000</span></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <span class="set-code">DREV-EN001</span>
+      <span class="rarity-badge">Collector's Rare</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

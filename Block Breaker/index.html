@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chain Breaker — Block Breaker Reimagined</title>
+  <meta name="description"
+    content="A modern block breaker game with explosive chain reactions, lasers, multiball, and mutation effects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div id="app">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- HUD -->
+    <div id="hud">
+      <div class="hud-item">
+        <span class="hud-label">SCORE</span>
+        <span class="hud-value" id="scoreDisplay">0</span>
+      </div>
+      <div class="hud-item center">
+        <span class="hud-label">LEVEL</span>
+        <span class="hud-value" id="levelDisplay">1</span>
+      </div>
+      <div class="hud-item right">
+        <span class="hud-label">LIVES</span>
+        <span class="hud-value" id="livesDisplay">♥ ♥ ♥</span>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div id="legend">
+      <div class="legend-item"><span class="legend-dot bomb"></span>Bomb</div>
+      <div class="legend-item"><span class="legend-dot laser"></span>Laser</div>
+      <div class="legend-item"><span class="legend-dot multiball"></span>Multiball</div>
+      <div class="legend-item"><span class="legend-dot mutation"></span>Mutation</div>
+      <div class="legend-item"><span class="legend-dot hard"></span>Hard</div>
+    </div>
+
+    <!-- Overlay screens -->
+    <div id="overlay" class="overlay active">
+      <div class="overlay-content">
+        <h1 class="game-title">CHAIN<br /><span class="title-accent">BREAKER</span></h1>
+        <p class="subtitle">Destroy blocks. Trigger chain reactions.</p>
+        <div class="controls-info">
+          <p>🖱️ Mouse or ← → Arrow Keys to move paddle</p>
+          <p>💣 Bomb · ⚡ Laser · 🔮 Multiball · 🧬 Mutation</p>
+        </div>
+        <button id="startBtn" class="btn-primary">START GAME</button>
+      </div>
+    </div>
+
+    <div id="gameOverOverlay" class="overlay">
+      <div class="overlay-content">
+        <h2 class="over-title">GAME OVER</h2>
+        <p class="final-score-label">Final Score</p>
+        <p class="final-score" id="finalScore">0</p>
+        <button id="restartBtn" class="btn-primary">PLAY AGAIN</button>
+      </div>
+    </div>
+
+    <div id="winOverlay" class="overlay">
+      <div class="overlay-content">
+        <h2 class="win-title">YOU WIN!</h2>
+        <p class="final-score-label">Final Score</p>
+        <p class="final-score" id="winScore">0</p>
+        <button id="nextLevelBtn" class="btn-primary">NEXT LEVEL</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
+</html>

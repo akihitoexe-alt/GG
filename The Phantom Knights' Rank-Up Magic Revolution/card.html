@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Phantom Knights' Rank-Up-Magic Revolution – Yu-Gi-Oh! Card</title>
+  <meta name="description" content="The Phantom Knights' Rank-Up-Magic Revolution – Quick-Play Spell Card. A counterpart to Rank-Up-Magic Revolution Force for The Phantom Knights."/>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at 50% 30%, #051a14 0%, #010a07 60%, #000 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      font-family: 'Crimson Text', serif;
+    }
+
+    /* ── CARD SHELL ── */
+    .card {
+      position: relative;
+      width: 380px;
+      border-radius: 14px;
+      padding: 10px;
+      background: linear-gradient(160deg, #1c7a54 0%, #0d4a30 40%, #032b1a 100%);
+      box-shadow:
+        0 0 0 3px #33ffaa,
+        0 0 0 5px #004022,
+        0 0 0 7px #052b19,
+        0 0 40px rgba(50, 200, 150, 0.7),
+        0 0 90px rgba(20, 140, 90, 0.5),
+        0 25px 70px rgba(0,0,0,0.95);
+      border: 2px solid #66ffcc;
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { box-shadow: 0 0 0 3px #33ffaa, 0 0 0 5px #004022, 0 0 0 7px #052b19, 0 0 40px rgba(50,200,150,0.7), 0 0 90px rgba(20,140,90,0.5), 0 25px 70px rgba(0,0,0,0.95); }
+      to   { box-shadow: 0 0 0 3px #66ffcc, 0 0 0 5px #004022, 0 0 0 7px #0a4026, 0 0 60px rgba(100,255,200,0.9), 0 0 120px rgba(50,200,150,0.65), 0 25px 70px rgba(0,0,0,0.95); }
+    }
+
+    /* holographic shimmer overlay */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.05) 0%,
+        rgba(100,255,200,0.08) 25%,
+        rgba(50,200,255,0.05) 55%,
+        rgba(150,255,200,0.05) 80%,
+        rgba(255,255,255,0.03) 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── INNER FRAME ── */
+    .inner {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #051a11;
+      border: 1px solid #144d32;
+    }
+
+    /* ── HEADER ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+      background: linear-gradient(90deg, #186643 0%, #0e4028 50%, #186643 100%);
+      border-bottom: 1px solid #092e1b;
+    }
+
+    .card-name {
+      font-family: 'Crimson Text', serif;
+      font-weight: 700;
+      font-size: 14.5px;
+      color: #ebfff5;
+      text-shadow: 0 0 5px #33ffaa, 0 0 10px #00cc66, 0 1px 2px #000;
+      letter-spacing: 0.1px;
+      flex: 1;
+      line-height: 1.1;
+    }
+
+    .attribute-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #15734a 0%, #052b19 100%);
+      border: 2px solid #33ffaa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 700;
+      color: #ccffeb;
+      letter-spacing: 0.2px;
+      text-shadow: 0 0 8px #33ffaa;
+      flex-shrink: 0;
+      margin-left: 8px;
+      box-shadow: 0 0 14px rgba(50,255,150,0.7), inset 0 0 8px rgba(50,255,150,0.2);
+    }
+
+    /* ── SPELL ORNAMENT BAR ── */
+    .level-bar-spell {
+      background: #020d08;
+      padding: 8px 10px;
+      border-bottom: 1px solid #144d32;
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .level-bar-spell::after {
+      content: '✦ 魔法 ✦';
+      color: #33ffaa;
+      font-size: 10px;
+      letter-spacing: 4px;
+      opacity: 0.4;
+      text-shadow: 0 0 5px #33ffaa;
+    }
+
+    /* ── ARTWORK ── */
+    .artwork-frame {
+      margin: 6px 8px;
+      border-radius: 5px;
+      border: 2px solid #238c5b;
+      overflow: hidden;
+      position: relative;
+      height: 245px;
+      background: radial-gradient(circle at 50% 40%, #0a291f 0%, #04120e 60%, #000000 100%);
+      box-shadow:
+        inset 0 0 40px rgba(50,255,150,0.2),
+        0 0 20px rgba(50,255,150,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Spectral Artwork */
+    .wisps {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 80%, rgba(150,50,255,0.3) 0%, transparent 25%),
+                  radial-gradient(circle at 80% 20%, rgba(0,255,200,0.2) 0%, transparent 25%),
+                  radial-gradient(circle at 50% 50%, rgba(50,150,255,0.2) 0%, transparent 35%);
+      filter: blur(12px);
+      animation: drift 7s alternate infinite;
+    }
+
+    .revolution-rings {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 2px dashed #00ffff;
+      border-radius: 50%;
+      animation: spin 15s linear infinite;
+      opacity: 0.4;
+      box-shadow: 0 0 10px #00ffff, inset 0 0 10px #00ffff;
+    }
+
+    .revolution-rings-inner {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border: 3px solid #9933ff;
+      border-radius: 50%;
+      animation: spinReverse 10s linear infinite;
+      opacity: 0.6;
+      box-shadow: 0 0 15px #9933ff, inset 0 0 15px #9933ff;
+    }
+
+    .phantom-crest {
+      position: relative;
+      width: 100px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: float 4s ease-in-out infinite;
+      z-index: 5;
+    }
+
+    .flame-aura {
+      position: absolute;
+      width: 140px;
+      height: 160px;
+      background: radial-gradient(ellipse, rgba(150,50,255,0.7) 0%, transparent 60%);
+      filter: blur(15px);
+      animation: pulseFlame 3s infinite alternate;
+      z-index: 0;
+    }
+
+    .crest-shield {
+      width: 70px;
+      height: 90px;
+      background: linear-gradient(135deg, #330066, #1a0033);
+      clip-path: polygon(50% 0%, 100% 20%, 90% 70%, 50% 100%, 10% 70%, 0% 20%);
+      border: 2px solid #00ffff;
+      box-shadow: inset 0 0 20px #00ffff, 0 0 15px #00ffff;
+      position: relative;
+      z-index: 2;
+    }
+
+    .crest-shield::after {
+      content: '';
+      position: absolute;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      background: linear-gradient(135deg, #1a0033, #000);
+      clip-path: polygon(50% 0%, 100% 20%, 90% 70%, 50% 100%, 10% 70%, 0% 20%);
+    }
+
+    .phantom-eye-left, .phantom-eye-right {
+      position: absolute;
+      width: 14px;
+      height: 8px;
+      background: #00ffff;
+      border-radius: 50%;
+      top: 35px;
+      z-index: 3;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      animation: blink 4s infinite;
+    }
+    .phantom-eye-left { left: 16px; transform: rotate(20deg); }
+    .phantom-eye-right { right: 16px; transform: rotate(-20deg); }
+
+    .cross-swords-left, .cross-swords-right {
+      position: absolute;
+      width: 110px;
+      height: 6px;
+      background: linear-gradient(90deg, transparent, #9933ff, #e6ccff, #9933ff, transparent);
+      top: 50%;
+      left: -5px;
+      z-index: 1;
+      filter: drop-shadow(0 0 5px #9933ff);
+    }
+    .cross-swords-left { transform: rotate(45deg); }
+    .cross-swords-right { transform: rotate(-45deg); }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes drift {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.1) rotate(5deg); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes spinReverse {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+
+    @keyframes pulseFlame {
+      0% { opacity: 0.6; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1.1); }
+    }
+
+    @keyframes blink {
+      0%, 96%, 100% { transform: scaleY(1) rotate(var(--rot)); }
+      98% { transform: scaleY(0.1) rotate(var(--rot)); }
+    }
+
+    /* corner ornaments */
+    .artwork-frame::before,
+    .artwork-frame::after {
+      content: '✦';
+      position: absolute;
+      font-size: 11px;
+      color: #33ffaa;
+      opacity: 0.8;
+      text-shadow: 0 0 6px #00cc66;
+      z-index: 2;
+    }
+    .artwork-frame::before { top: 4px; left: 5px; }
+    .artwork-frame::after  { top: 4px; right: 5px; }
+
+    /* ── TYPE LINE ── */
+    .type-line {
+      background: linear-gradient(90deg, #092e1b 0%, #020a06 100%);
+      padding: 4px 10px;
+      border-top: 1px solid #144d32;
+      border-bottom: 1px solid #144d32;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .type-text {
+      font-size: 12px;
+      color: #ccffeb;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── EFFECT BOX ── */
+    .effect-box {
+      margin: 4px 8px 6px;
+      padding: 8px 10px;
+      background: rgba(5, 26, 17, 0.85);
+      border: 1px solid #144d32;
+      border-radius: 4px;
+      min-height: 120px;
+    }
+
+    .effect-text {
+      font-size: 9.8px;
+      color: #e1f2ec;
+      line-height: 1.45;
+      text-align: justify;
+    }
+
+    .effect-text p {
+      margin-bottom: 5px;
+    }
+    
+    .effect-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── FOOTER ── */
+    .card-footer {
+      background: #020a06;
+      padding: 4px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #061a10;
+    }
+
+    .set-code {
+      font-size: 9px;
+      color: #59b386;
+      letter-spacing: 1px;
+    }
+
+    .rarity-badge {
+      font-size: 9px;
+      color: #99ffcc;
+      letter-spacing: 1px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="yugioh-card">
+  <div class="inner">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="card-name">The Phantom Knights' Rank-Up-Magic Revolution</div>
+      <div class="attribute-badge">SPELL</div>
+    </div>
+
+    <!-- Spell Ornament Bar -->
+    <div class="level-bar-spell"></div>
+
+    <!-- Artwork -->
+    <div class="artwork-frame">
+      <div class="wisps"></div>
+      <div class="revolution-rings"></div>
+      <div class="revolution-rings-inner"></div>
+      <div class="phantom-crest">
+        <div class="flame-aura"></div>
+        <div class="cross-swords-left"></div>
+        <div class="cross-swords-right"></div>
+        <div class="crest-shield"></div>
+        <div class="phantom-eye-left" style="--rot: 20deg;"></div>
+        <div class="phantom-eye-right" style="--rot: -20deg;"></div>
+      </div>
+    </div>
+
+    <!-- Type Line -->
+    <div class="type-line">
+      <div class="type-text">[ Spell Card / Quick-Play ]</div>
+    </div>
+
+    <!-- Effect -->
+    <div class="effect-box">
+      <div class="effect-text">
+        <p>Activate 1 of these effects;<br/>
+        ● During your turn: Target 1 DARK Xyz Monster you control; Special Summon from your Extra Deck, 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster that is 1 Rank higher than that target, by using it as material. (This is treated as an Xyz Summon. Transfer its materials to the Summoned monster.)<br/>
+        ● During your opponent's turn: Target 1 face-up Xyz Monster your opponent controls with no Xyz Materials; take control of that target, then Special Summon from your Extra Deck, 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster that is 1 Rank higher than that monster, by using it as material. (This is treated as an Xyz Summon. Transfer its materials to the Summoned monster.)<br/>
+        Neither player can activate cards or effects in response to this card's activation.</p>
+        <p>During your Main Phase: You can banish this card from your GY, then target 1 DARK Xyz Monster you control; attach 1 "The Phantom Knights" monster from your hand or GY to it as material.</p>
+        <p>You can only use each effect of "The Phantom Knights' Rank-Up-Magic Revolution" once per turn.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <span class="set-code">PHNI-EN046</span>
+      <span class="rarity-badge">Secret Rare</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

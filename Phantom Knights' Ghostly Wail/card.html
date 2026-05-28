@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Knights' Ghostly Wail</title>
+    <meta name="description" content="A custom Yu-Gi-Oh! Quick-Play Spell card — Phantom Knights' Ghostly Wail. Support for The Phantom Knights and Xyz Dragon Archetypes.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card-scene">
+        <div class="card-container" id="ghostly-wail-card" role="article" aria-label="Phantom Knights' Ghostly Wail Card">
+
+            <!-- Corner rune decorations -->
+            <div class="rune-corner tl" aria-hidden="true"></div>
+            <div class="rune-corner tr" aria-hidden="true"></div>
+            <div class="rune-corner bl" aria-hidden="true"></div>
+            <div class="rune-corner br" aria-hidden="true"></div>
+
+            <!-- ── Header ─────────────────────────────────── -->
+            <header class="card-header">
+                <h1 class="card-name">Phantom Knights' Ghostly Wail</h1>
+                <div class="card-attribute" title="SPELL Attribute" aria-label="SPELL Attribute">
+                    <span class="attribute-icon">魔法</span>
+                </div>
+            </header>
+
+            <!-- Spell badge -->
+            <div class="spell-badge" aria-label="Quick-Play Spell Card">
+                <span class="spell-badge-icon">⚡</span>
+                <span class="spell-badge-label">Spell Card</span>
+            </div>
+
+            <!-- ── Card Art ───────────────────────────────── -->
+            <div class="card-art-frame" aria-label="Card artwork: A spectral glowing phantom warrior wailing, unleashing waves of ghostly sound waves under a dark moon">
+                <img
+                    src="card_art.png"
+                    alt="A spectral, glowing phantom warrior in tattered dark violet armor wailing towards the sky, unleashing waves of ghostly blue and purple sound waves"
+                    id="card-artwork"
+                    onerror="this.parentElement.classList.add('art-fallback')"
+                >
+                <!-- Animated overlays and sound waves -->
+                <div class="art-overlay" aria-hidden="true"></div>
+                <div class="sound-wave" style="--delay: 0s;" aria-hidden="true"></div>
+                <div class="sound-wave" style="--delay: 1.5s;" aria-hidden="true"></div>
+                <div class="sound-wave" style="--delay: 3.0s;" aria-hidden="true"></div>
+                
+                <!-- Phantom flame particles -->
+                <div class="flame-particle" style="left:12%; --dur:3.8s; --delay:0s; height:18px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:28%; --dur:2.9s; --delay:0.7s; height:24px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:45%; --dur:4.2s; --delay:0.3s; height:14px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:60%; --dur:3.1s; --delay:1.2s; height:20px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:75%; --dur:3.6s; --delay:0.5s; height:16px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:88%; --dur:2.7s; --delay:1.0s; height:22px;" aria-hidden="true"></div>
+            </div>
+
+            <!-- ── Effect Text Box ───────────────────────── -->
+            <div class="effect-box" id="effect-text-box">
+                <span class="effect-type-label">[ Spell Card &nbsp;⚡&nbsp; Quick-Play ]</span>
+
+                <p class="effect-line">
+                    When your opponent activates a card or effect: Send any number of "The Phantom Knights" cards from your hand and/or face-up field to the GY; target that many face-up cards your opponent controls (including the activated card, if it is on the field); negate their effects until the end of this turn, and if you do, banish them when they leave the field.
+                </p>
+
+                <p class="effect-line">
+                    Except the turn this card was sent to the GY: You can banish this card from your GY, then target 1 of your banished "The Phantom Knights" cards; return it to the GY.
+                </p>
+
+                <span class="once-per-turn">
+                    You can only activate 1 "Phantom Knights' Ghostly Wail" per turn.
+                </span>
+            </div>
+
+            <!-- ── Footer ────────────────────────────────── -->
+            <footer class="card-footer">
+                <span class="card-set-info">PK-EN002 &nbsp;|&nbsp; Ultra Rare</span>
+                <span class="card-copyright">©Custom Design — Phantom Knights Series</span>
+            </footer>
+
+        </div>
+    </div>
+
+    <p class="card-title-label" aria-hidden="true">— Phantom Knights' Ghostly Wail —</p>
+
+    <style>
+        /* Fallback art style when image can't load */
+        .art-fallback {
+            background: linear-gradient(135deg, #031c11 0%, #124f33 40%, #070a0e 100%) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .art-fallback img { display: none; }
+        .art-fallback::before {
+            content: '👻';
+            font-size: 5rem;
+            filter: drop-shadow(0 0 20px #38bdf8);
+        }
+        .art-fallback::after {
+            content: 'A spectral phantom warrior wailing under a dark crescent moon';
+            position: absolute;
+            bottom: 12px;
+            left: 0; right: 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 0.7rem;
+            color: rgba(56, 189, 248, 0.7);
+            padding: 0 16px;
+        }
+    </style>
+
+    <!-- Interactive 3D tilt effect script -->
+    <script>
+        const card = document.getElementById('ghostly-wail-card');
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const xc = rect.width / 2;
+            const yc = rect.height / 2;
+            
+            const angleX = (yc - y) / 18; // Max tilt angle
+            const angleY = (x - xc) / 18;
+            
+            card.style.transform = `translateY(-8px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+        });
+    </script>
+
+</body>
+</html>

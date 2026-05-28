@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Phantom Knights' Regretful Shield</title>
+    <meta name="description" content="A custom Yu-Gi-Oh! Normal Trap card — The Phantom Knights' Regretful Shield, a retrain of The Phantom Knights of Tomb Shield designed as a counterpart to Raidraptor - Readiness.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card-scene">
+        <div class="card-container" id="regretful-shield-card" role="article" aria-label="The Phantom Knights' Regretful Shield Card">
+
+            <!-- Corner rune decorations -->
+            <div class="rune-corner tl" aria-hidden="true"></div>
+            <div class="rune-corner tr" aria-hidden="true"></div>
+            <div class="rune-corner bl" aria-hidden="true"></div>
+            <div class="rune-corner br" aria-hidden="true"></div>
+
+            <!-- ── Header ─────────────────────────────────── -->
+            <header class="card-header">
+                <h1 class="card-name">The Phantom Knights' Regretful Shield</h1>
+                <div class="card-attribute" title="DARK Attribute" aria-label="DARK Attribute">
+                    <span class="attribute-icon">DARK</span>
+                </div>
+            </header>
+
+            <!-- Trap type badge -->
+            <div class="trap-badge" aria-label="Normal Trap Card">
+                <span class="trap-badge-icon">⛨</span>
+                <span class="trap-badge-label">Normal Trap</span>
+            </div>
+
+            <!-- ── Card Art ───────────────────────────────── -->
+            <div class="card-art-frame" aria-label="Card artwork: A spectral phantom knight bearing a cracked runic shield amid ghostly blue flames">
+                <img
+                    src="card_art.png"
+                    alt="A sorrowful spectral phantom knight standing in a defensive stance, holding a massive cracked violet tower shield etched with glowing blue runes, surrounded by ghostly phantom flames and gothic ruins"
+                    id="card-artwork"
+                    onerror="this.parentElement.classList.add('art-fallback')"
+                >
+                <!-- Animated overlay -->
+                <div class="art-overlay" aria-hidden="true"></div>
+                <!-- Phantom flame particles -->
+                <div class="flame-particle" style="left:10%; --dur:3.2s; --delay:0s; height:18px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:22%; --dur:2.6s; --delay:0.8s; height:24px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:38%; --dur:3.8s; --delay:0.3s; height:14px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:55%; --dur:2.9s; --delay:1.2s; height:20px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:70%; --dur:3.5s; --delay:0.5s; height:16px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:85%; --dur:2.8s; --delay:0.9s; height:22px;" aria-hidden="true"></div>
+            </div>
+
+            <!-- ── Effect Text Box ───────────────────────── -->
+            <div class="effect-box" id="effect-text-box">
+                <span class="effect-type-label">[ Trap / Normal ]</span>
+
+                <p class="effect-summon-line">
+                    When this card resolves, you can Special Summon it in Defense Position as a Normal Monster
+                    (Warrior / DARK / Level 3 / ATK 0 / DEF 0). (This card is not treated as a Trap.)
+                </p>
+
+                <span class="effect-separator" aria-hidden="true"></span>
+
+                <p class="effect-line">
+                    <span class="effect-number">(1)</span>
+                    When this card is activated: "The Phantom Knights" and "Xyz Dragon" monsters you control
+                    cannot be destroyed by battle this turn.
+                </p>
+
+                <p class="effect-line">
+                    <span class="effect-number">(2)</span>
+                    If you have a "The Phantom Knights" monster or an "Xyz Dragon" Xyz Monster in your GY:
+                    You can banish this card from your GY; this turn, you take no battle damage, and once,
+                    if an Xyz Monster you control would be destroyed by battle or card effect, you can
+                    detach 1 material from it instead.
+                </p>
+
+                <span class="once-per-turn">
+                    You can only use each effect of "The Phantom Knights' Regretful Shield" once per turn.
+                </span>
+            </div>
+
+            <!-- ── Footer ────────────────────────────────── -->
+            <footer class="card-footer">
+                <span class="card-set-info">PK-EN000 &nbsp;|&nbsp; Ultra Rare</span>
+                <span class="card-copyright">©Custom Design — Phantom Knights Series</span>
+            </footer>
+
+        </div>
+    </div>
+
+    <p class="card-title-label" aria-hidden="true">— The Phantom Knights' Regretful Shield —</p>
+
+    <style>
+        /* Fallback art style when image can't load */
+        .art-fallback {
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d0a4e 40%, #0a1a2e 100%) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .art-fallback img { display: none; }
+        .art-fallback::before {
+            content: '🛡️';
+            font-size: 5rem;
+            filter: drop-shadow(0 0 20px #7b2fa0);
+        }
+        .art-fallback::after {
+            content: 'A spectral knight bearing a runic phantom shield';
+            position: absolute;
+            bottom: 12px;
+            left: 0; right: 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 0.7rem;
+            color: rgba(192,132,252,0.7);
+            padding: 0 16px;
+        }
+    </style>
+
+</body>
+</html>

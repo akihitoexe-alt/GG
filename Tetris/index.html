@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Tetris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- 背景の装飾 -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+
+        <div class="glass-panel">
+            <div class="left-panel">
+                <div class="stats-box">
+                    <h3>SCORE</h3>
+                    <p id="score">0</p>
+                </div>
+                <div class="stats-box">
+                    <h3>LEVEL</h3>
+                    <p id="level">1</p>
+                </div>
+                <div class="stats-box">
+                    <h3>LINES</h3>
+                    <p id="lines">0</p>
+                </div>
+                
+                <div class="controls-hint">
+                    <p><span>↑</span> : Rotate</p>
+                    <p><span>←</span><span>→</span> : Move</p>
+                    <p><span>↓</span> : Soft Drop</p>
+                    <p><span>Space</span> : Hard Drop</p>
+                </div>
+            </div>
+
+            <div class="board-container">
+                <canvas id="tetris-board" width="300" height="600"></canvas>
+                <div id="game-over" class="overlay hidden">
+                    <h2>GAME OVER</h2>
+                    <p>Final Score: <span id="final-score">0</span></p>
+                    <button id="restart-btn" class="glow-on-hover">RESTART</button>
+                </div>
+                <div id="start-screen" class="overlay">
+                    <h1>TETRIS</h1>
+                    <button id="start-btn" class="glow-on-hover">PLAY NOW</button>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="stats-box next-box">
+                    <h3>NEXT</h3>
+                    <canvas id="next-piece" width="120" height="120"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

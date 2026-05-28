@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Phantom Knights of Feeble Armor – Yu-Gi-Oh! Card</title>
+  <meta name="description" content="The Phantom Knights of Feeble Armor – Level 3 DARK Warrior Effect Monster. ATK 500 / DEF 1000. A retrained counterpart of The Phantom Knights of Fragile Armor."/>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at 50% 30%, #1a1005 0%, #0a0500 60%, #000 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      font-family: 'Crimson Text', serif;
+    }
+
+    /* ── CARD SHELL ── */
+    .card {
+      position: relative;
+      width: 380px;
+      border-radius: 14px;
+      padding: 10px;
+      background: linear-gradient(160deg, #cc8344 0%, #9c4f14 40%, #87410d 100%);
+      box-shadow:
+        0 0 0 3px #ffaa66,
+        0 0 0 5px #2a0040,   /* Phantom Knight purple tint */
+        0 0 0 7px #50107a,
+        0 0 40px rgba(160, 40, 255, 0.7),
+        0 0 90px rgba(100, 0, 200, 0.5),
+        0 25px 70px rgba(0,0,0,0.95);
+      border: 2px solid #ffb870;
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { box-shadow: 0 0 0 3px #e59f5a, 0 0 0 5px #2a0040, 0 0 0 7px #50107a, 0 0 40px rgba(160,40,255,0.7), 0 0 90px rgba(100,0,200,0.5), 0 25px 70px rgba(0,0,0,0.95); }
+      to   { box-shadow: 0 0 0 3px #ffbd7f, 0 0 0 5px #2a0040, 0 0 0 7px #6a2ab0, 0 0 60px rgba(180,60,255,0.9), 0 0 120px rgba(120,0,240,0.65), 0 25px 70px rgba(0,0,0,0.95); }
+    }
+
+    /* holographic shimmer overlay */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.05) 0%,
+        rgba(180,80,255,0.08) 25%,
+        rgba(255,180,80,0.05) 55%,
+        rgba(80,200,255,0.05) 80%,
+        rgba(255,255,255,0.03) 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── INNER FRAME ── */
+    .inner {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #140b05;
+      border: 1px solid #4a250e;
+    }
+
+    /* ── HEADER ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+      background: linear-gradient(90deg, #c27534 0%, #9e5317 50%, #c27534 100%);
+      border-bottom: 1px solid #73360b;
+    }
+
+    .card-name {
+      font-family: 'Crimson Text', serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff4d0;
+      text-shadow: 0 0 5px #ffb340, 0 0 10px #ff8000, 0 1px 2px #000;
+      letter-spacing: 0.3px;
+      flex: 1;
+      line-height: 1.2;
+    }
+
+    .attribute-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #3a0070 0%, #100020 100%);
+      border: 2px solid #9040e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #d09aff;
+      letter-spacing: 0.4px;
+      text-shadow: 0 0 8px #c040ff;
+      flex-shrink: 0;
+      margin-left: 8px;
+      box-shadow: 0 0 14px rgba(180,40,255,0.7), inset 0 0 8px rgba(200,100,255,0.2);
+    }
+
+    /* ── LEVEL STARS ── */
+    .level-bar {
+      background: #1c0e06;
+      padding: 4px 10px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 3px;
+      border-bottom: 1px solid #4a250e;
+    }
+
+    .level-star {
+      width: 17px;
+      height: 17px;
+      background: radial-gradient(circle, #ffe600 20%, #ff8c00 80%);
+      border-radius: 50%;
+      border: 1px solid #ff4500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 5px #ffaa00;
+      position: relative;
+    }
+
+    .level-star::before {
+      content: '★';
+      font-size: 11px;
+      color: #fff;
+      text-shadow: 0 0 2px rgba(0,0,0,0.8);
+      position: absolute;
+    }
+
+    /* ── ARTWORK ── */
+    .artwork-frame {
+      margin: 6px 8px;
+      border-radius: 5px;
+      border: 2px solid #5a20a0;
+      overflow: hidden;
+      position: relative;
+      height: 215px;
+      background: radial-gradient(circle at 50% 40%, #2a0b40 0%, #110020 60%, #050010 100%);
+      box-shadow:
+        inset 0 0 40px rgba(140,40,255,0.6),
+        0 0 20px rgba(140,40,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Dynamic CSS Spectral Artwork (Fallback for generate_image) */
+    .wisps {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 80%, rgba(180,60,255,0.4) 0%, transparent 20%),
+                  radial-gradient(circle at 70% 70%, rgba(100,20,200,0.5) 0%, transparent 20%),
+                  radial-gradient(circle at 50% 20%, rgba(80,100,255,0.3) 0%, transparent 30%);
+      filter: blur(10px);
+      animation: drift 6s alternate infinite;
+    }
+
+    .spectral-armor {
+      position: absolute;
+      width: 110px;
+      height: 150px;
+      background: linear-gradient(180deg, rgba(160,80,255,0.8) 0%, rgba(80,0,160,0.4) 100%);
+      clip-path: polygon(50% 10%, 80% 30%, 85% 60%, 70% 90%, 50% 100%, 30% 90%, 15% 60%, 20% 30%);
+      filter: blur(1px) drop-shadow(0 0 15px #c050ff);
+      animation: float 4s ease-in-out infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .spectral-armor-core {
+      width: 30px;
+      height: 40px;
+      background: radial-gradient(circle, #fff 0%, #0ff 40%, transparent 80%);
+      filter: blur(3px);
+      animation: pulseCore 2s infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) scale(1); opacity: 0.85; }
+      50% { transform: translateY(-8px) scale(1.02); opacity: 1; }
+      100% { transform: translateY(0px) scale(1); opacity: 0.85; }
+    }
+
+    @keyframes drift {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.1) rotate(3deg); }
+    }
+
+    @keyframes pulseCore {
+      0% { transform: scale(0.9); opacity: 0.7; }
+      100% { transform: scale(1.2); opacity: 1; }
+    }
+
+    /* corner ornaments */
+    .artwork-frame::before,
+    .artwork-frame::after {
+      content: '✦';
+      position: absolute;
+      font-size: 11px;
+      color: #c050ff;
+      opacity: 0.8;
+      text-shadow: 0 0 6px #a000ff;
+      z-index: 2;
+    }
+    .artwork-frame::before { top: 4px; left: 5px; }
+    .artwork-frame::after  { top: 4px; right: 5px; }
+
+    /* ── TYPE LINE ── */
+    .type-line {
+      background: linear-gradient(90deg, #3d2210 0%, #1c0e06 100%);
+      padding: 4px 10px;
+      border-top: 1px solid #7a431d;
+      border-bottom: 1px solid #7a431d;
+    }
+
+    .type-text {
+      font-size: 11px;
+      color: #ffcc99;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── EFFECT BOX ── */
+    .effect-box {
+      margin: 4px 8px 6px;
+      padding: 8px 10px;
+      background: rgba(24, 12, 5, 0.85);
+      border: 1px solid #542d13;
+      border-radius: 4px;
+      min-height: 85px;
+    }
+
+    .effect-text {
+      font-size: 10px;
+      color: #ebd1ba;
+      line-height: 1.45;
+      text-align: justify;
+    }
+
+    .effect-text p {
+      margin-bottom: 5px;
+    }
+    
+    .effect-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: linear-gradient(90deg, #3d2210 0%, #1c0e06 100%);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 6px 14px;
+      border-top: 1px solid #7a431d;
+      gap: 15px;
+    }
+
+    .stat {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ff9955;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 4px rgba(255,100,0,0.5);
+      font-family: 'Crimson Text', serif;
+    }
+
+    .stat span {
+      color: #fff;
+      text-shadow: 0 0 5px rgba(255,150,50,0.8);
+    }
+
+    /* ── FOOTER ── */
+    .card-footer {
+      background: #0d0602;
+      padding: 4px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #2e1608;
+    }
+
+    .set-code {
+      font-size: 9px;
+      color: #a86c42;
+      letter-spacing: 1px;
+    }
+
+    .rarity-badge {
+      font-size: 9px;
+      color: #d4a377;
+      letter-spacing: 1px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="yugioh-card">
+  <div class="inner">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="card-name">The Phantom Knights of Feeble Armor</div>
+      <div class="attribute-badge">DARK</div>
+    </div>
+
+    <!-- Level Stars (Level 3 - main deck effect monsters align right) -->
+    <div class="level-bar">
+      <div class="level-star"></div>
+      <div class="level-star"></div>
+      <div class="level-star"></div>
+    </div>
+
+    <!-- Artwork (Using Dynamic CSS for Spectral Armor) -->
+    <div class="artwork-frame">
+      <div class="wisps"></div>
+      <div class="spectral-armor">
+        <div class="spectral-armor-core"></div>
+      </div>
+    </div>
+
+    <!-- Type Line -->
+    <div class="type-line">
+      <div class="type-text">[ Warrior / Effect ]</div>
+    </div>
+
+    <!-- Effect -->
+    <div class="effect-box">
+      <div class="effect-text">
+        <p>If a face-up "The Phantom Knights" or "Xyz Dragon" monster(s) is destroyed by battle or card effect, you can Special Summon this card from your hand or Graveyard. You can only Special Summon this card once per turn this way.</p>
+        <p>If this card is Normal or Special Summoned, you can send one Phantom Knights card from your hand or deck to the GY, draw 1 card, and if it is a "Phantom Knights" Spell or Trap Card, you can set it, it can be activated this turn.</p>
+        <p>You can banish this card from your GY, the first time a Phantom Knights or Xyz Dragon card you control would be destroyed, it is not destroyed. This is a Quick Effect if you have a face-up Xyz Dragon or Phantom Knights Xyz monster on the field or in your GY.</p>
+        <p>You can use each effect of this card once per turn and only once that turn.</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat">ATK / <span>500</span></div>
+      <div class="stat">DEF / <span>1000</span></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <span class="set-code">PHNI-EN012</span>
+      <span class="rarity-badge">Super Rare</span>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

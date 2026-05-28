@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Phantom Knights of Broken Helm – Yu-Gi-Oh! Card</title>
+  <meta name="description" content="The Phantom Knights of Broken Helm – Level 3 DARK Warrior Effect Monster. ATK 1200 / DEF 1000."/>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at 50% 30%, #20130a 0%, #0a0402 60%, #000 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      font-family: 'Crimson Text', serif;
+    }
+
+    /* ── CARD SHELL (EFFECT MONSTER = COPPER/ORANGE) ── */
+    .card {
+      position: relative;
+      width: 380px;
+      border-radius: 14px;
+      padding: 10px;
+      background: linear-gradient(160deg, #3d2518 0%, #1c100a 40%, #2a160d 100%);
+      box-shadow:
+        0 0 0 3px #a45a30,
+        0 0 0 5px #1a0f0a,
+        0 0 0 7px #3a2012,
+        0 0 40px rgba(200, 100, 50, 0.7),
+        0 0 90px rgba(180, 80, 30, 0.5),
+        0 25px 70px rgba(0,0,0,0.95);
+      border: 2px solid #e3834b;
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { box-shadow: 0 0 0 3px #a45a30, 0 0 0 5px #1a0f0a, 0 0 0 7px #3a2012, 0 0 40px rgba(200, 100, 50, 0.7), 0 0 90px rgba(180, 80, 30, 0.5), 0 25px 70px rgba(0,0,0,0.95); }
+      to   { box-shadow: 0 0 0 3px #c47648, 0 0 0 5px #1a0f0a, 0 0 0 7px #4a2a18, 0 0 60px rgba(230, 130, 70, 0.9), 0 0 120px rgba(200, 100, 40, 0.65), 0 25px 70px rgba(0,0,0,0.95); }
+    }
+
+    /* holographic shimmer overlay */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.05) 0%,
+        rgba(255,150,100,0.08) 25%,
+        rgba(255,200,150,0.05) 55%,
+        rgba(255,100,50,0.05) 80%,
+        rgba(255,255,255,0.03) 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── INNER FRAME ── */
+    .inner {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #110d0a;
+      border: 1px solid #362217;
+    }
+
+    /* ── HEADER ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+      background: linear-gradient(90deg, #2b1a10 0%, #170d08 50%, #2b1a10 100%);
+      border-bottom: 1px solid #4a2d1c;
+    }
+
+    .card-name {
+      font-family: 'Crimson Text', serif;
+      font-weight: 700;
+      font-size: 14.5px;
+      color: #ffe6d5;
+      text-shadow: 0 0 10px rgba(255,180,100,0.9), 0 0 20px rgba(255,140,50,0.5), 0 1px 2px #000;
+      letter-spacing: 0.2px;
+      flex: 1;
+      line-height: 1.2;
+    }
+
+    .attribute-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #3a0070 0%, #100020 100%);
+      border: 2px solid #9040e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #d09aff;
+      letter-spacing: 0.4px;
+      text-shadow: 0 0 8px #c040ff;
+      flex-shrink: 0;
+      margin-left: 8px;
+      box-shadow: 0 0 14px rgba(180,40,255,0.7), inset 0 0 8px rgba(200,100,255,0.2);
+    }
+
+    /* ── LEVEL STARS (LEVEL 3) ── */
+    .level-bar {
+      background: #0a0604;
+      padding: 3px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 3px;
+      border-bottom: 1px solid #2e1a0f;
+    }
+
+    .level-star {
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #ff4b4b 0%, #b30000 70%, #500000 100%);
+      border-radius: 50%;
+      border: 1px solid #ffcccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 5px rgba(255,0,0,0.8), inset 0 0 4px rgba(255,200,200,0.5);
+    }
+
+    .level-star::before {
+      content: '★';
+      font-size: 11.5px;
+      color: #ffea00;
+      text-shadow: 0 0 3px #ffaa00;
+      line-height: 1;
+    }
+
+    /* ── ARTWORK (CSS GENERATED) ── */
+    .artwork-frame {
+      margin: 6px 8px;
+      border-radius: 5px;
+      border: 2px solid #5a351c;
+      overflow: hidden;
+      position: relative;
+      height: 245px;
+      background: radial-gradient(circle at 50% 50%, #20152b 0%, #0a0614 60%, #000 100%);
+      box-shadow:
+        inset 0 0 40px rgba(140,80,255,0.2),
+        0 0 20px rgba(200,100,50,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Starry Background */
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(1px 1px at 15% 25%, #fff, transparent),
+        radial-gradient(1px 1px at 35% 45%, #fff, transparent),
+        radial-gradient(2px 2px at 55% 15%, rgba(180,180,255,0.8), transparent),
+        radial-gradient(1px 1px at 75% 35%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 85% 55%, #fff, transparent),
+        radial-gradient(2px 2px at 85% 85%, rgba(200,150,255,0.9), transparent),
+        radial-gradient(1px 1px at 25% 75%, #fff, transparent),
+        radial-gradient(1px 1px at 45% 95%, #fff, transparent);
+      background-size: 150px 150px;
+      animation: twinkle 4s infinite linear;
+      opacity: 0.7;
+    }
+
+    /* Base aura */
+    .phantom-flames {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(140, 60, 255, 0.4) 0%, transparent 70%);
+      bottom: 20px;
+      animation: pulseFlame 3s alternate infinite;
+    }
+
+    /* Broken Helm Wrapper */
+    .broken-helm {
+      position: relative;
+      width: 110px;
+      height: 120px;
+      z-index: 5;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Top portion of helm (shattered) */
+    .helm-top {
+      position: absolute;
+      top: 0;
+      left: 15px;
+      width: 80px;
+      height: 60px;
+      background: linear-gradient(135deg, #322b40, #14101c);
+      border-radius: 40px 40px 0 0;
+      border: 2px solid #6b5c87;
+      border-bottom: none;
+      box-shadow: inset 0 5px 15px rgba(130, 100, 200, 0.4);
+      transform: rotate(-5deg);
+      transform-origin: bottom right;
+      animation: hoverPart 5s ease-in-out infinite alternate;
+    }
+
+    /* Bottom portion of helm */
+    .helm-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      width: 90px;
+      height: 60px;
+      background: linear-gradient(135deg, #241e30, #0a0812);
+      border-radius: 0 0 30px 30px;
+      border: 2px solid #6b5c87;
+      border-top: none;
+      clip-path: polygon(0 20%, 20% 0, 40% 15%, 60% 0, 80% 20%, 100% 0, 100% 100%, 0 100%);
+      box-shadow: inset 0 -5px 15px rgba(130, 100, 200, 0.3);
+    }
+
+    /* Floating broken horns */
+    .horn-left, .horn-right {
+      position: absolute;
+      top: -20px;
+      width: 15px;
+      height: 40px;
+      background: linear-gradient(to bottom, #4a3f5e, #1a1524);
+      border: 2px solid #6b5c87;
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    }
+
+    .horn-left { left: -5px; transform: rotate(-30deg); }
+    .horn-right { right: -5px; transform: rotate(30deg); }
+
+    .horn-left.broken {
+      top: -10px;
+      height: 20px;
+      clip-path: polygon(20% 0, 100% 100%, 0% 100%);
+    }
+
+    /* Glowing Eyes */
+    .phantom-eye {
+      position: absolute;
+      width: 14px;
+      height: 8px;
+      background: #00ffff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      animation: flareEye 2.5s infinite alternate;
+      z-index: 6;
+    }
+    .eye-left { top: 50px; left: 35px; --rot: 10deg; }
+    .eye-right { top: 50px; right: 35px; --rot: -10deg; }
+
+    /* Spectral Energy leaking from cracks */
+    .spectral-energy {
+      position: absolute;
+      top: 30px;
+      left: 25px;
+      width: 60px;
+      height: 50px;
+      background: radial-gradient(ellipse, rgba(0, 255, 255, 0.4) 0%, transparent 60%);
+      filter: blur(5px);
+      z-index: -1;
+      animation: pulseEnergy 2s infinite alternate;
+    }
+
+    /* Small floating shatter pieces */
+    .shatter-piece {
+      position: absolute;
+      background: linear-gradient(135deg, #4a3f5e, #241e30);
+      border: 1px solid #6b5c87;
+      box-shadow: 0 0 10px rgba(130, 100, 200, 0.5);
+      animation: floatPiece 6s linear infinite alternate;
+    }
+
+    .p1 { width: 12px; height: 18px; top: 10px; left: -10px; clip-path: polygon(50% 0, 100% 100%, 0 80%); animation-delay: 0s; }
+    .p2 { width: 10px; height: 10px; top: 35px; right: -5px; clip-path: polygon(0 0, 100% 30%, 50% 100%); animation-delay: 1s; }
+    .p3 { width: 15px; height: 12px; bottom: 20px; left: 5px; clip-path: polygon(20% 0, 100% 20%, 60% 100%); animation-delay: 2s; }
+
+    @keyframes float {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-10px) scale(1.02); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+    @keyframes hoverPart {
+      0% { transform: rotate(-3deg) translateY(0); }
+      100% { transform: rotate(3deg) translateY(-8px); }
+    }
+    @keyframes flareEye {
+      0% { transform: scaleY(1) rotate(var(--rot)); opacity: 0.8; }
+      100% { transform: scaleY(1.4) rotate(var(--rot)); opacity: 1; box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff; }
+    }
+    @keyframes pulseEnergy {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.2); opacity: 1; }
+    }
+    @keyframes floatPiece {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(15px, -20px) rotate(180deg); }
+    }
+    @keyframes pulseFlame {
+      0% { transform: scale(0.9); opacity: 0.5; }
+      100% { transform: scale(1.2); opacity: 0.8; }
+    }
+    @keyframes twinkle {
+      0% { background-position: 0 0; }
+      100% { background-position: 150px 150px; }
+    }
+
+    /* corner ornaments */
+    .artwork-frame::before,
+    .artwork-frame::after {
+      content: '✦';
+      position: absolute;
+      font-size: 11px;
+      color: #ffd9b3;
+      opacity: 0.8;
+      text-shadow: 0 0 6px #ff8000;
+      z-index: 6;
+    }
+    .artwork-frame::before { top: 4px; left: 5px; }
+    .artwork-frame::after  { top: 4px; right: 5px; }
+
+    /* ── TYPE LINE ── */
+    .type-line {
+      background: linear-gradient(90deg, #1c110b 0%, #0f0906 100%);
+      padding: 4px 10px;
+      border-top: 1px solid #3a2215;
+      border-bottom: 1px solid #3a2215;
+    }
+
+    .type-text {
+      font-size: 11px;
+      color: #e8c9b3;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── EFFECT BOX ── */
+    .effect-box {
+      margin: 4px 8px 6px;
+      padding: 8px 10px;
+      background: rgba(28, 18, 12, 0.85);
+      border: 1px solid #4a2d1c;
+      border-radius: 4px;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .effect-text {
+      font-size: 10px;
+      color: #f7e6db;
+      line-height: 1.45;
+      text-align: justify;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: linear-gradient(90deg, #1c110b 0%, #0f0906 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 14px;
+      border-top: 1px solid #3a2215;
+    }
+
+    .stat {
+      font-size: 13px;
+      font-weight: 700;
+      color: #c49a7e;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 8px rgba(200,100,50,0.6);
+      font-family: 'Crimson Text', serif;
+    }
+
+    .stat span {
+      color: #ffead9;
+      text-shadow: 0 0 10px rgba(255,180,100,0.7);
+    }
+
+    .stat-divider {
+      color: #5c3722;
+      font-size: 18px;
+    }
+
+    /* ── FOOTER ── */
+    .card-footer {
+      background: #0a0604;
+      padding: 4px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #20130b;
+    }
+
+    .set-code {
+      font-size: 9px;
+      color: #8a644c;
+      letter-spacing: 1px;
+    }
+
+    .rarity-badge {
+      font-size: 9px;
+      color: #d69c76;
+      letter-spacing: 1px;
+      font-style: italic;
+      text-shadow: 0 0 6px rgba(200,100,50,0.5);
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="yugioh-card">
+  <div class="inner">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="card-name">The Phantom Knights of Broken Helm</div>
+      <div class="attribute-badge">DARK</div>
+    </div>
+
+    <!-- Level Stars (Level 3) -->
+    <div class="level-bar">
+      <span class="level-star"></span>
+      <span class="level-star"></span>
+      <span class="level-star"></span>
+    </div>
+
+    <!-- Artwork (CSS Art) -->
+    <div class="artwork-frame">
+      <div class="stars"></div>
+      <div class="phantom-flames"></div>
+      
+      <div class="broken-helm">
+        <div class="spectral-energy"></div>
+        <div class="phantom-eye eye-left"></div>
+        <div class="phantom-eye eye-right"></div>
+        
+        <div class="helm-top">
+          <div class="horn-left broken"></div>
+          <div class="horn-right"></div>
+        </div>
+        
+        <div class="helm-bottom"></div>
+        
+        <div class="shatter-piece p1"></div>
+        <div class="shatter-piece p2"></div>
+        <div class="shatter-piece p3"></div>
+      </div>
+    </div>
+
+    <!-- Type Line -->
+    <div class="type-line">
+      <div class="type-text">[ Warrior / Effect ]</div>
+    </div>
+
+    <!-- Effect -->
+    <div class="effect-box">
+      <div class="effect-text">
+        <p>You can only use each effect of "The Phantom Knights of Broken Helm" once per turn.</p>
+        <p>If a "Phantom Knights" card is sent to your GY and/or banished: You can Special Summon this card from your hand, and if you do, it gains 500 ATK.</p>
+        <p>If this card is Normal or Special Summoned: You can send 1 "Phantom Knights" card from your hand or Deck to the GY, also you cannot Special Summon monsters for the rest of this turn, except DARK monsters. You can banish this card from your GY (Quick Effect); during the End Phase of this turn, add 1 "Phantom Knights" monster from your GY to your hand, or Set 1 "Phantom Knights" Spell/Trap from your Deck or GY to your field.</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat">ATK / <span>1200</span></div>
+      <div class="stat-divider">|</div>
+      <div class="stat">DEF / <span>1000</span></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <span class="set-code">PHNI-EN048</span>
+      <span class="rarity-badge">Super Rare</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

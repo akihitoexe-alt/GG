@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Phantom Knights' Rank-Up Magic Rebellion – Yu-Gi-Oh! Card</title>
+  <meta name="description" content="The Phantom Knights' Rank-Up Magic Rebellion – Quick-Play Spell Card."/>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at 50% 30%, #08201b 0%, #020a08 60%, #000 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      font-family: 'Crimson Text', serif;
+    }
+
+    /* ── CARD SHELL ── */
+    .card {
+      position: relative;
+      width: 380px;
+      border-radius: 14px;
+      padding: 10px;
+      /* Spell Card Green */
+      background: linear-gradient(160deg, #1fa38a 0%, #106a57 40%, #083b30 100%);
+      box-shadow:
+        0 0 0 3px #5bf5d6,
+        0 0 0 5px #003328,
+        0 0 0 7px #095948,
+        0 0 40px rgba(30, 200, 160, 0.7),
+        0 0 90px rgba(20, 140, 110, 0.5),
+        0 25px 70px rgba(0,0,0,0.95);
+      border: 2px solid #99ffeb;
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { box-shadow: 0 0 0 3px #5bf5d6, 0 0 0 5px #003328, 0 0 0 7px #095948, 0 0 40px rgba(30,200,160,0.7), 0 0 90px rgba(20,140,110,0.5), 0 25px 70px rgba(0,0,0,0.95); }
+      to   { box-shadow: 0 0 0 3px #99ffeb, 0 0 0 5px #003328, 0 0 0 7px #127a64, 0 0 60px rgba(60,255,200,0.9), 0 0 120px rgba(30,200,160,0.65), 0 25px 70px rgba(0,0,0,0.95); }
+    }
+
+    /* holographic shimmer overlay */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.1) 0%,
+        rgba(100,255,200,0.08) 25%,
+        rgba(50,200,255,0.05) 55%,
+        rgba(150,255,200,0.05) 80%,
+        rgba(255,255,255,0.03) 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── INNER FRAME ── */
+    .inner {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #051c16;
+      border: 1px solid #104d3d;
+    }
+
+    /* ── HEADER ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+      background: linear-gradient(90deg, #22826a 0%, #135746 50%, #22826a 100%);
+      border-bottom: 1px solid #09362a;
+    }
+
+    .card-name {
+      font-family: 'Crimson Text', serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #f0fffb;
+      text-shadow: 0 0 5px #66ffdb, 0 0 10px #00cc99, 0 1px 2px #000;
+      letter-spacing: 0.1px;
+      flex: 1;
+      line-height: 1.1;
+    }
+
+    .attribute-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #108c73 0%, #004033 100%);
+      border: 2px solid #33ffcc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 700;
+      color: #b3ffeb;
+      letter-spacing: 0.2px;
+      text-shadow: 0 0 8px #33ffcc;
+      flex-shrink: 0;
+      margin-left: 8px;
+      box-shadow: 0 0 14px rgba(50,255,200,0.7), inset 0 0 8px rgba(50,255,200,0.2);
+    }
+
+    /* ── SPELL ORNAMENT BAR ── */
+    .level-bar-spell {
+      background: #030f0c;
+      padding: 8px 10px;
+      border-bottom: 1px solid #104d3d;
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .level-bar-spell::after {
+      content: '✦ 魔 ✦'; /* "Magic" in Japanese */
+      color: #66ffdb;
+      font-size: 10px;
+      letter-spacing: 4px;
+      opacity: 0.4;
+      text-shadow: 0 0 5px #66ffdb;
+    }
+
+    /* ── ARTWORK ── */
+    .artwork-frame {
+      margin: 6px 8px;
+      border-radius: 5px;
+      border: 2px solid #24b391;
+      overflow: hidden;
+      position: relative;
+      height: 245px;
+      background: radial-gradient(circle at 50% 50%, #0c3026 0%, #041711 60%, #000000 100%);
+      box-shadow:
+        inset 0 0 40px rgba(50,255,200,0.3),
+        0 0 20px rgba(50,255,200,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Magical Energy Burst */
+    .wisps {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 80%, rgba(50,255,200,0.3) 0%, transparent 25%),
+                  radial-gradient(circle at 70% 30%, rgba(200,20,255,0.3) 0%, transparent 30%),
+                  radial-gradient(circle at 50% 50%, rgba(100,50,255,0.2) 0%, transparent 40%);
+      filter: blur(8px);
+      animation: drift 6s alternate infinite;
+    }
+
+    /* Abstract representation of Rebellion / Rank-Up */
+    .rebellion-symbol {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulseSymbol 4s ease-in-out infinite;
+    }
+
+    .dark-orb {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #cc33ff 0%, #4d0099 60%, #1a0033 100%);
+      box-shadow: 0 0 20px #cc33ff, inset 0 0 10px #ff99ff;
+      z-index: 2;
+    }
+
+    /* Dragon wings silhouette wrapping around the orb */
+    .dragon-wing-left {
+      position: absolute;
+      width: 80px;
+      height: 100px;
+      left: -20px;
+      background: linear-gradient(135deg, #001a11, #006644);
+      clip-path: polygon(100% 50%, 0% 0%, 20% 30%, 0% 50%, 30% 70%, 10% 100%, 80% 80%);
+      transform-origin: right center;
+      animation: flapLeft 3s ease-in-out infinite alternate;
+      z-index: 1;
+      filter: drop-shadow(0 0 10px #00ffaa);
+    }
+
+    .dragon-wing-right {
+      position: absolute;
+      width: 80px;
+      height: 100px;
+      right: -20px;
+      background: linear-gradient(225deg, #001a11, #006644);
+      clip-path: polygon(0% 50%, 100% 0%, 80% 30%, 100% 50%, 70% 70%, 90% 100%, 20% 80%);
+      transform-origin: left center;
+      animation: flapRight 3s ease-in-out infinite alternate;
+      z-index: 1;
+      filter: drop-shadow(0 0 10px #00ffaa);
+    }
+
+    /* Swords piercing the orb representing Phantom Knights */
+    .phantom-sword-1, .phantom-sword-2 {
+      position: absolute;
+      width: 120px;
+      height: 6px;
+      background: linear-gradient(90deg, #1a0033 0%, #9933ff 50%, #1a0033 100%);
+      z-index: 3;
+      box-shadow: 0 0 8px #d499ff;
+    }
+    .phantom-sword-1 {
+      transform: rotate(45deg);
+    }
+    .phantom-sword-2 {
+      transform: rotate(-45deg);
+    }
+
+    .rank-up-arrow {
+      position: absolute;
+      bottom: -30px;
+      width: 40px;
+      height: 60px;
+      background: linear-gradient(0deg, #00ffcc, #004d33);
+      clip-path: polygon(50% 0%, 100% 50%, 70% 50%, 70% 100%, 30% 100%, 30% 50%, 0% 50%);
+      z-index: 4;
+      animation: arrowRise 2s ease-in infinite;
+      box-shadow: 0 0 15px #00ffcc;
+    }
+
+    @keyframes pulseSymbol {
+      0% { transform: scale(0.95); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(0.95); }
+    }
+
+    @keyframes drift {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.1) rotate(5deg); }
+    }
+
+    @keyframes flapLeft {
+      0% { transform: rotateY(0deg) rotateZ(0deg); }
+      100% { transform: rotateY(-30deg) rotateZ(-5deg); }
+    }
+
+    @keyframes flapRight {
+      0% { transform: rotateY(0deg) rotateZ(0deg); }
+      100% { transform: rotateY(30deg) rotateZ(5deg); }
+    }
+
+    @keyframes arrowRise {
+      0% { transform: translateY(15px); opacity: 0; filter: brightness(0.5); }
+      50% { opacity: 1; filter: brightness(1.5); }
+      100% { transform: translateY(-15px); opacity: 0; filter: brightness(0.5); }
+    }
+
+    /* corner ornaments */
+    .artwork-frame::before,
+    .artwork-frame::after {
+      content: '✦';
+      position: absolute;
+      font-size: 11px;
+      color: #66ffcc;
+      opacity: 0.8;
+      text-shadow: 0 0 6px #00ffcc;
+      z-index: 2;
+    }
+    .artwork-frame::before { top: 4px; left: 5px; }
+    .artwork-frame::after  { top: 4px; right: 5px; }
+
+    /* ── TYPE LINE ── */
+    .type-line {
+      background: linear-gradient(90deg, #104d3d 0%, #031a14 100%);
+      padding: 4px 10px;
+      border-top: 1px solid #1c8266;
+      border-bottom: 1px solid #1c8266;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .type-text {
+      font-size: 12px;
+      color: #b3ffeb;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .quick-play-icon {
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle, #ffffff, #aaaaaa);
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #000;
+      box-shadow: 0 0 5px #ffffff;
+    }
+    .quick-play-icon::after {
+      content: '⚡';
+      font-size: 10px;
+      color: #cc0000;
+      position: absolute;
+      text-shadow: none;
+      left: 1.5px;
+      top: -0.5px;
+    }
+
+    /* ── EFFECT BOX ── */
+    .effect-box {
+      margin: 4px 8px 6px;
+      padding: 8px 10px;
+      background: rgba(5, 26, 20, 0.85);
+      border: 1px solid #104d3d;
+      border-radius: 4px;
+      min-height: 120px;
+    }
+
+    .effect-text {
+      font-size: 10.5px;
+      color: #d1f2e9;
+      line-height: 1.45;
+      text-align: justify;
+    }
+
+    .effect-text p {
+      margin-bottom: 5px;
+    }
+    
+    .effect-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── FOOTER ── */
+    .card-footer {
+      background: #020d0a;
+      padding: 4px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #092e24;
+    }
+
+    .set-code {
+      font-size: 9px;
+      color: #59b39d;
+      letter-spacing: 1px;
+    }
+
+    .rarity-badge {
+      font-size: 9px;
+      color: #99ffeb;
+      letter-spacing: 1px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="yugioh-card">
+  <div class="inner">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="card-name">The Phantom Knights' Rank-Up Magic Rebellion</div>
+      <div class="attribute-badge">SPELL</div>
+    </div>
+
+    <!-- Spell Ornament Bar -->
+    <div class="level-bar-spell"></div>
+
+    <!-- Artwork -->
+    <div class="artwork-frame">
+      <div class="wisps"></div>
+      <div class="rebellion-symbol">
+        <div class="dragon-wing-left"></div>
+        <div class="dragon-wing-right"></div>
+        <div class="phantom-sword-1"></div>
+        <div class="phantom-sword-2"></div>
+        <div class="dark-orb"></div>
+        <div class="rank-up-arrow"></div>
+      </div>
+    </div>
+
+    <!-- Type Line -->
+    <div class="type-line">
+      <div class="type-text">
+        [ Spell Card <div class="quick-play-icon"></div> ]
+      </div>
+    </div>
+
+    <!-- Effect -->
+    <div class="effect-box">
+      <div class="effect-text">
+        <p>If a "The Phantom Knights" or "Xyz Dragon" Xyz Monster(s) you control was destroyed and sent to the GY this turn while you controlled it: Target 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster in your GY; Special Summon it, then Special Summon from your Extra Deck, 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster that is 1 Rank higher than that monster, by using it as material. (This is treated as an Xyz Summon.) You can only activate 1 "The Phantom Knights' Rank-Up Magic Rebellion" per turn.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <span class="set-code">PHNI-EN046</span>
+      <span class="rarity-badge">Secret Rare</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Phantom Knights' Coffin</title>
+    <meta name="description" content="A custom Yu-Gi-Oh! Normal Trap card — The Phantom Knights' Coffin. Support for The Phantom Knights and Xyz Dragon Archetypes.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card-scene">
+        <div class="card-container" id="phantom-knights-coffin-card" role="article" aria-label="The Phantom Knights' Coffin Card">
+
+            <!-- Corner rune decorations -->
+            <div class="rune-corner tl" aria-hidden="true"></div>
+            <div class="rune-corner tr" aria-hidden="true"></div>
+            <div class="rune-corner bl" aria-hidden="true"></div>
+            <div class="rune-corner br" aria-hidden="true"></div>
+
+            <!-- ── Header ─────────────────────────────────── -->
+            <header class="card-header">
+                <h1 class="card-name">The Phantom Knights' Coffin</h1>
+                <div class="card-attribute" title="TRAP Attribute" aria-label="TRAP Attribute">
+                    <span class="attribute-icon">罠</span>
+                </div>
+            </header>
+
+            <!-- Trap type badge -->
+            <div class="trap-badge" aria-label="Normal Trap Card">
+                <span class="trap-badge-icon">⛨</span>
+                <span class="trap-badge-label">Normal Trap</span>
+            </div>
+
+            <!-- ── Card Art ───────────────────────────────── -->
+            <div class="card-art-frame" aria-label="Card artwork: A gothic ornate iron and wooden coffin wrapped in heavy chains and engulfed in spectral violet and blue flames">
+                <img
+                    src="card_art.png"
+                    alt="A gothic ornate iron and wooden coffin wrapped in heavy chains and engulfed in spectral violet and blue flames"
+                    id="card-artwork"
+                    onerror="this.parentElement.classList.add('art-fallback')"
+                >
+                <!-- Animated overlay -->
+                <div class="art-overlay" aria-hidden="true"></div>
+                <!-- Phantom flame particles -->
+                <div class="flame-particle" style="left:12%; --dur:3.5s; --delay:0s; height:18px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:26%; --dur:2.8s; --delay:0.5s; height:24px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:42%; --dur:4.0s; --delay:0.2s; height:14px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:58%; --dur:3.0s; --delay:1.0s; height:20px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:72%; --dur:3.6s; --delay:0.4s; height:16px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:86%; --dur:2.6s; --delay:0.8s; height:22px;" aria-hidden="true"></div>
+            </div>
+
+            <!-- ── Effect Text Box ───────────────────────── -->
+            <div class="effect-box" id="effect-text-box">
+                <span class="effect-type-label">[ Trap / Normal ]</span>
+
+                <p class="effect-line">
+                    <span class="effect-number">(1)</span>
+                    Banish 1 face-up "The Phantom Knights" or "Xyz Dragon" monster with a Level or Rank you control until the End Phase; Special Summon this card as a Normal Monster (Warrior/DARK/ATK 0/DEF 0) with a Level or Rank equal to that banished monster's. (This card is NOT treated as a Trap.)
+                </p>
+
+                <p class="effect-line">
+                    <span class="effect-number">(2)</span>
+                    Except the turn this card was sent to the GY: You can banish this card from your GY; negate the effects of 1 face-up card your opponent controls until the end of this turn.
+                </p>
+
+                <span class="once-per-turn">
+                    You can only use each effect of "The Phantom Knights' Coffin" once per turn.
+                </span>
+            </div>
+
+            <!-- ── Footer ────────────────────────────────── -->
+            <footer class="card-footer">
+                <span class="card-set-info">PK-EN002 &nbsp;|&nbsp; Ultra Rare</span>
+                <span class="card-copyright">©Custom Design — Phantom Knights Series</span>
+            </footer>
+
+        </div>
+    </div>
+
+    <p class="card-title-label" aria-hidden="true">— The Phantom Knights' Coffin —</p>
+
+    <style>
+        /* Fallback art style when image can't load */
+        .art-fallback {
+            background: linear-gradient(135deg, #150524 0%, #290840 45%, #050a18 100%) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .art-fallback img { display: none; }
+        .art-fallback::before {
+            content: '⚰️';
+            font-size: 5rem;
+            filter: drop-shadow(0 0 20px #8b5cf6);
+        }
+        .art-fallback::after {
+            content: 'A spectral coffin wrapped in heavy chains';
+            position: absolute;
+            bottom: 12px;
+            left: 0; right: 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 0.7rem;
+            color: rgba(167, 139, 250, 0.75);
+            padding: 0 16px;
+        }
+    </style>
+
+</body>
+</html>

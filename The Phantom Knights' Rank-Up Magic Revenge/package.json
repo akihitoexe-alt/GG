@@ -1,0 +1,17 @@
+{
+  "name": "phantom-knights-rank-up-magic-revenge",
+  "version": "1.0.0",
+  "description": "Interactive Yu-Gi-Oh Card Showcase and Customizer",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve -l 3000 ."
+  },
+  "keywords": [
+    "yugioh",
+    "card",
+    "3d",
+    "web-audio"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}

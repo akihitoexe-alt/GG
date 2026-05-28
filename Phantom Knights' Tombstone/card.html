@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Knights' Tombstone — Yu-Gi-Oh! Card</title>
+    <meta name="description" content="A custom Yu-Gi-Oh! Continuous Spell card — Phantom Knights' Tombstone. Supports The Phantom Knights and Xyz Dragon Archetypes with balanced combat bonuses, protection, and GY recovery.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card-scene">
+        <div class="card-container" id="phantom-knights-tombstone-card" role="article" aria-label="Phantom Knights' Tombstone Card">
+
+            <!-- Corner rune decorations -->
+            <div class="rune-corner tl" aria-hidden="true"></div>
+            <div class="rune-corner tr" aria-hidden="true"></div>
+            <div class="rune-corner bl" aria-hidden="true"></div>
+            <div class="rune-corner br" aria-hidden="true"></div>
+
+            <!-- ── Header ─────────────────────────────────── -->
+            <header class="card-header">
+                <h1 class="card-name">Phantom Knights' Tombstone</h1>
+                <div class="card-attribute" title="SPELL Attribute" aria-label="SPELL Attribute">
+                    <span class="attribute-icon">魔法</span>
+                </div>
+            </header>
+
+            <!-- Spell badge -->
+            <div class="spell-badge" aria-label="Continuous Spell Card">
+                <span class="spell-badge-icon">∞</span>
+                <span class="spell-badge-label">Spell Card</span>
+            </div>
+
+            <!-- ── Card Art ───────────────────────────────── -->
+            <div class="card-art-frame" aria-label="Card artwork: A weathered gothic tombstone etched with glowing blue spectral runes, surrounded by mystical purple mist and wispy blue phantom flames under a dark violet starry night sky">
+                <img
+                    src="card_art.png"
+                    alt="A weathered gothic tombstone etched with glowing blue spectral runes, surrounded by mystical purple mist and wispy blue phantom flames under a dark violet starry night sky"
+                    id="card-artwork"
+                    onerror="this.parentElement.classList.add('art-fallback')"
+                >
+                <!-- Animated overlay -->
+                <div class="art-overlay" aria-hidden="true"></div>
+                <!-- Phantom flame particles -->
+                <div class="flame-particle" style="left:15%; --dur:4.0s; --delay:0s; height:20px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:30%; --dur:3.2s; --delay:0.5s; height:26px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:48%; --dur:4.5s; --delay:0.2s; height:16px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:65%; --dur:3.4s; --delay:1.1s; height:22px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:82%; --dur:3.8s; --delay:0.7s; height:18px;" aria-hidden="true"></div>
+            </div>
+
+            <!-- ── Effect Text Box ───────────────────────── -->
+            <div class="effect-box" id="effect-text-box">
+                <span class="effect-type-label">[ Spell Card &nbsp;∞&nbsp; Continuous ]</span>
+
+                <p class="effect-line">
+                    When this card is activated: You can target up to 2 of your banished "The Phantom Knights" and/or "Xyz Dragon" cards; return them to the GY.
+                </p>
+
+                <p class="effect-line">
+                    During the Battle Phase, face-up "The Phantom Knights" and "Xyz Dragon" monsters you control gain 800 ATK/DEF, also if they attack, your opponent cannot activate cards or effects until the end of the Damage Step.
+                </p>
+
+                <p class="effect-line">
+                    During your Main Phase, except the turn this card was sent to the GY: You can banish this card from your GY, then target up to 3 "The Phantom Knights" and/or "Xyz Dragon" cards in your GY; shuffle them into the Deck.
+                </p>
+
+                <span class="once-per-turn">
+                    You can only activate 1 "Phantom Knights' Tombstone" per turn.
+                </span>
+            </div>
+
+            <!-- ── Footer ────────────────────────────────── -->
+            <footer class="card-footer">
+                <span class="card-set-info">PHNT-EN088 &nbsp;|&nbsp; Ultra Rare</span>
+                <span class="card-copyright">©Custom Design — Phantom Knights Series</span>
+            </footer>
+
+        </div>
+    </div>
+
+    <p class="card-title-label" aria-hidden="true">— Phantom Knights' Tombstone —</p>
+
+    <style>
+        /* Fallback art style when image can't load */
+        .art-fallback {
+            background: linear-gradient(135deg, #02120b 0%, #114b30 40%, #030708 100%) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .art-fallback img { display: none; }
+        .art-fallback::before {
+            content: '🪦';
+            font-size: 5rem;
+            filter: drop-shadow(0 0 20px #43ffa8);
+        }
+        .art-fallback::after {
+            content: 'A gothic tombstone under spectral light';
+            position: absolute;
+            bottom: 12px;
+            left: 0; right: 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 0.7rem;
+            color: rgba(67, 255, 168, 0.7);
+            padding: 0 16px;
+        }
+    </style>
+
+</body>
+</html>

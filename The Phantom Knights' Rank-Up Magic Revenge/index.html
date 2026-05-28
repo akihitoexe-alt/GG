@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Phantom Knights' Rank-Up Magic Revenge</title>
+  <!-- Google Fonts: Outfit for UI, Cinzel for Card Header, Cinzel Decorative for title -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="app-background">
+    <div class="glow-orb blue"></div>
+    <div class="glow-orb purple"></div>
+  </div>
+
+  <main class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <span class="logo-sub">TRAP CARD ARCHIVE</span>
+        <h1 class="logo-title">THE PHANTOM KNIGHTS</h1>
+      </div>
+      <div class="system-status">
+        <span class="status-indicator-dot"></span>
+        <span class="status-text">SYSTEM: ONLINE</span>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="main-grid">
+      
+      <!-- Left Column: Card Showcase -->
+      <section class="card-showcase-container">
+        <div class="perspective-wrapper">
+          <div class="card-wrapper" id="cardWrapper">
+            <div class="card-inner" id="cardInner">
+              
+              <!-- Card Front -->
+              <div class="card-face card-front" id="cardFront">
+                <!-- Holo Foil Overlay -->
+                <div class="holo-shimmer" id="holoShimmer"></div>
+                <div class="secret-rare-glitter" id="secretRareGlitter"></div>
+                
+                <div class="card-border trap-card">
+                  <!-- Card Title & Attribute -->
+                  <div class="card-header-bar">
+                    <h2 class="card-title-text" id="displayCardTitle">The Phantom Knights' Rank-Up Magic Revenge</h2>
+                    <div class="card-attribute-icon" id="cardAttribute">
+                      <!-- SVG representation of TRAP attribute -->
+                      <svg viewBox="0 0 100 100" class="attribute-svg" id="displayAttributeSvg">
+                        <circle cx="50" cy="50" r="45" fill="#C5186D" stroke="#000" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="38" fill="none" stroke="#fff" stroke-dasharray="2,2" stroke-width="1.5"/>
+                        <text x="50" y="58" font-family="'Cinzel', serif" font-weight="900" font-size="28" fill="#fff" text-anchor="middle" letter-spacing="-1">罠</text>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Card Art Frame -->
+                  <div class="card-art-frame">
+                    <div class="card-art-canvas" id="cardArtCanvas">
+                      <!-- Procedural animated SVG artwork -->
+                      <svg viewBox="0 0 400 400" class="procedural-art" id="proceduralArt">
+                        <defs>
+                          <radialGradient id="portalGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#3d1480" stop-opacity="1" />
+                            <stop offset="60%" stop-color="#140632" stop-opacity="0.8" />
+                            <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                          </radialGradient>
+                          <linearGradient id="armorMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1b2430" />
+                            <stop offset="50%" stop-color="#0f172a" />
+                            <stop offset="100%" stop-color="#020617" />
+                          </linearGradient>
+                          <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                              <feMergeNode in="coloredBlur"/>
+                              <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                          </filter>
+                        </defs>
+                        
+                        <!-- Dark background -->
+                        <rect width="400" height="400" fill="#03000a" />
+                        
+                        <!-- Ruined pillars background -->
+                        <path d="M 30,0 L 50,0 L 50,400 L 30,400 Z" fill="#0c071a" opacity="0.6"/>
+                        <path d="M 350,0 L 370,0 L 370,400 L 350,400 Z" fill="#0c071a" opacity="0.6"/>
+                        
+                        <!-- Runic Summoning Circle (animated rotating behind knight) -->
+                        <g class="rotating-ring" transform-origin="200 200">
+                          <circle cx="200" cy="200" r="140" fill="url(#portalGlow)" />
+                          <circle cx="200" cy="200" r="120" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="10, 15" opacity="0.6" filter="url(#glow)"/>
+                          <circle cx="200" cy="200" r="100" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="4, 6" opacity="0.7"/>
+                          <circle cx="200" cy="200" r="80" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="20, 5, 5, 5" opacity="0.5"/>
+                          <!-- Ring runes -->
+                          <text x="200" y="77" fill="#818cf8" font-family="'Cinzel', serif" font-size="10" text-anchor="middle" filter="url(#glow)">REVENGE</text>
+                          <text x="200" y="333" fill="#818cf8" font-family="'Cinzel', serif" font-size="10" text-anchor="middle" filter="url(#glow)">PHANTOM</text>
+                          <text x="75" y="203" fill="#818cf8" font-family="'Cinzel', serif" font-size="10" text-anchor="middle" transform="rotate(-90 75 200)" filter="url(#glow)">RANK-UP</text>
+                          <text x="325" y="203" fill="#818cf8" font-family="'Cinzel', serif" font-size="10" text-anchor="middle" transform="rotate(90 325 200)" filter="url(#glow)">MAGIC</text>
+                        </g>
+
+                        <!-- Spectral blue flame particles (animated in CSS) -->
+                        <g class="flame-particles">
+                          <circle cx="150" cy="280" r="15" fill="#38bdf8" opacity="0.15" filter="url(#glow)" class="flame-bubble f1"/>
+                          <circle cx="250" cy="280" r="20" fill="#a855f7" opacity="0.15" filter="url(#glow)" class="flame-bubble f2"/>
+                          <circle cx="200" cy="310" r="25" fill="#6366f1" opacity="0.2" filter="url(#glow)" class="flame-bubble f3"/>
+                          <circle cx="110" cy="240" r="10" fill="#22d3ee" opacity="0.1" filter="url(#glow)" class="flame-bubble f4"/>
+                          <circle cx="290" cy="240" r="12" fill="#a855f7" opacity="0.1" filter="url(#glow)" class="flame-bubble f5"/>
+                        </g>
+                        
+                        <!-- Spectral Knight Silhouette -->
+                        <g class="knight-silhouette" filter="url(#glow)">
+                          <!-- Cape / Mist body -->
+                          <path d="M 120,380 C 130,280 160,220 200,220 C 240,220 270,280 280,380 C 240,390 160,390 120,380 Z" fill="url(#armorMetal)" stroke="#818cf8" stroke-width="1.5" />
+                          <!-- Torn fabrics/mist tails -->
+                          <path d="M 130,350 Q 110,380 90,390 Q 120,395 140,370 Z" fill="#1e1b4b" opacity="0.8"/>
+                          <path d="M 270,350 Q 290,380 310,390 Q 280,395 260,370 Z" fill="#1e1b4b" opacity="0.8"/>
+                          <!-- Spectral blue torso glow -->
+                          <path d="M 180,270 Q 200,240 220,270 Q 200,320 180,270" fill="none" stroke="#22d3ee" stroke-width="3" opacity="0.8" />
+                          <!-- Shoulder pauldrons -->
+                          <path d="M 145,235 C 145,215 170,215 175,225 Z" fill="#1e293b" stroke="#6366f1" stroke-width="1.5" />
+                          <path d="M 255,235 C 255,215 230,215 225,225 Z" fill="#1e293b" stroke="#6366f1" stroke-width="1.5" />
+                          <!-- Knight Helmet / Head -->
+                          <path d="M 180,210 Q 200,165 220,210 Q 200,230 180,210 Z" fill="url(#armorMetal)" stroke="#818cf8" stroke-width="1.5" />
+                          <!-- Tattered plumes (Purple) -->
+                          <path d="M 200,170 Q 170,140 180,110 Q 190,135 200,165 Z" fill="#7c3aed" opacity="0.9" />
+                          <!-- Helmet visor glow (Spectral Blue Eye Slit) -->
+                          <path d="M 190,195 Q 200,190 210,195" fill="none" stroke="#06b6d4" stroke-width="3.5" filter="url(#glow)"/>
+                          <circle cx="193" cy="195" r="2" fill="#fff" filter="url(#glow)"/>
+                          <circle cx="207" cy="195" r="2" fill="#fff" filter="url(#glow)"/>
+                        </g>
+
+                        <!-- The Floating Rank-Up Magic Crest (Glows & Spins in front of knight) -->
+                        <g class="rankup-crest" transform-origin="200 160">
+                          <polygon points="200,120 225,145 225,175 200,200 175,175 175,145" fill="none" stroke="#22d3ee" stroke-width="2.5" filter="url(#glow)" />
+                          <polygon points="200,132 216,148 216,172 200,188 184,172 184,148" fill="none" stroke="#c084fc" stroke-width="1.5" opacity="0.8" />
+                          <!-- Inner Core -->
+                          <circle cx="200" cy="160" r="10" fill="#a855f7" filter="url(#glow)" class="glowing-core"/>
+                          <circle cx="200" cy="160" r="4" fill="#fff" />
+                          <!-- Energy rays -->
+                          <line x1="200" y1="120" x2="200" y2="90" stroke="#22d3ee" stroke-width="2" opacity="0.8" filter="url(#glow)"/>
+                          <line x1="200" y1="200" x2="200" y2="230" stroke="#22d3ee" stroke-width="2" opacity="0.8" filter="url(#glow)"/>
+                          <line x1="175" y1="160" x2="145" y2="160" stroke="#22d3ee" stroke-width="2" opacity="0.8" filter="url(#glow)"/>
+                          <line x1="225" y1="160" x2="255" y2="160" stroke="#22d3ee" stroke-width="2" opacity="0.8" filter="url(#glow)"/>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Card Type & Information Bar -->
+                  <div class="card-type-bar">
+                    <span class="card-type-text" id="displayCardType">[Trap Card <span class="trap-icon-symbol"></span> ⚡]</span>
+                  </div>
+
+                  <!-- Card Text / Lore Box -->
+                  <div class="card-text-box">
+                    <div class="card-text-scroller">
+                      <p class="card-effect-text" id="displayCardEffect">
+                        When your opponent declares a direct attack: Pay half your LP, then target 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster in your GY or banishment; Special Summon it, and if you do, Special Summon from your Extra Deck, 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster that is 1 or 2 Ranks higher than that monster, by using it as the Xyz Material. (This is treated as an Xyz Summon.)<br><br>You can banish this card from your GY, except the turn this card was sent to the GY, then target 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster you control; it gains 800 ATK for each "The Phantom Knights" monster in your GY.<br><br>If your LP is 1000 or less, you can activate this card from your hand.<br><br>You can only use each effect of "The Phantom Knights' Rank-Up Magic Revenge" once per turn.
+                      </p>
+                    </div>
+                    <div class="card-meta-row">
+                      <span class="card-serial" id="displayCardSerial">PKR-EN099</span>
+                      <span class="card-copyright">© 2026 Studio Dice/SHUEISHA</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Authenticity Gold Eye of Anubis Stamp -->
+                  <div class="stamp-anubis" id="stampAnubis"></div>
+                </div>
+              </div>
+
+              <!-- Card Back -->
+              <div class="card-face card-back" id="cardBack">
+                <div class="card-back-border">
+                  <div class="card-back-swirl">
+                    <div class="swirl-core"></div>
+                  </div>
+                  <div class="card-back-logo-top">Yu-Gi-Oh!</div>
+                  <div class="card-back-logo-bottom">TRADING CARD GAME</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        
+        <div class="viewer-hint">
+          <span class="hint-icon"></span> Move mouse over the card to tilt in 3D & see holographic foil reflect light.
+        </div>
+      </section>
+
+      <!-- Right Column: Control & Customizer Disk -->
+      <section class="controls-panel">
+        
+        <!-- Tab Navigation -->
+        <nav class="panel-tabs">
+          <button class="panel-tab-btn active" data-tab="details">CARD DETECTIVE</button>
+          <button class="panel-tab-btn" data-tab="customizer">CUSTOMIZER CORE</button>
+        </nav>
+
+        <div class="panel-content-wrapper">
+          
+          <!-- TAB 1: DETAILS -->
+          <div class="tab-content active" id="tab-details">
+            <div class="card-lore-panel">
+              <h3 class="panel-section-title">CARD READOUT</h3>
+              <div class="readout-grid">
+                <div class="readout-item">
+                  <span class="readout-label">NAME</span>
+                  <span class="readout-val val-title" id="readoutName">The Phantom Knights' Rank-Up Magic Revenge</span>
+                </div>
+                <div class="readout-grid-2col">
+                  <div class="readout-item">
+                    <span class="readout-label">TYPE</span>
+                    <span class="readout-val" id="readoutType">Counter Trap</span>
+                  </div>
+                  <div class="readout-item">
+                    <span class="readout-label">ARCHETYPE</span>
+                    <span class="readout-val">The Phantom Knights / Rank-Up-Magic</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lore-summary">
+                <h4 class="lore-heading">ARCHETYPE COMBINATION ANALYSIS</h4>
+                <p class="lore-paragraph">
+                  This card represents a unique custom addition to the legendary <strong>"The Phantom Knights"</strong> archetype, bridging trap activation utility with <strong>"Rank-Up-Magic"</strong> Xyz Summon capabilities. Styled as a Normal Trap, it features a heavy risk-reward dynamic (paying half LP) to resurrect a fallen phantom warrior and rank it up instantly into a powerful Extra Deck boss monster. Its secondary GY banish ability reflects the characteristic graveyard synergy of Phantom Knights cards, granting a massive ATK surge based on accumulated resources. Finally, the "clutch activation from hand" effect rewards dualists playing under dire circumstances, capturing the core anime theme of staging an epic comeback.
+                </p>
+              </div>
+
+              <div class="sfx-visuals-panel">
+                <h3 class="panel-section-title">DUEL SYSTEM OPTIONS</h3>
+                
+                <!-- Rarity Select -->
+                <div class="setting-item">
+                  <label class="setting-label" for="raritySelect">FOIL RARITY SELECTOR</label>
+                  <select id="raritySelect" class="custom-select">
+                    <option value="common">Common (No Foil)</option>
+                    <option value="ultra" selected>Ultra Rare (Gilded Title + Iridescent Sheen)</option>
+                    <option value="secret">Secret Rare (Gilded Title + Glittering Diagonal Sparkles)</option>
+                    <option value="ultimate">Ultimate Rare (Engraved Details + Textured Overlay)</option>
+                  </select>
+                </div>
+
+                <!-- Sound Control -->
+                <div class="setting-item toggle-item">
+                  <div class="toggle-texts">
+                    <span class="setting-label">SYNTHESIZED SOUND EFFECTS</span>
+                    <span class="setting-desc">Procedural Web Audio API sound feedback on actions.</span>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="soundToggle" checked>
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+
+                <!-- Activation Button -->
+                <button class="btn-activate-card" id="btnActivateCard">
+                  <span class="btn-bg-glow"></span>
+                  <span class="btn-text">ACTIVATE CARD</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: CUSTOMIZER -->
+          <div class="tab-content" id="tab-customizer">
+            <form class="customizer-form" id="customizerForm" onsubmit="event.preventDefault();">
+              <h3 class="panel-section-title">CORE PARAMETERS</h3>
+              
+              <div class="form-group">
+                <label class="form-label" for="inputName">CARD NAME</label>
+                <input type="text" id="inputName" class="form-input" value="The Phantom Knights' Rank-Up Magic Revenge">
+              </div>
+
+              <div class="form-row-3">
+                <div class="form-group">
+                  <label class="form-label" for="inputType">CARD CLASSIFICATION</label>
+                  <select id="inputType" class="form-input">
+                    <option value="normal-trap">Normal Trap</option>
+                    <option value="continuous-trap">Continuous Trap</option>
+                    <option value="counter-trap" selected>Counter Trap</option>
+                    <option value="normal-spell">Normal Spell</option>
+                    <option value="quick-play-spell">Quick-Play Spell</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="inputAttribute">ATTRIBUTE</label>
+                  <select id="inputAttribute" class="form-input">
+                    <option value="TRAP" selected>TRAP</option>
+                    <option value="SPELL">SPELL</option>
+                    <option value="DARK">DARK</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="inputSerial">SERIAL ID</label>
+                  <input type="text" id="inputSerial" class="form-input" value="PKR-EN099">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="inputEffect">EFFECT TEXT / LORE</label>
+                <textarea id="inputEffect" class="form-input text-area-effect" rows="8">When your opponent declares a direct attack: Pay half your LP, then target 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster in your GY or banishment; Special Summon it, and if you do, Special Summon from your Extra Deck, 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster that is 1 or 2 Ranks higher than that monster, by using it as the Xyz Material. (This is treated as an Xyz Summon.)
+
+You can banish this card from your GY, except the turn this card was sent to the GY, then target 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster you control; it gains 800 ATK for each "The Phantom Knights" monster in your GY.
+
+If your LP is 1000 or less, you can activate this card from your hand.
+
+You can only use each effect of "The Phantom Knights' Rank-Up Magic Revenge" once per turn.</textarea>
+              </div>
+
+              <h3 class="panel-section-title" style="margin-top: 1.5rem;">ARTWORK GRAPHICS</h3>
+              <div class="form-group">
+                <label class="form-label">PROCEDURAL ART COLORS</label>
+                <div class="color-picker-row">
+                  <div class="color-picker-item">
+                    <label for="colorArtPrimary">Energy Glow</label>
+                    <input type="color" id="colorArtPrimary" class="color-picker" value="#22d3ee">
+                  </div>
+                  <div class="color-picker-item">
+                    <label for="colorArtSecondary">Summon Ring</label>
+                    <input type="color" id="colorArtSecondary" class="color-picker" value="#c084fc">
+                  </div>
+                  <div class="color-picker-item">
+                    <label for="colorArtBackground">Flame Orb</label>
+                    <input type="color" id="colorArtBackground" class="color-picker" value="#38bdf8">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions-row">
+                <button type="button" class="btn-reset" id="btnResetCustomizer">RESET TO DEFAULT</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FULLSCREEN CARD ACTIVATION OVERLAY -->
+  <div class="activation-overlay" id="activationOverlay">
+    <!-- Close button for activation scene -->
+    <button class="close-activation-btn" id="btnCloseActivation">&times;</button>
+    
+    <!-- Canvas for particle explosion and rays -->
+    <canvas class="activation-canvas" id="activationCanvas"></canvas>
+
+    <!-- Overlay content containers -->
+    <div class="summon-circle-container" id="summonCircleContainer">
+      <!-- High fidelity vector summoning ring -->
+      <svg class="large-summon-circle" viewBox="0 0 500 500">
+        <defs>
+          <filter id="ultra-glow">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <radialGradient id="portal-gradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#1e003a" stop-opacity="0.8"/>
+            <stop offset="50%" stop-color="#0a001a" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Portal Core -->
+        <circle cx="250" cy="250" r="240" fill="url(#portal-gradient)"/>
+        <!-- Runic Rings -->
+        <circle cx="250" cy="250" r="230" fill="none" stroke="#22d3ee" stroke-width="4" stroke-dasharray="15, 20" filter="url(#ultra-glow)" class="ring-outer"/>
+        <circle cx="250" cy="250" r="200" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="8, 12" class="ring-middle-1"/>
+        <circle cx="250" cy="250" r="180" fill="none" stroke="#6366f1" stroke-width="3" stroke-dasharray="30, 10, 10, 10" class="ring-middle-2"/>
+        <circle cx="250" cy="250" r="140" fill="none" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="4, 4" class="ring-inner"/>
+        
+        <!-- Summoning pentagram / geometric lines -->
+        <polygon points="250,50 423,350 77,350" fill="none" stroke="#6366f1" stroke-width="2.5" opacity="0.6" filter="url(#ultra-glow)"/>
+        <polygon points="250,450 423,150 77,150" fill="none" stroke="#6366f1" stroke-width="2.5" opacity="0.6" filter="url(#ultra-glow)"/>
+        
+        <!-- Runes rotating -->
+        <g class="portal-runes">
+          <text x="250" y="30" fill="#22d3ee" font-family="'Cinzel Decorative', serif" font-weight="900" font-size="18" text-anchor="middle" filter="url(#ultra-glow)">REVENGE</text>
+          <text x="250" y="480" fill="#22d3ee" font-family="'Cinzel Decorative', serif" font-weight="900" font-size="18" text-anchor="middle" filter="url(#ultra-glow)">PHANTOM</text>
+          <text x="20" y="255" fill="#a855f7" font-family="'Cinzel Decorative', serif" font-weight="900" font-size="18" text-anchor="middle" transform="rotate(-90 20 250)" filter="url(#ultra-glow)">RANK UP</text>
+          <text x="480" y="255" fill="#a855f7" font-family="'Cinzel Decorative', serif" font-weight="900" font-size="18" text-anchor="middle" transform="rotate(90 480 250)" filter="url(#ultra-glow)">XYZ SUMMON</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Active Card Focus Space -->
+    <div class="activation-card-focus-zone">
+      <div class="card-focus-target" id="activationCardTarget">
+        <!-- The active card gets cloned here dynamically during cutscene -->
+      </div>
+      
+      <!-- Effect Typeout Overlay -->
+      <div class="activation-text-overlay">
+        <h2 class="activated-card-name" id="activeCardNameText">THE PHANTOM KNIGHTS' RANK-UP MAGIC REVENGE</h2>
+        <div class="activated-type">COUNTER TRAP CARD ACTIVATION</div>
+        <div class="activated-effect-box">
+          <p class="activated-effect-typing" id="activeCardEffectTyping"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

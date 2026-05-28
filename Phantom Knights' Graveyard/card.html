@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Phantom Knights' Graveyard</title>
+    <meta name="description" content="A custom Yu-Gi-Oh! Field Spell card — The Phantom Knights' Graveyard. Support for The Phantom Knights and Xyz Dragon Archetypes.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card-scene">
+        <div class="card-container" id="phantom-knights-graveyard-card" role="article" aria-label="The Phantom Knights' Graveyard Card">
+
+            <!-- Corner rune decorations -->
+            <div class="rune-corner tl" aria-hidden="true"></div>
+            <div class="rune-corner tr" aria-hidden="true"></div>
+            <div class="rune-corner bl" aria-hidden="true"></div>
+            <div class="rune-corner br" aria-hidden="true"></div>
+
+            <!-- ── Header ─────────────────────────────────── -->
+            <header class="card-header">
+                <h1 class="card-name">The Phantom Knights' Graveyard</h1>
+                <div class="card-attribute" title="SPELL Attribute" aria-label="SPELL Attribute">
+                    <span class="attribute-icon">魔法</span>
+                </div>
+            </header>
+
+            <!-- Spell badge -->
+            <div class="spell-badge" aria-label="Field Spell Card">
+                <span class="spell-badge-icon">✙</span>
+                <span class="spell-badge-label">Spell Card</span>
+            </div>
+
+            <!-- ── Card Art ───────────────────────────────── -->
+            <div class="card-art-frame" aria-label="Card artwork: A desolate gothic graveyard under a dark violet crescent moon, engulfed in spectral purple mist and rising blue flames, with ghostly silhouettes of phantom knights looming">
+                <img
+                    src="card_art.png"
+                    alt="A sorrowful spectral phantom knights graveyard at midnight, with glowing phantom flames and gothic ruins"
+                    id="card-artwork"
+                    onerror="this.parentElement.classList.add('art-fallback')"
+                >
+                <!-- Animated overlay -->
+                <div class="art-overlay" aria-hidden="true"></div>
+                <!-- Phantom flame particles -->
+                <div class="flame-particle" style="left:12%; --dur:3.8s; --delay:0s; height:18px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:28%; --dur:2.9s; --delay:0.7s; height:24px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:45%; --dur:4.2s; --delay:0.3s; height:14px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:60%; --dur:3.1s; --delay:1.2s; height:20px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:75%; --dur:3.6s; --delay:0.5s; height:16px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:88%; --dur:2.7s; --delay:1.0s; height:22px;" aria-hidden="true"></div>
+            </div>
+
+            <!-- ── Effect Text Box ───────────────────────── -->
+            <div class="effect-box" id="effect-text-box">
+                <span class="effect-type-label">[ Spell Card &nbsp;✙&nbsp; Field ]</span>
+
+                <p class="effect-line">
+                    Your opponent cannot target "The Phantom Knights" Xyz Monsters or "Xyz Dragon" Xyz Monsters you control with Spell/Trap cards or effects, also they cannot be destroyed by your opponent's Spell/Trap effects.
+                </p>
+
+                <p class="effect-line">
+                    The activation of your cards and effects in the GY that mention "The Phantom Knights" cannot be negated.
+                </p>
+
+                <p class="effect-line">
+                    When this card is activated: You can add 1 "The Phantom Knights" card from your Deck to your hand, or send 1 "The Phantom Knights" card from your Deck to the GY.
+                </p>
+
+                <p class="effect-line" style="margin-top: 8px; font-weight: 500; color: var(--spell-light);">
+                    You can only use each of the following effects of "The Phantom Knights' Graveyard" once per turn.
+                </p>
+
+                <p class="effect-line">
+                    ● If a "The Phantom Knights" or "Xyz Dragon" monster you control would be destroyed by battle or card effect, you can detach 1 material from an Xyz Monster you control instead, and if you do, send 1 "The Phantom Knights" card from your Deck to the GY.
+                </p>
+
+                <p class="effect-line">
+                    ● Except the turn this card was sent to the GY, when an opponent's monster declares a direct attack: You can banish this card from your GY, then target 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster in your GY; Special Summon from your Extra Deck, 1 "The Phantom Knights" or "Xyz Dragon" Xyz Monster that is 1 or 2 Ranks higher than that target, by using it as material. (This is treated as an Xyz Summon. Transfer its materials to the Summoned monster.)
+                </p>
+
+                <span class="once-per-turn">
+                    You can only activate 1 "The Phantom Knights' Graveyard" per turn.
+                </span>
+            </div>
+
+            <!-- ── Footer ────────────────────────────────── -->
+            <footer class="card-footer">
+                <span class="card-set-info">PK-EN001 &nbsp;|&nbsp; Ultra Rare</span>
+                <span class="card-copyright">©Custom Design — Phantom Knights Series</span>
+            </footer>
+
+        </div>
+    </div>
+
+    <p class="card-title-label" aria-hidden="true">— The Phantom Knights' Graveyard —</p>
+
+    <style>
+        /* Fallback art style when image can't load */
+        .art-fallback {
+            background: linear-gradient(135deg, #031c11 0%, #124f33 40%, #070a0e 100%) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .art-fallback img { display: none; }
+        .art-fallback::before {
+            content: '🌐';
+            font-size: 5rem;
+            filter: drop-shadow(0 0 20px #33ffaa);
+        }
+        .art-fallback::after {
+            content: 'A desolate gothic graveyard in spectral mist';
+            position: absolute;
+            bottom: 12px;
+            left: 0; right: 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 0.7rem;
+            color: rgba(51, 255, 170, 0.7);
+            padding: 0 16px;
+        }
+    </style>
+
+</body>
+</html>

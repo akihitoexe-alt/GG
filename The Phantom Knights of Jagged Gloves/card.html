@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Phantom Knights of Jagged Gloves – Yu-Gi-Oh! Card</title>
+    <meta name="description" content="Custom Yu-Gi-Oh! card — The Phantom Knights of Jagged Gloves, a Level 3 DARK Warrior Effect Monster retrain of Ragged Gloves.">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        /* ── Design Tokens ────────────────────────────────────────── */
+        :root {
+            --effect-orange:  #d97706; /* primary effect monster copper/orange */
+            --effect-dark:    #78350f;
+            --effect-light:   #fef3c7;
+            --phantom-blue:   #38bdf8; /* ghostly phantom lights */
+            --phantom-glow:   rgba(56, 189, 248, 0.6);
+            --dark-bg:        #0a0712;
+            --card-bg-top:    #351e13;
+            --card-bg-mid:    #1c100a;
+            --card-bg-bot:    #26150d;
+            --border-outer:   #8a471c;
+            --border-inner:   #d97706;
+            --border-glow:    rgba(217, 119, 6, 0.55);
+            --text-primary:   #fef3c7;
+            --text-secondary: #fcd34d;
+            --text-effect:    #f7e6db;
+            --effect-bg:      rgba(24, 15, 10, 0.9);
+            --effect-border:  #5f371e;
+            --gold:           #f5c518;
+            
+            --font-title:     'Cinzel', serif;
+            --font-body:      'Inter', sans-serif;
+            --font-lore:      'IM Fell English', serif;
+        }
+
+        /* ── Reset ────────────────────────────────────────────────── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ── Page Background ──────────────────────────────────────── */
+        body {
+            background: radial-gradient(ellipse at 50% 30%, #1a0f0a 0%, #060408 70%, #000 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            gap: 32px;
+            padding: 40px 20px;
+        }
+
+        /* Background atmospheric pulse */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 40% at 20% 35%, rgba(217, 119, 6, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 35% at 80% 65%, rgba(56, 189, 248, 0.08) 0%, transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 0.7; }
+            50%       { opacity: 1; }
+        }
+
+        /* ── Card Wrapper ─────────────────────────────────────────── */
+        .card-scene {
+            perspective: 1200px;
+            z-index: 1;
+        }
+
+        .card-container {
+            position: relative;
+            width: 385px;
+            background: linear-gradient(165deg, var(--card-bg-top) 0%, var(--card-bg-mid) 50%, var(--card-bg-bot) 100%);
+            border-radius: 14px;
+            border: 6px solid var(--border-outer);
+            box-shadow:
+                0 0 0 2px var(--border-inner),
+                0 0 35px var(--border-glow),
+                0 0 60px rgba(56, 189, 248, 0.1),
+                0 25px 65px rgba(0, 0, 0, 0.9);
+            padding: 12px 12px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+                        box-shadow 0.5s ease;
+            cursor: pointer;
+            overflow: hidden;
+            animation: cardGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes cardGlow {
+            0% { box-shadow: 0 0 0 2px var(--border-inner), 0 0 30px var(--border-glow), 0 25px 65px rgba(0, 0, 0, 0.9); }
+            100% { box-shadow: 0 0 0 2px var(--border-inner), 0 0 45px rgba(245, 158, 11, 0.75), 0 25px 65px rgba(0, 0, 0, 0.95); }
+        }
+
+        .card-container:hover {
+            transform: translateY(-10px) rotateX(6deg) rotateY(-3deg);
+            box-shadow:
+                0 0 0 2px var(--border-inner),
+                0 0 55px rgba(245, 158, 11, 0.85),
+                0 0 95px rgba(56, 189, 248, 0.25),
+                0 35px 85px rgba(0, 0, 0, 0.95);
+        }
+
+        /* Holographic shimmer overlay */
+        .card-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                115deg,
+                transparent 35%,
+                rgba(251, 191, 36, 0.08) 48%,
+                rgba(56, 189, 248, 0.1) 53%,
+                transparent 68%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 6s linear infinite;
+            pointer-events: none;
+            border-radius: 10px;
+            z-index: 10;
+        }
+
+        @keyframes shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ── Corner decorations ───────────────────────────────────── */
+        .rune-corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: rgba(251, 191, 36, 0.35);
+            border-style: solid;
+            border-width: 0;
+            opacity: 0.7;
+        }
+        .rune-corner.tl { top: 8px; left: 8px;  border-top-width: 2px; border-left-width: 2px; }
+        .rune-corner.tr { top: 8px; right: 8px; border-top-width: 2px; border-right-width: 2px; }
+        .rune-corner.bl { bottom: 8px; left: 8px;  border-bottom-width: 2px; border-left-width: 2px; }
+        .rune-corner.br { bottom: 8px; right: 8px; border-bottom-width: 2px; border-right-width: 2px; }
+
+        /* ── Header ───────────────────────────────────────────────── */
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 2px 4px;
+        }
+
+        .card-name {
+            font-family: var(--font-title);
+            font-size: 1.02rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: 0.02em;
+            text-shadow:
+                0 0 10px rgba(251, 191, 36, 0.75),
+                0 2px 4px rgba(0, 0, 0, 0.9);
+            line-height: 1.2;
+            flex: 1;
+        }
+
+        /* Attribute circle — DARK */
+        .card-attribute {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #3a0e5a 0%, #150025 80%, #080010 100%);
+            border: 2px solid #a855f7;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.8), inset 0 0 6px rgba(168, 85, 247, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-attribute::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.22), transparent 50%);
+        }
+
+        .attribute-label {
+            font-size: 0.65rem;
+            font-family: var(--font-title);
+            font-weight: 800;
+            color: #ebd5ff;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 6px #c084fc;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Level Stars (Level 3) ────────────────────────────────── */
+        .level-bar {
+            background: rgba(10, 6, 4, 0.9);
+            padding: 3px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            border: 1px solid rgba(120, 53, 15, 0.6);
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+
+        .level-star {
+            width: 17px;
+            height: 17px;
+            background: radial-gradient(circle at 30% 30%, #ff4b4b 0%, #b30000 70%, #500000 100%);
+            border-radius: 50%;
+            border: 1px solid #ffcccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 6px rgba(255, 0, 0, 0.85), inset 0 0 4px rgba(255, 200, 200, 0.6);
+        }
+
+        .level-star::before {
+            content: '★';
+            font-size: 11px;
+            color: #ffea00;
+            text-shadow: 0 0 3px #ffaa00;
+            line-height: 1;
+            margin-bottom: 1px;
+        }
+
+        /* ── Card Art Frame ───────────────────────────────────────── */
+        .card-art-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            border: 3px solid var(--border-outer);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow:
+                inset 0 0 25px rgba(0, 0, 0, 0.75),
+                0 0 20px rgba(217, 119, 6, 0.35);
+            background: #110d0a;
+            margin-top: 2px;
+        }
+
+        .card-art-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: saturate(1.15) contrast(1.05);
+            transition: transform 0.5s ease;
+        }
+
+        .card-container:hover .card-art-frame img {
+            transform: scale(1.03);
+        }
+
+        /* Holographic overlay on artwork */
+        .art-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 50% 100%, rgba(217, 119, 6, 0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 0%, rgba(56, 189, 248, 0.2) 0%, transparent 55%),
+                linear-gradient(45deg, rgba(56, 189, 248, 0.05) 0%, transparent 35%, rgba(251, 191, 36, 0.05) 65%, transparent 100%);
+            pointer-events: none;
+            mix-blend-mode: color-dodge;
+            z-index: 2;
+        }
+
+        /* Animated ghost/phantom flame particles */
+        .flame-particle {
+            position: absolute;
+            bottom: -10px;
+            width: 4px;
+            border-radius: 50% 50% 20% 20%;
+            background: var(--phantom-blue);
+            filter: blur(2px) drop-shadow(0 0 4px var(--phantom-blue));
+            opacity: 0;
+            animation: rise var(--dur, 3s) ease-in var(--delay, 0s) infinite;
+            z-index: 3;
+        }
+
+        @keyframes rise {
+            0%   { transform: translateY(0) scaleX(1); opacity: 0; }
+            15%  { opacity: 0.85; }
+            70%  { opacity: 0.4; }
+            100% { transform: translateY(-130px) scaleX(0.2); opacity: 0; }
+        }
+
+        /* Star twinkle particles on art background */
+        .twinkle-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            filter: blur(0.5px);
+            animation: pulseTwinkle var(--dur, 2s) ease-in-out var(--delay, 0s) infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes pulseTwinkle {
+            0% { transform: scale(0.6); opacity: 0.2; }
+            100% { transform: scale(1.4); opacity: 0.9; box-shadow: 0 0 4px #fff; }
+        }
+
+        /* ── Type Line ────────────────────────────────────────────── */
+        .type-line {
+            background: linear-gradient(90deg, #24140c 0%, #140b07 100%);
+            padding: 4px 10px;
+            border: 1px solid rgba(120, 53, 15, 0.5);
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+
+        .type-text {
+            font-family: var(--font-title);
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #ebd0bf;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Effect Box ───────────────────────────────────────────── */
+        .effect-box {
+            background: var(--effect-bg);
+            border: 1.5px solid var(--effect-border);
+            border-radius: 5px;
+            padding: 8px 10px;
+            color: var(--text-effect);
+            font-family: var(--font-body);
+            font-size: 0.70rem;
+            line-height: 1.45;
+            position: relative;
+            overflow: hidden;
+            margin: 0 2px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.75);
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .effect-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .effect-text p {
+            margin-bottom: 6px;
+            text-align: justify;
+        }
+
+        .effect-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .effect-bullet {
+            color: var(--text-secondary);
+            font-weight: 800;
+            margin-right: 2px;
+        }
+
+        /* ── Stats Bar ────────────────────────────────────────────── */
+        .stats-bar {
+            background: linear-gradient(90deg, #24140c 0%, #140b07 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 14px;
+            border: 1px solid rgba(120, 53, 15, 0.5);
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+
+        .stat {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #d1a98e;
+            letter-spacing: 0.04em;
+            font-family: var(--font-title);
+            text-shadow: 0 0 6px rgba(217, 119, 6, 0.4);
+        }
+
+        .stat span {
+            color: #ffead9;
+            text-shadow: 0 0 10px rgba(255, 180, 100, 0.75);
+            font-weight: 800;
+        }
+
+        .stat-divider {
+            color: #5c3722;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* ── Card Footer ──────────────────────────────────────────── */
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 6px 2px;
+            border-top: 1px solid rgba(120, 53, 15, 0.3);
+            margin-top: 2px;
+        }
+
+        .card-set-info {
+            font-family: var(--font-body);
+            font-size: 0.55rem;
+            color: rgba(209, 169, 142, 0.6);
+            letter-spacing: 0.05em;
+        }
+
+        .card-copyright {
+            font-size: 0.52rem;
+            color: rgba(209, 169, 142, 0.45);
+            letter-spacing: 0.03em;
+        }
+
+        /* Fallback art style when image can't load */
+        .art-fallback {
+            background: linear-gradient(135deg, #1c120c 0%, #2b1a10 40%, #0d0703 100%) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .art-fallback img { display: none; }
+        .art-fallback::before {
+            content: '🥊';
+            font-size: 4.8rem;
+            filter: drop-shadow(0 0 15px #d97706);
+            animation: pulseGlove 2s ease-in-out infinite alternate;
+        }
+        @keyframes pulseGlove {
+            0% { transform: scale(0.95); filter: drop-shadow(0 0 12px #d97706); }
+            100% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.8)); }
+        }
+        .art-fallback::after {
+            content: 'The Phantom Knights of Jagged Gloves';
+            position: absolute;
+            bottom: 12px;
+            left: 0; right: 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 0.65rem;
+            color: rgba(254, 243, 199, 0.65);
+            padding: 0 16px;
+        }
+
+        /* ── Title label below card ───────────────────────────────── */
+        .card-title-label {
+            z-index: 1;
+            text-align: center;
+            font-family: var(--font-title);
+            font-size: 0.72rem;
+            color: rgba(251, 191, 36, 0.6);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(217, 119, 6, 0.4);
+            animation: labelFade 4s ease-in-out infinite;
+        }
+
+        @keyframes labelFade {
+            0%, 100% { opacity: 0.5; }
+            50%       { opacity: 0.85; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-scene">
+        <div class="card-container" id="jagged-gloves-card" role="article" aria-label="The Phantom Knights of Jagged Gloves Card">
+
+            <!-- Corner decorations -->
+            <div class="rune-corner tl" aria-hidden="true"></div>
+            <div class="rune-corner tr" aria-hidden="true"></div>
+            <div class="rune-corner bl" aria-hidden="true"></div>
+            <div class="rune-corner br" aria-hidden="true"></div>
+
+            <!-- ── Header ─────────────────────────────────── -->
+            <header class="card-header">
+                <h1 class="card-name">The Phantom Knights of Jagged Gloves</h1>
+                <div class="card-attribute" title="DARK Attribute" aria-label="DARK Attribute">
+                    <span class="attribute-label">DARK</span>
+                </div>
+            </header>
+
+            <!-- ── Level Stars (Level 3) ─────────────────── -->
+            <div class="level-bar" aria-label="Level 3">
+                <span class="level-star" aria-hidden="true"></span>
+                <span class="level-star" aria-hidden="true"></span>
+                <span class="level-star" aria-hidden="true"></span>
+            </div>
+
+            <!-- ── Card Art ───────────────────────────────── -->
+            <div class="card-art-frame" aria-label="Card artwork: Dark steel gauntlets infused with jagged energy blades, glowing with ghostly blue phantom fire">
+                <img
+                    src="card_art.png"
+                    alt="Dark warrior gloves with glowing blue energy spikes, emitting spectral blue flames"
+                    id="card-artwork"
+                    onerror="this.parentElement.classList.add('art-fallback')"
+                >
+                <!-- Animated overlay -->
+                <div class="art-overlay" aria-hidden="true"></div>
+                
+                <!-- Twinkle background stars -->
+                <div class="twinkle-star" style="top:15%; left:20%; --dur:2.5s; --delay:0.2s;" aria-hidden="true"></div>
+                <div class="twinkle-star" style="top:45%; left:12%; --dur:3s; --delay:1.2s;" aria-hidden="true"></div>
+                <div class="twinkle-star" style="top:25%; left:75%; --dur:1.8s; --delay:0.5s;" aria-hidden="true"></div>
+                <div class="twinkle-star" style="top:75%; left:85%; --dur:2.2s; --delay:0.9s;" aria-hidden="true"></div>
+                <div class="twinkle-star" style="top:85%; left:30%; --dur:2.7s; --delay:1.5s;" aria-hidden="true"></div>
+
+                <!-- Phantom flame particles -->
+                <div class="flame-particle" style="left:12%; --dur:3.2s; --delay:0s; height:18px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:28%; --dur:2.5s; --delay:0.6s; height:24px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:45%; --dur:3.6s; --delay:0.2s; height:15px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:62%; --dur:2.8s; --delay:1.1s; height:21px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:78%; --dur:3.4s; --delay:0.4s; height:16px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:90%; --dur:2.7s; --delay:0.8s; height:22px;" aria-hidden="true"></div>
+            </div>
+
+            <!-- ── Type Line ──────────────────────────────── -->
+            <div class="type-line">
+                <span class="type-text">[ Warrior / Effect ]</span>
+            </div>
+
+            <!-- ── Effect Text Box ───────────────────────── -->
+            <div class="effect-box" id="effect-text-box">
+                <div class="effect-text">
+                    <p>
+                        If you have a "Phantom Knights" card in your GY: You can Special Summon this card from your hand. You can only Special Summon "The Phantom Knights of Jagged Gloves" once per turn this way.
+                    </p>
+                    <p>
+                        If this card is Normal or Special Summoned: You can target 1 of your "Phantom Knights" cards that is banished or in your GY, except "The Phantom Knights of Jagged Gloves"; add it to your hand.
+                    </p>
+                    <p>
+                        A "Phantom Knights" or "Xyz Dragon" Xyz Monster that was Summoned using this card on the field as material gains this effect.
+                        <br>
+                        <span class="effect-bullet">●</span> If it is Xyz Summoned: It gains 1000 ATK.
+                    </p>
+                    <p>
+                        You can banish this card from your hand or GY, then target up to 2 "Phantom Knights" and/or "Xyz Dragon" monsters you control; increase or decrease their Levels or Ranks by up to 3 until the end of this turn.
+                    </p>
+                    <p>
+                        You can only use each effect of "The Phantom Knights of Jagged Gloves" once per turn.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ── Stats Bar ─────────────────────────────── -->
+            <div class="stats-bar">
+                <div class="stat">ATK / <span>1000</span></div>
+                <div class="stat-divider">|</div>
+                <div class="stat">DEF / <span>500</span></div>
+            </div>
+
+            <!-- ── Footer ────────────────────────────────── -->
+            <footer class="card-footer">
+                <span class="card-set-info">PK-EN002 &nbsp;|&nbsp; Ultra Rare</span>
+                <span class="card-copyright">©Custom Design — Phantom Knights Series</span>
+            </footer>
+
+        </div>
+    </div>
+
+    <p class="card-title-label" aria-hidden="true">— The Phantom Knights of Jagged Gloves —</p>
+
+</body>
+</html>

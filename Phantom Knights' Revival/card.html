@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Knights' Revival</title>
+    <meta name="description" content="A custom Yu-Gi-Oh! Normal Trap card — Phantom Knights' Revival. Support for The Phantom Knights Archetype.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card-scene">
+        <div class="card-container" id="phantom-knights-revival-card" role="article" aria-label="Phantom Knights' Revival Card">
+
+            <!-- Corner rune decorations -->
+            <div class="rune-corner tl" aria-hidden="true"></div>
+            <div class="rune-corner tr" aria-hidden="true"></div>
+            <div class="rune-corner bl" aria-hidden="true"></div>
+            <div class="rune-corner br" aria-hidden="true"></div>
+
+            <!-- ── Header ─────────────────────────────────── -->
+            <header class="card-header">
+                <h1 class="card-name">Phantom Knights' Revival</h1>
+                <div class="card-attribute" title="TRAP Attribute" aria-label="TRAP Attribute">
+                    <span class="attribute-icon">罠</span>
+                </div>
+            </header>
+
+            <!-- Trap type badge -->
+            <div class="trap-badge" aria-label="Normal Trap Card">
+                <span class="trap-badge-icon">⛨</span>
+                <span class="trap-badge-label">Normal Trap</span>
+            </div>
+
+            <!-- ── Card Art ───────────────────────────────── -->
+            <div class="card-art-frame" aria-label="Card artwork: A spectral, tattered knight rising from a glowing purple and blue grave, holding a broken sword">
+                <img
+                    src="card_art.png"
+                    alt="A spectral, tattered knight rising from a glowing purple and blue grave, holding a broken sword"
+                    id="card-artwork"
+                    onerror="this.parentElement.classList.add('art-fallback')"
+                >
+                <!-- Animated overlay -->
+                <div class="art-overlay" aria-hidden="true"></div>
+                <!-- Phantom flame particles -->
+                <div class="flame-particle" style="left:12%; --dur:3.5s; --delay:0s; height:18px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:26%; --dur:2.8s; --delay:0.5s; height:24px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:42%; --dur:4.0s; --delay:0.2s; height:14px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:58%; --dur:3.0s; --delay:1.0s; height:20px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:72%; --dur:3.6s; --delay:0.4s; height:16px;" aria-hidden="true"></div>
+                <div class="flame-particle" style="left:86%; --dur:2.6s; --delay:0.8s; height:22px;" aria-hidden="true"></div>
+            </div>
+
+            <!-- ── Effect Text Box ───────────────────────── -->
+            <div class="effect-box" id="effect-text-box">
+                <span class="effect-type-label">[ Trap / Normal ]</span>
+
+                <p class="effect-line">
+                    If you control no monsters: Banish up to 3 "The Phantom Knights" Spell/Trap Cards from your GY; Special Summon an equal number of "The Phantom Knights" monsters from your GY and/or banishment, and if you do, you can increase their Levels by 1, but their effects are negated, their ATK/DEF become 0, also banish them during the End Phase. You cannot Special Summon monsters from the Extra Deck the turn you activate this card, except "The Phantom Knights" and "Xyz Dragon" monsters.
+                </p>
+
+                <span class="once-per-turn">
+                    You can only activate 1 "Phantom Knights' Revival" per turn.
+                </span>
+            </div>
+
+            <!-- ── Footer ────────────────────────────────── -->
+            <footer class="card-footer">
+                <span class="card-set-info">PK-EN003 &nbsp;|&nbsp; Secret Rare</span>
+                <span class="card-copyright">©Custom Design — Phantom Knights Series</span>
+            </footer>
+
+        </div>
+    </div>
+
+    <p class="card-title-label" aria-hidden="true">— Phantom Knights' Revival —</p>
+
+</body>
+</html>

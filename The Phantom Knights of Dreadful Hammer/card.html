@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Phantom Knights Dreadful Hammer – Yu-Gi-Oh! Card</title>
+  <meta name="description" content="The Phantom Knights Dreadful Hammer – Rank 3 DARK Warrior Xyz Effect Monster. ATK 2000 / DEF 1500."/>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at 50% 30%, #08080f 0%, #030308 60%, #000 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      font-family: 'Crimson Text', serif;
+    }
+
+    /* ── CARD SHELL (XYZ = JET BLACK) ── */
+    .card {
+      position: relative;
+      width: 380px;
+      border-radius: 14px;
+      padding: 10px;
+      background: linear-gradient(160deg, #1a1a22 0%, #08080e 40%, #10101a 100%);
+      box-shadow:
+        0 0 0 3px #3a3a5a,
+        0 0 0 5px #08080e,
+        0 0 0 7px #1a1a30,
+        0 0 40px rgba(80, 60, 180, 0.6),
+        0 0 90px rgba(40, 20, 120, 0.4),
+        0 25px 70px rgba(0,0,0,0.98);
+      border: 2px solid #5a5a8e;
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { box-shadow: 0 0 0 3px #3a3a5a, 0 0 0 5px #08080e, 0 0 0 7px #1a1a30, 0 0 40px rgba(80,60,180,0.6), 0 0 90px rgba(40,20,120,0.4), 0 25px 70px rgba(0,0,0,0.98); }
+      to   { box-shadow: 0 0 0 3px #5050a0, 0 0 0 5px #08080e, 0 0 0 7px #202040, 0 0 65px rgba(100,80,220,0.85), 0 0 130px rgba(60,30,160,0.55), 0 25px 70px rgba(0,0,0,0.98); }
+    }
+
+    /* holographic shimmer overlay */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.04) 0%,
+        rgba(120,100,255,0.06) 25%,
+        rgba(180,160,255,0.04) 55%,
+        rgba(80,60,200,0.04) 80%,
+        rgba(255,255,255,0.02) 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── INNER FRAME ── */
+    .inner {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #060609;
+      border: 1px solid #1e1e38;
+    }
+
+    /* ── HEADER ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px 4px;
+      background: linear-gradient(90deg, #14141f 0%, #0a0a12 50%, #14141f 100%);
+      border-bottom: 1px solid #282840;
+    }
+
+    .card-name {
+      font-family: 'Crimson Text', serif;
+      font-weight: 700;
+      font-size: 13.5px;
+      color: #ddddf5;
+      text-shadow: 0 0 10px rgba(160,140,255,0.9), 0 0 22px rgba(100,80,220,0.5), 0 1px 2px #000;
+      letter-spacing: 0.2px;
+      flex: 1;
+      line-height: 1.2;
+    }
+
+    .attribute-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #3a0070 0%, #100020 100%);
+      border: 2px solid #9040e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #d09aff;
+      letter-spacing: 0.4px;
+      text-shadow: 0 0 8px #c040ff;
+      flex-shrink: 0;
+      margin-left: 8px;
+      box-shadow: 0 0 14px rgba(180,40,255,0.7), inset 0 0 8px rgba(200,100,255,0.2);
+    }
+
+    /* ── RANK STARS (XYZ – black stars, left-aligned) ── */
+    .rank-bar {
+      background: #040407;
+      padding: 3px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 3px;
+      border-bottom: 1px solid #1a1a2e;
+    }
+
+    .rank-star {
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle at 35% 30%, #4a4070 0%, #1a1530 60%, #0a0818 100%);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      box-shadow: 0 0 6px rgba(80,60,160,0.9), 0 0 12px rgba(60,40,140,0.5);
+      border: none;
+      position: relative;
+    }
+
+    /* ── ARTWORK FRAME ── */
+    .artwork-frame {
+      margin: 6px 8px;
+      border-radius: 5px;
+      border: 2px solid #2a2a4a;
+      overflow: hidden;
+      position: relative;
+      height: 245px;
+      background: radial-gradient(circle at 50% 60%, #10082a 0%, #060414 55%, #000 100%);
+      box-shadow:
+        inset 0 0 50px rgba(60,30,150,0.3),
+        0 0 15px rgba(80,50,200,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Particle starfield */
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(180,160,255,0.9), transparent),
+        radial-gradient(1px 1px at 30% 55%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1.5px 1.5px at 55% 10%, rgba(140,120,255,0.8), transparent),
+        radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 80% 70%, rgba(100,80,220,0.9), transparent),
+        radial-gradient(1px 1px at 20% 85%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 90% 15%, rgba(180,160,255,0.7), transparent),
+        radial-gradient(1.5px 1.5px at 45% 90%, rgba(120,100,240,0.6), transparent);
+      background-size: 120px 120px;
+      animation: twinkle 5s infinite linear;
+      opacity: 0.8;
+    }
+
+    /* Ground mist */
+    .ground-mist {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(to top, rgba(20,10,60,0.8) 0%, transparent 100%);
+      z-index: 1;
+    }
+
+    /* Phantom aura beneath hammer */
+    .phantom-aura {
+      position: absolute;
+      bottom: 30px;
+      width: 180px;
+      height: 80px;
+      background: radial-gradient(ellipse, rgba(0,180,255,0.25) 0%, rgba(60,0,180,0.15) 50%, transparent 70%);
+      filter: blur(8px);
+      animation: auraBreath 3s ease-in-out infinite alternate;
+      z-index: 2;
+    }
+
+    /* ── CSS HAMMER ART ── */
+    .scene {
+      position: relative;
+      width: 130px;
+      height: 180px;
+      z-index: 5;
+      animation: floatHammer 4s ease-in-out infinite;
+    }
+
+    /* Hammer handle */
+    .handle {
+      position: absolute;
+      bottom: 0;
+      left: 55px;
+      width: 14px;
+      height: 130px;
+      background: linear-gradient(to right, #2a1e10, #5a4020, #3a2a14, #1a1208);
+      border-radius: 4px;
+      border: 1px solid #7a6030;
+      box-shadow: 0 0 8px rgba(0,150,255,0.2), inset 0 0 4px rgba(0,0,0,0.8);
+      transform: rotate(-15deg);
+      transform-origin: bottom center;
+    }
+
+    /* Handle wrap bands */
+    .handle::before,
+    .handle::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(to right, #0a60a0, #00b4ff, #0a60a0);
+      border-radius: 2px;
+      box-shadow: 0 0 6px rgba(0,180,255,0.8);
+    }
+    .handle::before { top: 20px; }
+    .handle::after  { top: 50px; }
+
+    /* Hammer head */
+    .hammer-head {
+      position: absolute;
+      top: 0;
+      left: -18px;
+      width: 68px;
+      height: 50px;
+      background: linear-gradient(135deg, #303050 0%, #181828 40%, #242440 70%, #0e0e1e 100%);
+      border-radius: 6px;
+      border: 1.5px solid #5050a0;
+      box-shadow:
+        0 0 15px rgba(60,40,180,0.7),
+        0 0 30px rgba(40,20,140,0.4),
+        inset 0 0 10px rgba(80,60,200,0.3);
+      transform: rotate(-15deg);
+      transform-origin: bottom center;
+    }
+
+    /* Hammer face glyph */
+    .hammer-head::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      background: radial-gradient(ellipse, rgba(0,180,255,0.4) 0%, transparent 70%);
+      border-radius: 3px;
+      animation: hammerGlow 2s ease-in-out infinite alternate;
+    }
+
+    /* Impact crack lines */
+    .crack {
+      position: absolute;
+      background: rgba(0, 200, 255, 0.7);
+      box-shadow: 0 0 4px rgba(0,220,255,0.9);
+      transform-origin: top center;
+      animation: crackFlare 2s ease-in-out infinite alternate;
+    }
+    .crack-1 { width: 2px; height: 28px; top: 52px; left: 48px; transform: rotate(10deg); }
+    .crack-2 { width: 1px; height: 18px; top: 55px; left: 54px; transform: rotate(35deg); }
+    .crack-3 { width: 1px; height: 14px; top: 58px; left: 42px; transform: rotate(-20deg); }
+
+    /* Phantom energy sparks */
+    .spark {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #00d4ff;
+      box-shadow: 0 0 8px #00d4ff, 0 0 16px #0070ff;
+      animation: sparkDrift linear infinite;
+    }
+    .spark-1 { top: 40px; left: 15px;  animation-duration: 3.0s; animation-delay: 0.0s; }
+    .spark-2 { top: 80px; left: 110px; animation-duration: 3.5s; animation-delay: 0.7s; }
+    .spark-3 { top: 20px; left: 80px;  animation-duration: 2.8s; animation-delay: 1.2s; }
+    .spark-4 { top: 110px; left: 30px; animation-duration: 4.0s; animation-delay: 0.4s; }
+    .spark-5 { top: 60px; left: 95px;  animation-duration: 3.2s; animation-delay: 1.8s; }
+
+    /* Shockwave ring at impact point */
+    .shockwave {
+      position: absolute;
+      top: 44px;
+      left: 22px;
+      width: 40px;
+      height: 40px;
+      border: 2px solid rgba(0,200,255,0.6);
+      border-radius: 50%;
+      animation: shockPulse 2s ease-out infinite;
+    }
+
+    @keyframes floatHammer {
+      0%,100% { transform: translateY(0px) rotate(0deg); }
+      50%      { transform: translateY(-12px) rotate(-3deg); }
+    }
+    @keyframes hammerGlow {
+      from { opacity: 0.4; transform: scale(0.9); }
+      to   { opacity: 1;   transform: scale(1.1); }
+    }
+    @keyframes auraBreath {
+      from { transform: scaleX(0.85); opacity: 0.5; }
+      to   { transform: scaleX(1.15); opacity: 0.9; }
+    }
+    @keyframes sparkDrift {
+      0%   { transform: translate(0, 0) scale(1);   opacity: 1; }
+      100% { transform: translate(var(--dx, -20px), -40px) scale(0); opacity: 0; }
+    }
+    .spark-1 { --dx: -18px; }
+    .spark-2 { --dx:  12px; }
+    .spark-3 { --dx:  -8px; }
+    .spark-4 { --dx:  22px; }
+    .spark-5 { --dx: -14px; }
+    @keyframes shockPulse {
+      0%   { transform: scale(0.6); opacity: 0.8; }
+      100% { transform: scale(2.5); opacity: 0; }
+    }
+    @keyframes crackFlare {
+      from { opacity: 0.5; }
+      to   { opacity: 1; box-shadow: 0 0 8px rgba(0,220,255,1); }
+    }
+    @keyframes twinkle {
+      0%   { background-position: 0 0; }
+      100% { background-position: 120px 120px; }
+    }
+
+    /* corner ornaments */
+    .artwork-frame::before,
+    .artwork-frame::after {
+      content: '✦';
+      position: absolute;
+      font-size: 11px;
+      color: #8080c0;
+      opacity: 0.7;
+      text-shadow: 0 0 6px #4040a0;
+      z-index: 6;
+    }
+    .artwork-frame::before { top: 4px; left: 5px; }
+    .artwork-frame::after  { top: 4px; right: 5px; }
+
+    /* ── TYPE LINE ── */
+    .type-line {
+      background: linear-gradient(90deg, #0e0e18 0%, #080810 100%);
+      padding: 4px 10px;
+      border-top: 1px solid #1e1e34;
+      border-bottom: 1px solid #1e1e34;
+    }
+    .type-text {
+      font-size: 11px;
+      color: #c0c0e8;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── EFFECT BOX ── */
+    .effect-box {
+      margin: 4px 8px 6px;
+      padding: 8px 10px;
+      background: rgba(10, 8, 22, 0.88);
+      border: 1px solid #282845;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 120px;
+    }
+
+    .material-line {
+      font-size: 10px;
+      color: #9090c8;
+      font-style: italic;
+      margin-bottom: 5px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #1e1e38;
+    }
+
+    .effect-text {
+      font-size: 10px;
+      color: #e8e8f7;
+      line-height: 1.48;
+      text-align: justify;
+    }
+
+    .effect-text p + p { margin-top: 4px; }
+
+    .once-per-turn {
+      margin-top: 5px;
+      font-size: 9.5px;
+      color: #a0a0c8;
+      font-style: italic;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: linear-gradient(90deg, #0e0e18 0%, #080810 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 14px;
+      border-top: 1px solid #1e1e34;
+    }
+    .stat {
+      font-size: 13px;
+      font-weight: 700;
+      color: #8888c0;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 8px rgba(100,80,220,0.6);
+      font-family: 'Crimson Text', serif;
+    }
+    .stat span {
+      color: #ddddf5;
+      text-shadow: 0 0 10px rgba(140,120,255,0.7);
+    }
+    .stat-divider { color: #2e2e50; font-size: 18px; }
+
+    /* ── FOOTER ── */
+    .card-footer {
+      background: #040407;
+      padding: 4px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #10101e;
+    }
+    .set-code   { font-size: 9px; color: #4a4a78; letter-spacing: 1px; }
+    .rarity-badge {
+      font-size: 9px;
+      color: #9090c8;
+      letter-spacing: 1px;
+      font-style: italic;
+      text-shadow: 0 0 6px rgba(100,80,220,0.5);
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="yugioh-card">
+  <div class="inner">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="card-name">The Phantom Knights Dreadful Hammer</div>
+      <div class="attribute-badge">DARK</div>
+    </div>
+
+    <!-- Rank Stars (Rank 3 – left-aligned for Xyz) -->
+    <div class="rank-bar">
+      <span class="rank-star"></span>
+      <span class="rank-star"></span>
+      <span class="rank-star"></span>
+    </div>
+
+    <!-- Artwork (CSS Art) -->
+    <div class="artwork-frame">
+      <div class="stars"></div>
+      <div class="ground-mist"></div>
+      <div class="phantom-aura"></div>
+
+      <div class="scene">
+        <!-- Sparks -->
+        <div class="spark spark-1"></div>
+        <div class="spark spark-2"></div>
+        <div class="spark spark-3"></div>
+        <div class="spark spark-4"></div>
+        <div class="spark spark-5"></div>
+        <!-- Shockwave -->
+        <div class="shockwave"></div>
+        <!-- Hammer -->
+        <div class="hammer-head"></div>
+        <div class="handle"></div>
+        <!-- Impact cracks -->
+        <div class="crack crack-1"></div>
+        <div class="crack crack-2"></div>
+        <div class="crack crack-3"></div>
+      </div>
+    </div>
+
+    <!-- Type Line -->
+    <div class="type-line">
+      <div class="type-text">[ Warrior / Xyz / Effect ]</div>
+    </div>
+
+    <!-- Effect -->
+    <div class="effect-box">
+      <div class="material-line">2 Level 3 DARK monsters</div>
+      <div class="effect-text">
+        <p>(1) Once per turn, at the start of the Damage Step, if this Xyz Summoned monster battles an opponent's monster: You can detach 1 material from this card; destroy that opponent's monster, and if you do, inflict damage to your opponent equal to half its original ATK.</p>
+        <p>(2) If this card is destroyed: You can add 1 "The Phantom Knights" card from your Deck to your hand, or Set it to your field, but it cannot be activated this turn.</p>
+        <p>(3) If an "Xyz Dragon" Xyz Monster is Xyz Summoned to your field while this card is in your GY: You can attach this card to that monster as material.</p>
+        <p class="once-per-turn">You can only use each effect of "The Phantom Knights Dreadful Hammer" once per turn.</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat">ATK / <span>2000</span></div>
+      <div class="stat-divider">|</div>
+      <div class="stat">DEF / <span>1500</span></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <span class="set-code">PHNI-EN049</span>
+      <span class="rarity-badge">Ultra Rare</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

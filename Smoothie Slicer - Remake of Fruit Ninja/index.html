@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smoothie Slicer | The Ultimate Blend</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- HUD -->
+        <div id="hud" class="hidden">
+            <div class="hud-item score-container">
+                <div class="score-label">Score</div>
+                <div id="score" class="score-value">0</div>
+            </div>
+            
+            <div id="recipe-card" class="recipe-card hidden">
+                <div id="recipe-name" class="recipe-title">Tropical Blast</div>
+                <ul id="ingredient-list" class="ingredient-list">
+                    <!-- Ingredients populated via JS -->
+                </ul>
+            </div>
+
+            <div class="hud-item lives" id="lives-container">
+                ❤️ ❤️ ❤️
+            </div>
+        </div>
+
+        <!-- Start Menu -->
+        <div id="start-menu" class="overlay">
+            <div class="glass-panel">
+                <h1>Smoothie Slicer</h1>
+                <p class="subtitle">Slice the right ingredients. Blend the perfect drink.</p>
+                <div class="btn-group">
+                    <button id="start-smoothie" class="btn btn-primary">Smoothie Mode</button>
+                    <button id="start-free" class="btn btn-secondary">Free-for-All</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Overlay -->
+        <div id="game-over" class="overlay hidden">
+            <div class="glass-panel">
+                <h2 id="result-title" style="font-size: 3rem; margin-bottom: 10px;">Perfect Blend!</h2>
+                <p id="result-desc" class="subtitle">You've mastered the Sunrise Detox.</p>
+                <div id="final-stats" style="margin-bottom: 30px;">
+                    <div style="font-size: 1.2rem;">Score: <span id="final-score" style="color: var(--accent-primary); font-weight: 700;">1240</span></div>
+                </div>
+                <button id="restart-btn" class="btn btn-primary">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
