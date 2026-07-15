@@ -1,0 +1,128 @@
+.language-switcher {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top));
+  right: max(12px, env(safe-area-inset-right));
+  z-index: 10050;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  background: rgba(5, 8, 18, 0.88);
+  color: #f7fbff;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.42);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  font: 700 12px/1.1 Arial, "Yu Gothic", Meiryo, sans-serif;
+}
+
+.language-switcher__label {
+  padding: 0 6px 0 8px;
+  color: #67e8f9;
+  font-size: 11px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.language-switcher__button {
+  min-width: 44px;
+  min-height: 34px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 12px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: 0;
+}
+
+.language-switcher__button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.language-switcher__button:focus-visible {
+  outline: 3px solid #67e8f9;
+  outline-offset: 2px;
+}
+
+.language-switcher__button[aria-pressed="true"] {
+  background: #f7fbff;
+  color: #08111f;
+}
+
+.language-switcher__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+html.gg-lang-ja body,
+html.gg-lang-ja button,
+html.gg-lang-ja input,
+html.gg-lang-ja select,
+html.gg-lang-ja textarea {
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, Arial, sans-serif;
+}
+
+html.gg-lang-ja .card-name,
+html.gg-lang-ja .card-title,
+html.gg-lang-ja .card-title-text,
+html.gg-lang-ja .logo-title,
+html.gg-lang-ja .panel-section-title,
+html.gg-lang-ja .filter-btn,
+html.gg-lang-ja .sub-filter-btn {
+  letter-spacing: 0;
+}
+
+html.gg-lang-ja body[data-tcg-frame="true"] .card-name {
+  font-size: clamp(14px, 3.8vw, 17px) !important;
+}
+
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-box,
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-text,
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-box p,
+html.gg-lang-ja body[data-tcg-frame="true"] .materials-box,
+html.gg-lang-ja body[data-tcg-frame="true"] .type-line {
+  line-height: 1.42 !important;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-box,
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-text,
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-line,
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-summon-line,
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-condition,
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-bullet,
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-num,
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-subbullet,
+html.gg-lang-ja body[data-tcg-frame="true"] .effect-continuous,
+html.gg-lang-ja body[data-tcg-frame="true"] .once-per-turn {
+  font-size: clamp(9px, 2.35vw, 10.5px) !important;
+}
+
+@media (max-width: 520px) {
+  .language-switcher {
+    top: max(8px, env(safe-area-inset-top));
+    right: max(8px, env(safe-area-inset-right));
+  }
+
+  .language-switcher__button {
+    min-width: 40px;
+    min-height: 32px;
+    padding: 0 10px;
+  }
+
+  .language-switcher__label {
+    font-size: 10px;
+    padding-left: 6px;
+  }
+}

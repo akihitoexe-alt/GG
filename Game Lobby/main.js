@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 xbox: 'Xbox'
             },
             categories: {
-                phantomKnights: 'ファントム・ナイツ',
+                phantomKnights: '幻影騎士団',
                 miscellaneous: 'その他',
                 boardGame: 'ボードゲーム',
                 mobileRpg: 'モバイルRPG',
@@ -152,6 +152,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 consoleShooter: 'コンソールシューティング'
             }
         }
+    };
+
+    const projectNamesJa = {
+        "Dark Renaissance Xyz Dragon": "ダーク・ルネサンス・エクシーズ・ドラゴン",
+        "Dark Revolution Xyz Dragon": "ダーク・レボリューション・エクシーズ・ドラゴン",
+        "Broken Helm": "幻影騎士団ブロークン・ヘルム",
+        "Dark Star": "幻影騎士団ダーク・スター",
+        "Dreadful Hammer": "幻影騎士団ドレッドフル・ハンマー",
+        "Feeble Armor": "幻影騎士団フィーブル・アーマー",
+        "Jagged Gloves": "幻影騎士団ジャギッド・グローブ",
+        "Rebellious Soul": "幻影騎士団リベリアス・ソウル",
+        "Phantom Knights' Burial": "幻影騎士団の埋葬",
+        "Ghostly Wail": "幻影騎士団の亡霊の嘆き",
+        "Phantom Knights' Revival": "幻影騎士団の蘇生",
+        "Phantom Knights' Tombstone": "幻影騎士団の墓石",
+        "Raiders' Resistance": "レイダーズ・レジスタンス",
+        "The Phantom Knights' Coffin": "幻影騎士団の棺",
+        "RUM Rebellion": "RUMリベリオン",
+        "RUM Revolution": "RUMレボリューション",
+        "Regretful Shield": "幻影騎士団の悔恨の盾",
+        "Shattered Spear": "幻影騎士団の砕けた槍",
+        "Block Breaker": "ブロックブレイカー",
+        "Grell-me Garden": "グレルミー・ガーデン",
+        "Smoothie Slicer": "スムージー・スライサー",
+        "Tetris": "テトリス"
     };
 
     // --- DATA / PROJECTS ---
@@ -616,7 +641,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getProjectName(project) {
-        return project.names?.[currentLanguage] || project.name;
+        if (project.names?.[currentLanguage]) {
+            return project.names[currentLanguage];
+        }
+
+        if (currentLanguage === 'ja') {
+            return projectNamesJa[project.name] || project.name;
+        }
+
+        return project.name;
+    }
+
+    function pathWithLanguage(path) {
+        if (!path || path === '#') {
+            return path;
+        }
+
+        const [withoutHash, hash = ''] = path.split('#');
+        const separator = withoutHash.includes('?') ? '&' : '?';
+        const localizedPath = `${withoutHash}${separator}lang=${encodeURIComponent(currentLanguage)}`;
+        return hash ? `${localizedPath}#${hash}` : localizedPath;
     }
 
     function updateStaticText() {
@@ -681,7 +725,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = document.createElement('h3');
             const category = document.createElement('span');
 
-            card.href = project.path;
+            card.href = pathWithLanguage(project.path);
             card.className = `project-card project-card--${project.category}`;
             card.dataset.category = project.category;
             card.style.animationDelay = `${index * 0.05}s`;
