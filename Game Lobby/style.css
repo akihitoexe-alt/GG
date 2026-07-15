@@ -877,7 +877,7 @@ h3 {
 }
 
 .project-card::after {
-    content: 'OPEN NODE';
+    content: 'ACCESS';
     position: absolute;
     top: 0.65rem;
     right: 0.75rem;
