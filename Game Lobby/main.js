@@ -213,13 +213,28 @@ document.addEventListener('DOMContentLoaded', () => {
             { x: -1.4, y: 1.8, w: 1.5, d: 1.4, h: 5.4, color: '255, 209, 102', accent: '3, 231, 255', pulse: 2.4 },
             { x: 3.3, y: -1.6, w: 1.7, d: 1.2, h: 6.8, color: '255, 79, 216', accent: '255, 209, 102', pulse: 0.8 },
             { x: 6.8, y: 1.6, w: 1.5, d: 1.1, h: 5.7, color: '74, 163, 255', accent: '104, 255, 146', pulse: 1.9 },
-            { x: 1.6, y: 4.4, w: 2.2, d: 1.3, h: 3.8, color: '3, 231, 255', accent: '255, 209, 102', pulse: 2.8 }
+            { x: 1.6, y: 4.4, w: 2.2, d: 1.3, h: 3.8, color: '3, 231, 255', accent: '255, 209, 102', pulse: 2.8 },
+            { x: -10, y: -2.6, w: 1.2, d: 1.6, h: 3.6, color: '143, 125, 255', accent: '3, 231, 255', pulse: 1.6 },
+            { x: -7.2, y: 5.2, w: 2.1, d: 1.1, h: 3.2, color: '255, 159, 28', accent: '188, 255, 72', pulse: 2.1 },
+            { x: 4.8, y: 5.6, w: 1.7, d: 1.5, h: 4.4, color: '188, 255, 72', accent: '255, 79, 216', pulse: 3.4 },
+            { x: 8.2, y: -3.4, w: 1.4, d: 1.6, h: 4.9, color: '255, 79, 216', accent: '3, 231, 255', pulse: 0.4 },
+            { x: 0.2, y: -5.2, w: 2, d: 1.4, h: 3.7, color: '74, 163, 255', accent: '255, 209, 102', pulse: 2.7 }
+        ];
+
+        const platforms = [
+            { x: -3.6, y: 3.1, w: 2.8, d: 1.6, z: 0.18, color: '3, 231, 255', accent: '255, 209, 102', pulse: 0.2 },
+            { x: 1.6, y: 1.7, w: 3.2, d: 1.7, z: 0.28, color: '143, 125, 255', accent: '255, 79, 216', pulse: 1.2 },
+            { x: -6.5, y: -0.3, w: 2.6, d: 1.4, z: 0.2, color: '188, 255, 72', accent: '3, 231, 255', pulse: 2.2 },
+            { x: 5.4, y: -0.3, w: 2.8, d: 1.4, z: 0.22, color: '255, 159, 28', accent: '3, 231, 255', pulse: 3.1 }
         ];
 
         const routes = [
             { color: '3, 231, 255', points: [{ x: -9, y: 5 }, { x: -5, y: 2 }, { x: -1, y: 3.4 }, { x: 3.8, y: -1 }, { x: 8, y: 2.4 }], speed: 0.00022, offset: 0 },
             { color: '104, 255, 146', points: [{ x: -7, y: -2 }, { x: -3, y: 0.8 }, { x: 1, y: -1.8 }, { x: 6, y: 1.2 }], speed: 0.00018, offset: 0.33 },
-            { color: '255, 209, 102', points: [{ x: -4, y: 6 }, { x: 0, y: 4.4 }, { x: 2.6, y: 2.2 }, { x: 7.5, y: 4.5 }], speed: 0.00016, offset: 0.66 }
+            { color: '255, 209, 102', points: [{ x: -4, y: 6 }, { x: 0, y: 4.4 }, { x: 2.6, y: 2.2 }, { x: 7.5, y: 4.5 }], speed: 0.00016, offset: 0.66 },
+            { color: '255, 79, 216', points: [{ x: -10, y: -1.8 }, { x: -5.6, y: -0.4 }, { x: -1.2, y: 0.9 }, { x: 3.2, y: 0.4 }, { x: 8.8, y: -2.8 }], speed: 0.0002, offset: 0.16 },
+            { color: '143, 125, 255', points: [{ x: -8.2, y: 4.5 }, { x: -3.6, y: 2.6 }, { x: 0.1, y: 1.6 }, { x: 4.2, y: 3.2 }, { x: 9.2, y: 1.4 }], speed: 0.00014, offset: 0.52 },
+            { color: '188, 255, 72', points: [{ x: -2.2, y: -5.4 }, { x: -0.7, y: -2.1 }, { x: 0.4, y: 0.1 }, { x: 1.2, y: 2.6 }, { x: 2.8, y: 6.1 }], speed: 0.00017, offset: 0.75 }
         ];
 
         function resizeCanvas() {
@@ -260,8 +275,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function drawBackgroundGlow() {
             const gradient = ctx.createRadialGradient(width * 0.5, height * 0.46, 20, width * 0.5, height * 0.55, Math.max(width, height) * 0.55);
-            gradient.addColorStop(0, 'rgba(3, 231, 255, 0.12)');
-            gradient.addColorStop(0.42, 'rgba(104, 255, 146, 0.06)');
+            gradient.addColorStop(0, 'rgba(247, 253, 255, 0.12)');
+            gradient.addColorStop(0.18, 'rgba(3, 231, 255, 0.14)');
+            gradient.addColorStop(0.42, 'rgba(143, 125, 255, 0.08)');
+            gradient.addColorStop(0.68, 'rgba(255, 79, 216, 0.05)');
             gradient.addColorStop(1, 'rgba(3, 4, 7, 0)');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, width, height);
@@ -278,13 +295,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const startB = iso(-limit, i);
                 const endB = iso(limit, i);
 
-                ctx.strokeStyle = `rgba(3, 231, 255, ${alpha})`;
+                ctx.strokeStyle = `rgba(3, 231, 255, ${alpha * 1.08})`;
                 ctx.beginPath();
                 ctx.moveTo(startA.x, startA.y + Math.sin(time / 900 + i) * 1.5);
                 ctx.lineTo(endA.x, endA.y);
                 ctx.stroke();
 
-                ctx.strokeStyle = `rgba(104, 255, 146, ${alpha * 0.86})`;
+                ctx.strokeStyle = `rgba(143, 125, 255, ${alpha * 0.88})`;
                 ctx.beginPath();
                 ctx.moveTo(startB.x, startB.y);
                 ctx.lineTo(endB.x, endB.y + Math.cos(time / 880 + i) * 1.5);
@@ -336,6 +353,64 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        function drawPlatform(platform, time) {
+            const baseA = iso(platform.x, platform.y, platform.z);
+            const baseB = iso(platform.x + platform.w, platform.y, platform.z);
+            const baseC = iso(platform.x + platform.w, platform.y + platform.d, platform.z);
+            const baseD = iso(platform.x, platform.y + platform.d, platform.z);
+            const flicker = 0.76 + Math.sin(time / 520 + platform.pulse) * 0.18;
+
+            ctx.beginPath();
+            drawPath([baseA, baseB, baseC, baseD], true);
+            ctx.fillStyle = `rgba(${platform.color}, ${0.12 * flicker})`;
+            ctx.fill();
+            ctx.lineWidth = 1.4;
+            ctx.strokeStyle = `rgba(${platform.accent}, ${0.54 * flicker})`;
+            ctx.shadowColor = `rgba(${platform.accent}, 0.24)`;
+            ctx.shadowBlur = 12;
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+
+            const midA = iso(platform.x + platform.w * 0.18, platform.y + platform.d * 0.5, platform.z + 0.03);
+            const midB = iso(platform.x + platform.w * 0.82, platform.y + platform.d * 0.5, platform.z + 0.03);
+            ctx.strokeStyle = `rgba(247, 253, 255, ${0.14 * flicker})`;
+            ctx.beginPath();
+            ctx.moveTo(midA.x, midA.y);
+            ctx.lineTo(midB.x, midB.y);
+            ctx.stroke();
+        }
+
+        function drawHub(time) {
+            const hub = iso(0.4, 1.3, 0.8);
+            const pulse = 0.84 + Math.sin(time / 430) * 0.16;
+
+            ctx.save();
+            ctx.globalCompositeOperation = 'lighter';
+            ctx.strokeStyle = `rgba(3, 231, 255, ${0.34 * pulse})`;
+            ctx.lineWidth = 2;
+            ctx.shadowColor = 'rgba(3, 231, 255, 0.5)';
+            ctx.shadowBlur = 20;
+            ctx.beginPath();
+            ctx.ellipse(hub.x, hub.y, 84 * pulse, 31 * pulse, 0, 0, Math.PI * 2);
+            ctx.stroke();
+
+            ctx.strokeStyle = `rgba(255, 79, 216, ${0.24 * pulse})`;
+            ctx.beginPath();
+            ctx.ellipse(hub.x, hub.y, 124 * pulse, 47 * pulse, 0, 0, Math.PI * 2);
+            ctx.stroke();
+
+            const core = ctx.createRadialGradient(hub.x, hub.y, 2, hub.x, hub.y, 70);
+            core.addColorStop(0, `rgba(247, 253, 255, ${0.48 * pulse})`);
+            core.addColorStop(0.32, `rgba(3, 231, 255, ${0.2 * pulse})`);
+            core.addColorStop(0.72, `rgba(143, 125, 255, ${0.12 * pulse})`);
+            core.addColorStop(1, 'rgba(255, 79, 216, 0)');
+            ctx.fillStyle = core;
+            ctx.beginPath();
+            ctx.arc(hub.x, hub.y, 70, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+
         function interpolateRoute(points, progress) {
             const screenPoints = points.map(point => iso(point.x, point.y));
             const segmentLengths = [];
@@ -369,11 +444,14 @@ document.addEventListener('DOMContentLoaded', () => {
         function drawRoutes(time) {
             routes.forEach(route => {
                 const points = route.points.map(point => iso(point.x, point.y));
-                ctx.lineWidth = 2;
-                ctx.strokeStyle = `rgba(${route.color}, 0.2)`;
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = `rgba(${route.color}, 0.25)`;
+                ctx.shadowColor = `rgba(${route.color}, 0.3)`;
+                ctx.shadowBlur = 10;
                 ctx.beginPath();
                 drawPath(points);
                 ctx.stroke();
+                ctx.shadowBlur = 0;
 
                 for (let i = 0; i < 3; i += 1) {
                     const progress = (route.offset + i * 0.32 + time * route.speed) % 1;
@@ -396,7 +474,12 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.clearRect(0, 0, width, height);
             drawBackgroundGlow();
             drawGrid(time);
+            platforms
+                .slice()
+                .sort((a, b) => (a.x + a.y) - (b.x + b.y))
+                .forEach(platform => drawPlatform(platform, time));
             drawRoutes(time);
+            drawHub(time);
             towers
                 .slice()
                 .sort((a, b) => (a.x + a.y) - (b.x + b.y))
