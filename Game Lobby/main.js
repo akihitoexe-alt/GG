@@ -207,6 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let dpr = 1;
         let animationFrameId;
 
+        const hubAnchor = { x: 0.4, y: 1.3, z: 0.8 };
+
         const towers = [
             { x: -8, y: 2, w: 1.4, d: 1.1, h: 4.8, color: '3, 231, 255', accent: '104, 255, 146', pulse: 0.2 },
             { x: -5, y: -1, w: 1.8, d: 1.3, h: 6.2, color: '104, 255, 146', accent: '255, 209, 102', pulse: 1.1 },
@@ -226,6 +228,14 @@ document.addEventListener('DOMContentLoaded', () => {
             { x: 1.6, y: 1.7, w: 3.2, d: 1.7, z: 0.28, color: '143, 125, 255', accent: '255, 79, 216', pulse: 1.2 },
             { x: -6.5, y: -0.3, w: 2.6, d: 1.4, z: 0.2, color: '188, 255, 72', accent: '3, 231, 255', pulse: 2.2 },
             { x: 5.4, y: -0.3, w: 2.8, d: 1.4, z: 0.22, color: '255, 159, 28', accent: '3, 231, 255', pulse: 3.1 }
+        ];
+
+        const districtBeacons = [
+            { x: -6.2, y: -0.1, z: 1.2, color: '3, 231, 255', pulse: 0.4 },
+            { x: -3.1, y: 3.4, z: 1.1, color: '104, 255, 146', pulse: 1.1 },
+            { x: 2.8, y: 2.1, z: 1.3, color: '143, 125, 255', pulse: 1.9 },
+            { x: 5.9, y: -0.1, z: 1.15, color: '255, 209, 102', pulse: 2.7 },
+            { x: 4.6, y: 5.5, z: 1.05, color: '255, 159, 28', pulse: 3.3 }
         ];
 
         const routes = [
@@ -381,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function drawHub(time) {
-            const hub = iso(0.4, 1.3, 0.8);
+            const hub = iso(hubAnchor.x, hubAnchor.y, hubAnchor.z);
             const pulse = 0.84 + Math.sin(time / 430) * 0.16;
 
             ctx.save();
@@ -408,6 +418,54 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.arc(hub.x, hub.y, 70, 0, Math.PI * 2);
             ctx.fill();
+            ctx.restore();
+        }
+
+        function drawHubConnectors(time) {
+            const hub = iso(hubAnchor.x, hubAnchor.y, hubAnchor.z);
+
+            districtBeacons.forEach((beacon, index) => {
+                const target = iso(beacon.x, beacon.y, beacon.z);
+                const pulse = 0.62 + Math.sin(time / 680 + beacon.pulse) * 0.16;
+
+                ctx.save();
+                ctx.globalCompositeOperation = 'lighter';
+                ctx.setLineDash([12, 10]);
+                ctx.lineDashOffset = -time / (34 + index * 4);
+                ctx.lineWidth = 1.3;
+                ctx.strokeStyle = `rgba(${beacon.color}, ${0.12 * pulse})`;
+                ctx.shadowColor = `rgba(${beacon.color}, 0.22)`;
+                ctx.shadowBlur = 8;
+                ctx.beginPath();
+                ctx.moveTo(hub.x, hub.y);
+                ctx.lineTo(target.x, target.y);
+                ctx.stroke();
+                ctx.restore();
+            });
+        }
+
+        function drawDistrictBeacon(beacon, time) {
+            const point = iso(beacon.x, beacon.y, beacon.z);
+            const pulse = 0.78 + Math.sin(time / 520 + beacon.pulse) * 0.18;
+            const ringWidth = 22 * pulse;
+            const ringHeight = 8 * pulse;
+
+            ctx.save();
+            ctx.globalCompositeOperation = 'lighter';
+            ctx.strokeStyle = `rgba(${beacon.color}, ${0.38 * pulse})`;
+            ctx.lineWidth = 1.2;
+            ctx.shadowColor = `rgba(${beacon.color}, 0.34)`;
+            ctx.shadowBlur = 12;
+            ctx.beginPath();
+            ctx.ellipse(point.x, point.y + 8, ringWidth, ringHeight, 0, 0, Math.PI * 2);
+            ctx.stroke();
+
+            ctx.translate(point.x, point.y);
+            ctx.rotate(Math.PI / 4);
+            ctx.fillStyle = `rgba(${beacon.color}, ${0.52 * pulse})`;
+            ctx.fillRect(-4.5, -4.5, 9, 9);
+            ctx.strokeStyle = 'rgba(247, 253, 255, 0.5)';
+            ctx.strokeRect(-4.5, -4.5, 9, 9);
             ctx.restore();
         }
 
@@ -444,10 +502,10 @@ document.addEventListener('DOMContentLoaded', () => {
         function drawRoutes(time) {
             routes.forEach(route => {
                 const points = route.points.map(point => iso(point.x, point.y));
-                ctx.lineWidth = 3;
-                ctx.strokeStyle = `rgba(${route.color}, 0.25)`;
-                ctx.shadowColor = `rgba(${route.color}, 0.3)`;
-                ctx.shadowBlur = 10;
+                ctx.lineWidth = 2.4;
+                ctx.strokeStyle = `rgba(${route.color}, 0.18)`;
+                ctx.shadowColor = `rgba(${route.color}, 0.22)`;
+                ctx.shadowBlur = 8;
                 ctx.beginPath();
                 drawPath(points);
                 ctx.stroke();
@@ -461,9 +519,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     ctx.save();
                     ctx.translate(packet.x, packet.y);
                     ctx.rotate(Math.PI / 4);
-                    ctx.fillStyle = `rgba(${route.color}, 0.88)`;
-                    ctx.shadowColor = `rgba(${route.color}, 0.72)`;
-                    ctx.shadowBlur = 12;
+                    ctx.fillStyle = `rgba(${route.color}, 0.78)`;
+                    ctx.shadowColor = `rgba(${route.color}, 0.54)`;
+                    ctx.shadowBlur = 10;
                     ctx.fillRect(-size / 2, -size / 2, size, size);
                     ctx.restore();
                 }
@@ -478,8 +536,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 .slice()
                 .sort((a, b) => (a.x + a.y) - (b.x + b.y))
                 .forEach(platform => drawPlatform(platform, time));
+            drawHubConnectors(time);
             drawRoutes(time);
             drawHub(time);
+            districtBeacons.forEach(beacon => drawDistrictBeacon(beacon, time));
             towers
                 .slice()
                 .sort((a, b) => (a.x + a.y) - (b.x + b.y))
@@ -622,7 +682,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const category = document.createElement('span');
 
             card.href = project.path;
-            card.className = 'project-card';
+            card.className = `project-card project-card--${project.category}`;
+            card.dataset.category = project.category;
             card.style.animationDelay = `${index * 0.05}s`;
             card.setAttribute('aria-label', projectName);
 
