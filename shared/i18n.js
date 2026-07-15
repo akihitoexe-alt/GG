@@ -23,8 +23,13 @@
       "lobby.filter.misc": "MISC DATA",
       "lobby.dataType": "DATA TYPE:",
       "lobby.makerId": "MAKER ID:",
+      "nav.actionsLabel": "Card page actions",
+      "nav.mainHub": "Main Hub",
+      "nav.mainHubLabel": "Return to main hub",
       "reveal.skip": "Skip",
       "reveal.skipLabel": "Skip card reveal",
+      "reveal.replay": "Replay",
+      "reveal.replayLabel": "Replay card reveal sequence",
       "reveal.leftSmall": "Lunar scan",
       "reveal.leftStrong": "Signal found",
       "reveal.focus": "Focus card",
@@ -52,8 +57,13 @@
       "lobby.filter.misc": "その他",
       "lobby.dataType": "データ種別:",
       "lobby.makerId": "メーカー:",
+      "nav.actionsLabel": "カードページ操作",
+      "nav.mainHub": "メインハブ",
+      "nav.mainHubLabel": "メインハブに戻る",
       "reveal.skip": "スキップ",
       "reveal.skipLabel": "カード演出をスキップ",
+      "reveal.replay": "リプレイ",
+      "reveal.replayLabel": "カード演出をもう一度再生",
       "reveal.leftSmall": "月光スキャン",
       "reveal.leftStrong": "シグナル検出",
       "reveal.focus": "注目カード",
@@ -446,7 +456,9 @@
     html.classList.toggle("gg-lang-en", lang === "en");
 
     createLanguageSwitcher();
+    createCardPageNav();
     updateSwitcher();
+    updateCardPageNav(lang);
     applyStaticText(lang);
     applyCardPage(lang);
     applyRankUpMagicRevenge(lang);
@@ -531,6 +543,55 @@
     });
   }
 
+  function createCardPageNav() {
+    if (!document.body || !shouldShowCardPageNav()) return;
+
+    let nav = document.querySelector(".card-page-nav");
+    if (!nav) {
+      nav = document.createElement("nav");
+      nav.className = "card-page-nav";
+      document.body.appendChild(nav);
+    }
+
+    if (!nav.querySelector("[data-main-hub-link]")) {
+      const link = document.createElement("a");
+      link.className = "card-page-nav__link";
+      link.dataset.mainHubLink = "true";
+      link.href = "../Game Lobby/index.html";
+      link.textContent = "Main Hub";
+      nav.appendChild(link);
+    }
+  }
+
+  function shouldShowCardPageNav() {
+    const key = getPageKey();
+    if (!key || key === "Game Lobby") return false;
+    return Boolean(CARD_JA[key] || document.querySelector("#yugioh-card, .card-container"));
+  }
+
+  function updateCardPageNav(lang) {
+    const nav = document.querySelector(".card-page-nav");
+    if (!nav) return;
+
+    nav.setAttribute("aria-label", t("nav.actionsLabel", "Card page actions", lang));
+    const hubLink = nav.querySelector("[data-main-hub-link]");
+    if (hubLink) {
+      hubLink.textContent = t("nav.mainHub", "Main Hub", lang);
+      hubLink.setAttribute("aria-label", t("nav.mainHubLabel", "Return to main hub", lang));
+      hubLink.href = getMainHubUrl(lang);
+    }
+  }
+
+  function getMainHubUrl(lang) {
+    try {
+      const url = new URL("../Game Lobby/index.html", window.location.href);
+      url.searchParams.set("lang", lang);
+      return url.href;
+    } catch {
+      return `../Game Lobby/index.html?lang=${encodeURIComponent(lang)}`;
+    }
+  }
+
   function applyStaticText(lang) {
     document.querySelectorAll("[data-i18n]").forEach((element) => {
       setText(element, UI_TEXT[lang]?.[element.dataset.i18n] || UI_TEXT.en[element.dataset.i18n], lang);
@@ -597,6 +658,8 @@
     const card = CARD_JA[key];
     setBySelector(".card-reveal-skip", t("reveal.skip", "Skip", lang), lang, "text");
     setAttrBySelector(".card-reveal-skip", "aria-label", t("reveal.skipLabel", "Skip card reveal", lang), lang);
+    setBySelector(".card-page-nav__replay", t("reveal.replay", "Replay", lang), lang, "text");
+    setAttrBySelector(".card-page-nav__replay", "aria-label", t("reveal.replayLabel", "Replay card reveal sequence", lang), lang);
     setBySelector(".card-reveal-presenter.left span", t("reveal.leftSmall", "Lunar scan", lang), lang, "text");
     setBySelector(".card-reveal-presenter.left strong", t("reveal.leftStrong", "Signal found", lang), lang, "text");
     setBySelector(".card-reveal-label span:first-child", t("reveal.focus", "Focus card", lang), lang, "text");
