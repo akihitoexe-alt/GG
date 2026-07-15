@@ -6,11 +6,570 @@ document.addEventListener('DOMContentLoaded', () => {
     const jackInFlash = document.querySelector('.jack-in-flash');
     const jackInTunnel = document.querySelector('.jack-in-tunnel');
 
+    // --- LANGUAGE / UI TEXT ---
+    const languageControl = document.querySelector('.language-control');
+    const languageBtns = document.querySelectorAll('.language-btn');
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const supportedLanguages = ['en', 'ja'];
+    const languageStorageKey = 'gameLobbyLanguage';
+
+    const translations = {
+        en: {
+            meta: {
+                title: "Gamers' Grind - Cyberworld",
+                description: "Centralized Game Lobby and Project Hub for Gamers' Grind."
+            },
+            language: {
+                label: 'LANGUAGE',
+                selector: 'Language selector',
+                english: 'English',
+                japanese: 'Japanese'
+            },
+            intro: {
+                title: 'PET TERMINAL_',
+                status: 'SYSTEM STANDBY...',
+                button: 'JACK IN!! EXECUTE',
+                executing: 'EXECUTING...'
+            },
+            header: {
+                subtitle: 'NET AREA // CENTRAL HUB'
+            },
+            hub: {
+                areaLabel: 'AREA',
+                areaValue: 'CENTRAL SQUARE',
+                syncLabel: 'SYNC',
+                syncValue: '99.8%',
+                partyLabel: 'PARTY LINK',
+                partyValue: 'ONLINE',
+                gateLabel: 'QUEST GATES',
+                gateValue: 'READY'
+            },
+            filters: {
+                all: 'ALL DATA',
+                cardGames: 'BATTLE CARDS',
+                boardGames: 'BOARD SIM',
+                mobileGames: 'MOBILE NET',
+                consoleGames: 'CONSOLE LINK',
+                misc: 'MISC DATA'
+            },
+            subFilters: {
+                dataType: 'DATA TYPE:',
+                makerId: 'MAKER ID:'
+            },
+            options: {
+                all: 'All',
+                rpg: 'RPG',
+                puzzle: 'Puzzle',
+                racing: 'Racing',
+                action: 'Action',
+                platformer: 'Platformer',
+                shooter: 'Shooter',
+                'square-enix': 'Square-Enix',
+                king: 'King',
+                nintendo: 'Nintendo',
+                apple: 'Apple',
+                playstation: 'PlayStation',
+                xbox: 'Xbox'
+            },
+            categories: {
+                phantomKnights: 'Phantom Knights',
+                miscellaneous: 'Miscellaneous',
+                boardGame: 'Board Game',
+                mobileRpg: 'Mobile RPG',
+                mobilePuzzle: 'Mobile Puzzle',
+                mobileRacing: 'Mobile Racing',
+                consoleRpg: 'Console RPG',
+                consolePlatformer: 'Console Platformer',
+                consoleShooter: 'Console Shooter'
+            }
+        },
+        ja: {
+            meta: {
+                title: "Gamers' Grind - サイバーワールド",
+                description: "Gamers' Grind のゲームロビーとプロジェクトハブです。"
+            },
+            language: {
+                label: 'LANG',
+                selector: '言語選択',
+                english: 'English',
+                japanese: '日本語'
+            },
+            intro: {
+                title: 'PET ターミナル_',
+                status: 'システム待機中...',
+                button: 'ジャックイン!! 実行',
+                executing: '実行中...'
+            },
+            header: {
+                subtitle: 'ネットエリア // 中央ハブ'
+            },
+            hub: {
+                areaLabel: 'エリア',
+                areaValue: '中央スクエア',
+                syncLabel: '同期',
+                syncValue: '99.8%',
+                partyLabel: 'パーティリンク',
+                partyValue: 'オンライン',
+                gateLabel: 'クエストゲート',
+                gateValue: '準備完了'
+            },
+            filters: {
+                all: '全データ',
+                cardGames: 'バトルカード',
+                boardGames: 'ボードシム',
+                mobileGames: 'モバイルネット',
+                consoleGames: 'コンソールリンク',
+                misc: 'その他データ'
+            },
+            subFilters: {
+                dataType: 'データ種別:',
+                makerId: 'メーカーID:'
+            },
+            options: {
+                all: 'すべて',
+                rpg: 'RPG',
+                puzzle: 'パズル',
+                racing: 'レース',
+                action: 'アクション',
+                platformer: 'プラットフォーム',
+                shooter: 'シューティング',
+                'square-enix': 'スクウェア・エニックス',
+                king: 'King',
+                nintendo: '任天堂',
+                apple: 'Apple',
+                playstation: 'PlayStation',
+                xbox: 'Xbox'
+            },
+            categories: {
+                phantomKnights: 'ファントム・ナイツ',
+                miscellaneous: 'その他',
+                boardGame: 'ボードゲーム',
+                mobileRpg: 'モバイルRPG',
+                mobilePuzzle: 'モバイルパズル',
+                mobileRacing: 'モバイルレース',
+                consoleRpg: 'コンソールRPG',
+                consolePlatformer: 'コンソールプラットフォーム',
+                consoleShooter: 'コンソールシューティング'
+            }
+        }
+    };
+
+    // --- DATA / PROJECTS ---
+    const projects = [
+        // Card Games (Phantom Knights)
+        { name: "Dark Renaissance Xyz Dragon", category: "card-games", path: "../Dark Renaissance Xyz Dragon/card.html", icon: "🐉", categoryLabelKey: "phantomKnights" },
+        { name: "Dark Revolution Xyz Dragon", category: "card-games", path: "../Dark Revolution Xyz Dragon/card.html", icon: "🐉", categoryLabelKey: "phantomKnights" },
+        { name: "Broken Helm", category: "card-games", path: "../The Phantom Knights of Broken Helm/card.html", icon: "🪖", categoryLabelKey: "phantomKnights" },
+        { name: "Dark Star", category: "card-games", path: "../The Phantom Knights of Dark Star/card.html", icon: "⭐", categoryLabelKey: "phantomKnights" },
+        { name: "Dreadful Hammer", category: "card-games", path: "../The Phantom Knights of Dreadful Hammer/card.html", icon: "🔨", categoryLabelKey: "phantomKnights" },
+        { name: "Feeble Armor", category: "card-games", path: "../The Phantom Knights of Feeble Armor/card.html", icon: "🛡️", categoryLabelKey: "phantomKnights" },
+        { name: "Jagged Gloves", category: "card-games", path: "../The Phantom Knights of Jagged Gloves/card.html", icon: "🧤", categoryLabelKey: "phantomKnights" },
+        { name: "Rebellious Soul", category: "card-games", path: "../The Phantom Knights' Rebellious Soul/card.html", icon: "👻", categoryLabelKey: "phantomKnights" },
+        { name: "Phantom Knights' Burial", category: "card-games", path: "../Phantom Knights' Burial/card.html", icon: "🪦", categoryLabelKey: "phantomKnights" },
+        { name: "Ghostly Wail", category: "card-games", path: "../Phantom Knights' Ghostly Wail/card.html", icon: "😱", categoryLabelKey: "phantomKnights" },
+        { name: "Phantom Knights' Revival", category: "card-games", path: "../Phantom Knights' Revival/card.html", icon: "🔥", categoryLabelKey: "phantomKnights" },
+        { name: "Phantom Knights' Tombstone", category: "card-games", path: "../Phantom Knights' Tombstone/card.html", icon: "🪦", categoryLabelKey: "phantomKnights" },
+        { name: "Raiders' Resistance", category: "card-games", path: "../Raiders' Resistance/card.html", icon: "🛡️", categoryLabelKey: "phantomKnights" },
+        { name: "The Phantom Knights' Coffin", category: "card-games", path: "../The Phantom Knights' Coffin/card.html", icon: "⚰️", categoryLabelKey: "phantomKnights" },
+        { name: "RUM Rebellion", category: "card-games", path: "../The Phantom Knights' Rank-Up Magic Rebellion/card.html", icon: "✨", categoryLabelKey: "phantomKnights" },
+        { name: "RUM Revolution", category: "card-games", path: "../The Phantom Knights' Rank-Up Magic Revolution/card.html", icon: "✨", categoryLabelKey: "phantomKnights" },
+        { name: "Regretful Shield", category: "card-games", path: "../The Phantom Knights' Regretful Shield/card.html", icon: "🛡️", categoryLabelKey: "phantomKnights" },
+        { name: "Shattered Spear", category: "card-games", path: "../The Phantom Knights' Shattered Spear/card.html", icon: "🔱", categoryLabelKey: "phantomKnights" },
+
+        // Miscellaneous
+        { name: "Block Breaker", category: "misc", path: "../Block Breaker/index.html", icon: "🧱", categoryLabelKey: "miscellaneous" },
+        { name: "Grell-me Garden", category: "misc", path: "../Garden Project/index.html", icon: "🌱", categoryLabelKey: "miscellaneous" },
+        { name: "Smoothie Slicer", category: "misc", path: "../Smoothie Slicer - Remake of Fruit Ninja/index.html", icon: "🍉", categoryLabelKey: "miscellaneous" },
+        { name: "Tetris", category: "misc", path: "../Tetris/index.html", icon: "🧩", categoryLabelKey: "miscellaneous" },
+
+    ];
+
+    const availableProjects = projects;
+
+    const grid = document.getElementById('project-grid');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    let currentCategory = 'all';
+    let jackInExecuting = false;
+    let currentLanguage = getInitialLanguage();
+
+    function initializeCyberWorldCanvas() {
+        const canvas = document.getElementById('world-canvas');
+
+        if (!canvas) {
+            return;
+        }
+
+        const ctx = canvas.getContext('2d');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let width = 0;
+        let height = 0;
+        let dpr = 1;
+        let animationFrameId;
+
+        const towers = [
+            { x: -8, y: 2, w: 1.4, d: 1.1, h: 4.8, color: '3, 231, 255', accent: '104, 255, 146', pulse: 0.2 },
+            { x: -5, y: -1, w: 1.8, d: 1.3, h: 6.2, color: '104, 255, 146', accent: '255, 209, 102', pulse: 1.1 },
+            { x: -1.4, y: 1.8, w: 1.5, d: 1.4, h: 5.4, color: '255, 209, 102', accent: '3, 231, 255', pulse: 2.4 },
+            { x: 3.3, y: -1.6, w: 1.7, d: 1.2, h: 6.8, color: '255, 79, 216', accent: '255, 209, 102', pulse: 0.8 },
+            { x: 6.8, y: 1.6, w: 1.5, d: 1.1, h: 5.7, color: '74, 163, 255', accent: '104, 255, 146', pulse: 1.9 },
+            { x: 1.6, y: 4.4, w: 2.2, d: 1.3, h: 3.8, color: '3, 231, 255', accent: '255, 209, 102', pulse: 2.8 }
+        ];
+
+        const routes = [
+            { color: '3, 231, 255', points: [{ x: -9, y: 5 }, { x: -5, y: 2 }, { x: -1, y: 3.4 }, { x: 3.8, y: -1 }, { x: 8, y: 2.4 }], speed: 0.00022, offset: 0 },
+            { color: '104, 255, 146', points: [{ x: -7, y: -2 }, { x: -3, y: 0.8 }, { x: 1, y: -1.8 }, { x: 6, y: 1.2 }], speed: 0.00018, offset: 0.33 },
+            { color: '255, 209, 102', points: [{ x: -4, y: 6 }, { x: 0, y: 4.4 }, { x: 2.6, y: 2.2 }, { x: 7.5, y: 4.5 }], speed: 0.00016, offset: 0.66 }
+        ];
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.round(width * dpr);
+            canvas.height = Math.round(height * dpr);
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        function iso(x, y, z = 0) {
+            const tileWidth = Math.max(42, Math.min(70, width / 18));
+            const tileHeight = tileWidth * 0.48;
+            const horizon = height * 0.54;
+
+            return {
+                x: width / 2 + (x - y) * tileWidth * 0.5,
+                y: horizon + (x + y) * tileHeight * 0.5 - z * tileHeight
+            };
+        }
+
+        function drawPath(points, closePath = false) {
+            points.forEach((point, index) => {
+                if (index === 0) {
+                    ctx.moveTo(point.x, point.y);
+                } else {
+                    ctx.lineTo(point.x, point.y);
+                }
+            });
+
+            if (closePath) {
+                ctx.closePath();
+            }
+        }
+
+        function drawBackgroundGlow() {
+            const gradient = ctx.createRadialGradient(width * 0.5, height * 0.46, 20, width * 0.5, height * 0.55, Math.max(width, height) * 0.55);
+            gradient.addColorStop(0, 'rgba(3, 231, 255, 0.12)');
+            gradient.addColorStop(0.42, 'rgba(104, 255, 146, 0.06)');
+            gradient.addColorStop(1, 'rgba(3, 4, 7, 0)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+        }
+
+        function drawGrid(time) {
+            const limit = 12;
+            ctx.lineWidth = 1;
+
+            for (let i = -limit; i <= limit; i += 1) {
+                const alpha = i % 4 === 0 ? 0.2 : 0.09;
+                const startA = iso(i, -limit);
+                const endA = iso(i, limit);
+                const startB = iso(-limit, i);
+                const endB = iso(limit, i);
+
+                ctx.strokeStyle = `rgba(3, 231, 255, ${alpha})`;
+                ctx.beginPath();
+                ctx.moveTo(startA.x, startA.y + Math.sin(time / 900 + i) * 1.5);
+                ctx.lineTo(endA.x, endA.y);
+                ctx.stroke();
+
+                ctx.strokeStyle = `rgba(104, 255, 146, ${alpha * 0.86})`;
+                ctx.beginPath();
+                ctx.moveTo(startB.x, startB.y);
+                ctx.lineTo(endB.x, endB.y + Math.cos(time / 880 + i) * 1.5);
+                ctx.stroke();
+            }
+        }
+
+        function drawTower(tower, time) {
+            const baseA = iso(tower.x, tower.y);
+            const baseB = iso(tower.x + tower.w, tower.y);
+            const baseC = iso(tower.x + tower.w, tower.y + tower.d);
+            const baseD = iso(tower.x, tower.y + tower.d);
+            const topA = iso(tower.x, tower.y, tower.h);
+            const topB = iso(tower.x + tower.w, tower.y, tower.h);
+            const topC = iso(tower.x + tower.w, tower.y + tower.d, tower.h);
+            const topD = iso(tower.x, tower.y + tower.d, tower.h);
+            const flicker = 0.75 + Math.sin(time / 420 + tower.pulse) * 0.18;
+
+            ctx.beginPath();
+            drawPath([topA, topB, topC, topD], true);
+            ctx.fillStyle = `rgba(${tower.accent}, ${0.22 * flicker})`;
+            ctx.fill();
+            ctx.strokeStyle = `rgba(${tower.accent}, 0.5)`;
+            ctx.stroke();
+
+            ctx.beginPath();
+            drawPath([topB, baseB, baseC, topC], true);
+            ctx.fillStyle = `rgba(${tower.color}, ${0.13 * flicker})`;
+            ctx.fill();
+            ctx.strokeStyle = `rgba(${tower.color}, 0.34)`;
+            ctx.stroke();
+
+            ctx.beginPath();
+            drawPath([topA, baseA, baseD, topD], true);
+            ctx.fillStyle = `rgba(${tower.color}, ${0.08 * flicker})`;
+            ctx.fill();
+            ctx.strokeStyle = `rgba(${tower.color}, 0.25)`;
+            ctx.stroke();
+
+            const windowCount = Math.max(3, Math.floor(tower.h));
+            for (let i = 1; i < windowCount; i += 1) {
+                const left = iso(tower.x + 0.08, tower.y, (tower.h / windowCount) * i);
+                const right = iso(tower.x + tower.w - 0.08, tower.y, (tower.h / windowCount) * i);
+                ctx.strokeStyle = `rgba(${tower.accent}, ${0.13 + ((i + Math.floor(time / 500)) % 3 === 0 ? 0.24 : 0)})`;
+                ctx.beginPath();
+                ctx.moveTo(left.x, left.y);
+                ctx.lineTo(right.x, right.y);
+                ctx.stroke();
+            }
+        }
+
+        function interpolateRoute(points, progress) {
+            const screenPoints = points.map(point => iso(point.x, point.y));
+            const segmentLengths = [];
+            let totalLength = 0;
+
+            for (let i = 0; i < screenPoints.length - 1; i += 1) {
+                const dx = screenPoints[i + 1].x - screenPoints[i].x;
+                const dy = screenPoints[i + 1].y - screenPoints[i].y;
+                const length = Math.hypot(dx, dy);
+                segmentLengths.push(length);
+                totalLength += length;
+            }
+
+            let distance = progress * totalLength;
+
+            for (let i = 0; i < segmentLengths.length; i += 1) {
+                if (distance <= segmentLengths[i]) {
+                    const localProgress = distance / segmentLengths[i];
+                    return {
+                        x: screenPoints[i].x + (screenPoints[i + 1].x - screenPoints[i].x) * localProgress,
+                        y: screenPoints[i].y + (screenPoints[i + 1].y - screenPoints[i].y) * localProgress
+                    };
+                }
+
+                distance -= segmentLengths[i];
+            }
+
+            return screenPoints[screenPoints.length - 1];
+        }
+
+        function drawRoutes(time) {
+            routes.forEach(route => {
+                const points = route.points.map(point => iso(point.x, point.y));
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = `rgba(${route.color}, 0.2)`;
+                ctx.beginPath();
+                drawPath(points);
+                ctx.stroke();
+
+                for (let i = 0; i < 3; i += 1) {
+                    const progress = (route.offset + i * 0.32 + time * route.speed) % 1;
+                    const packet = interpolateRoute(route.points, progress);
+                    const size = 4 + i;
+
+                    ctx.save();
+                    ctx.translate(packet.x, packet.y);
+                    ctx.rotate(Math.PI / 4);
+                    ctx.fillStyle = `rgba(${route.color}, 0.88)`;
+                    ctx.shadowColor = `rgba(${route.color}, 0.72)`;
+                    ctx.shadowBlur = 12;
+                    ctx.fillRect(-size / 2, -size / 2, size, size);
+                    ctx.restore();
+                }
+            });
+        }
+
+        function drawFrame(time = 0) {
+            ctx.clearRect(0, 0, width, height);
+            drawBackgroundGlow();
+            drawGrid(time);
+            drawRoutes(time);
+            towers
+                .slice()
+                .sort((a, b) => (a.x + a.y) - (b.x + b.y))
+                .forEach(tower => drawTower(tower, time));
+
+            if (!reducedMotion) {
+                animationFrameId = requestAnimationFrame(drawFrame);
+            }
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            if (reducedMotion) {
+                drawFrame(0);
+            }
+        });
+        drawFrame(0);
+
+        window.addEventListener('beforeunload', () => {
+            cancelAnimationFrame(animationFrameId);
+        });
+    }
+
+    function readSavedLanguage() {
+        try {
+            return localStorage.getItem(languageStorageKey);
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function saveLanguage(language) {
+        try {
+            localStorage.setItem(languageStorageKey, language);
+        } catch (error) {
+            // Language switching still works when storage is unavailable.
+        }
+    }
+
+    function getInitialLanguage() {
+        const savedLanguage = readSavedLanguage();
+
+        if (supportedLanguages.includes(savedLanguage)) {
+            return savedLanguage;
+        }
+
+        const browserLanguage = navigator.language || navigator.userLanguage || '';
+        return browserLanguage.toLowerCase().startsWith('ja') ? 'ja' : 'en';
+    }
+
+    function t(key) {
+        const parts = key.split('.');
+        let value = translations[currentLanguage];
+
+        for (const part of parts) {
+            value = value?.[part];
+        }
+
+        if (typeof value === 'string') {
+            return value;
+        }
+
+        let fallback = translations.en;
+        for (const part of parts) {
+            fallback = fallback?.[part];
+        }
+
+        return typeof fallback === 'string' ? fallback : key;
+    }
+
+    function categoryLabel(key) {
+        return translations[currentLanguage].categories[key] || translations.en.categories[key] || key;
+    }
+
+    function getProjectName(project) {
+        return project.names?.[currentLanguage] || project.name;
+    }
+
+    function updateStaticText() {
+        document.documentElement.lang = currentLanguage;
+        document.title = t('meta.title');
+
+        if (metaDescription) {
+            metaDescription.setAttribute('content', t('meta.description'));
+        }
+
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const translatedText = t(element.getAttribute('data-i18n'));
+            element.textContent = translatedText;
+
+            if (element.classList.contains('glitch-text')) {
+                element.setAttribute('data-text', translatedText);
+            }
+        });
+
+        if (jackInBtn) {
+            jackInBtn.textContent = jackInExecuting ? t('intro.executing') : t('intro.button');
+        }
+
+        if (languageControl) {
+            languageControl.setAttribute('aria-label', t('language.selector'));
+        }
+
+        languageBtns.forEach(button => {
+            const isActive = button.getAttribute('data-language') === currentLanguage;
+            const languageName = button.getAttribute('data-language') === 'ja' ? t('language.japanese') : t('language.english');
+
+            button.classList.toggle('active', isActive);
+            button.setAttribute('aria-pressed', String(isActive));
+            button.setAttribute('aria-label', languageName);
+        });
+    }
+
+    function setLanguage(language) {
+        if (!supportedLanguages.includes(language)) {
+            return;
+        }
+
+        currentLanguage = language;
+        saveLanguage(language);
+        updateStaticText();
+        renderProjects();
+    }
+
+    // Function to render projects based on current filters
+    function renderProjects() {
+        grid.innerHTML = ''; // Clear grid
+
+        let filteredProjects = currentCategory === 'all'
+            ? availableProjects
+            : availableProjects.filter(project => project.category === currentCategory);
+
+        filteredProjects.forEach((project, index) => {
+            const projectName = getProjectName(project);
+            const card = document.createElement('a');
+            const iconWrapper = document.createElement('div');
+            const icon = document.createElement('div');
+            const title = document.createElement('h3');
+            const category = document.createElement('span');
+
+            card.href = project.path;
+            card.className = 'project-card';
+            card.style.animationDelay = `${index * 0.05}s`;
+            card.setAttribute('aria-label', projectName);
+
+            iconWrapper.className = 'card-icon-wrapper';
+            icon.className = 'card-icon';
+            icon.textContent = project.icon;
+
+            title.className = 'card-title';
+            title.textContent = projectName;
+
+            category.className = 'card-category';
+            category.textContent = categoryLabel(project.categoryLabelKey);
+
+            iconWrapper.appendChild(icon);
+            card.append(iconWrapper, title, category);
+            grid.appendChild(card);
+        });
+    }
+
+    languageBtns.forEach(button => {
+        button.addEventListener('click', () => {
+            setLanguage(button.getAttribute('data-language'));
+        });
+    });
+
     jackInBtn.addEventListener('click', () => {
-        // Change text to show execution
-        jackInBtn.textContent = 'EXECUTING...';
+        jackInExecuting = true;
+        jackInBtn.textContent = t('intro.executing');
         jackInBtn.style.pointerEvents = 'none';
-        
+
         // Start tunnel expansion
         jackInTunnel.classList.remove('hidden');
         jackInTunnel.classList.add('anim-tunnel');
@@ -19,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             jackInFlash.classList.remove('hidden');
             jackInFlash.classList.add('anim-flash');
-            
+
             // Hide intro screen and show lobby during the flash
             setTimeout(() => {
                 jackInScreen.style.display = 'none';
@@ -29,194 +588,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 600);
     });
 
-    // --- DATA / PROJECTS ---
-    const projects = [
-        // Card Games (Phantom Knights)
-        { name: "Dark Renaissance Xyz Dragon", category: "card-games", path: "../Dark Renaissance Xyz Dragon/card.html", icon: "🐉", categoryLabel: "Phantom Knights" },
-        { name: "Dark Revolution Xyz Dragon", category: "card-games", path: "../Dark Revolution Xyz Dragon/card.html", icon: "🐉", categoryLabel: "Phantom Knights" },
-        { name: "Baneful Javelin", category: "card-games", path: "../The Phantom Knights of Baneful Javelin/card.html", icon: "🛡️", categoryLabel: "Phantom Knights" },
-        { name: "Broken Helm", category: "card-games", path: "../The Phantom Knights of Broken Helm/card.html", icon: "🪖", categoryLabel: "Phantom Knights" },
-        { name: "Dark Star", category: "card-games", path: "../The Phantom Knights of Dark Star/card.html", icon: "⭐", categoryLabel: "Phantom Knights" },
-        { name: "Decrepit Scepter", category: "card-games", path: "../The Phantom Knights of Decrepit Scepter/card.html", icon: "🪄", categoryLabel: "Phantom Knights" },
-        { name: "Dreadful Hammer", category: "card-games", path: "../The Phantom Knights of Dreadful Hammer/card.html", icon: "🔨", categoryLabel: "Phantom Knights" },
-        { name: "Feeble Armor", category: "card-games", path: "../The Phantom Knights of Feeble Armor/card.html", icon: "🛡️", categoryLabel: "Phantom Knights" },
-        { name: "Haunting Arrows", category: "card-games", path: "../The Phantom Knights of Haunting Arrows/card.html", icon: "🏹", categoryLabel: "Phantom Knights" },
-        { name: "Jagged Gloves", category: "card-games", path: "../The Phantom Knights of Jagged Gloves/card.html", icon: "🧤", categoryLabel: "Phantom Knights" },
-        { name: "Vengeful Axe", category: "card-games", path: "../The Phantom Knights of Vengeful Axe/card.html", icon: "🪓", categoryLabel: "Phantom Knights" },
-        { name: "Rebellious Soul", category: "card-games", path: "../The Phantom Knights' Rebellious Soul/card.html", icon: "👻", categoryLabel: "Phantom Knights" },
-        { name: "Phantom Knights' Burial", category: "card-games", path: "../Phantom Knights' Burial/card.html", icon: "🪦", categoryLabel: "Phantom Knights" },
-        { name: "Phantom Knights' Chain", category: "card-games", path: "../Phantom Knights' Chain/card.html", icon: "⛓️", categoryLabel: "Phantom Knights" },
-        { name: "Corrupted Cuffs", category: "card-games", path: "../Phantom Knights' Corrupted Cuffs/card.html", icon: "🔗", categoryLabel: "Phantom Knights" },
-        { name: "Ghostly Wail", category: "card-games", path: "../Phantom Knights' Ghostly Wail/card.html", icon: "😱", categoryLabel: "Phantom Knights" },
-        { name: "Phantom Knights' Revival", category: "card-games", path: "../Phantom Knights' Revival/card.html", icon: "🔥", categoryLabel: "Phantom Knights" },
-        { name: "Shattered Staff", category: "card-games", path: "../Phantom Knights' Shattered Staff/card.html", icon: "🥢", categoryLabel: "Phantom Knights" },
-        { name: "Sorrowful Shackles", category: "card-games", path: "../Phantom Knights' Sorrowful Shackles/card.html", icon: "⛓️", categoryLabel: "Phantom Knights" },
-        { name: "Tainted Necklace", category: "card-games", path: "../Phantom Knights' Tainted Necklace/card.html", icon: "📿", categoryLabel: "Phantom Knights" },
-        { name: "Phantom Knights' Tombstone", category: "card-games", path: "../Phantom Knights' Tombstone/card.html", icon: "🪦", categoryLabel: "Phantom Knights" },
-        { name: "Raiders' Resistance", category: "card-games", path: "../Raiders' Resistance/card.html", icon: "🛡️", categoryLabel: "Phantom Knights" },
-        { name: "Restless Souls", category: "card-games", path: "../Restless Souls of The Rebellion/card.html", icon: "👻", categoryLabel: "Phantom Knights" },
-        { name: "The Phantom Knights' Coffin", category: "card-games", path: "../The Phantom Knights' Coffin/card.html", icon: "⚰️", categoryLabel: "Phantom Knights" },
-        { name: "The Phantom Knights' Graveyard", category: "card-games", path: "../The Phantom Knights' Graveyard/card.html", icon: "🪦", categoryLabel: "Phantom Knights" },
-        { name: "RUM Rebellion", category: "card-games", path: "../The Phantom Knights' Rank-Up Magic Rebellion/card.html", icon: "✨", categoryLabel: "Phantom Knights" },
-        { name: "RUM Revenge", category: "card-games", path: "../The Phantom Knights' Rank-Up Magic Revenge/card.html", icon: "✨", categoryLabel: "Phantom Knights" },
-        { name: "RUM Revolution", category: "card-games", path: "../The Phantom Knights' Rank-Up Magic Revolution/card.html", icon: "✨", categoryLabel: "Phantom Knights" },
-        { name: "Regretful Shield", category: "card-games", path: "../The Phantom Knights' Regretful Shield/card.html", icon: "🛡️", categoryLabel: "Phantom Knights" },
-        { name: "Shattered Spear", category: "card-games", path: "../The Phantom Knights' Shattered Spear/card.html", icon: "🔱", categoryLabel: "Phantom Knights" },
-
-        // Miscellaneous
-        { name: "Block Breaker", category: "misc", path: "../Block Breaker/index.html", icon: "🧱", categoryLabel: "Miscellaneous" },
-        { name: "Dead Cells", category: "misc", path: "../Dead Cells/index.html", icon: "⚔️", categoryLabel: "Miscellaneous" },
-        { name: "Smoothie Slicer", category: "misc", path: "../Smoothie Slicer - Remake of Fruit Ninja/index.html", icon: "🍉", categoryLabel: "Miscellaneous" },
-        { name: "Tetris", category: "misc", path: "../Tetris/index.html", icon: "🧩", categoryLabel: "Miscellaneous" },
-
-        // Mock Board Games (Placeholders to demonstrate section)
-        { name: "Antigravity Chess", category: "board-games", path: "#", icon: "♟️", categoryLabel: "Board Game" },
-
-        // Mock Mobile Games (Placeholders to demonstrate sub-filters)
-        { name: "Mobile RPG Adventure", category: "mobile-games", genre: "rpg", brand: "square-enix", path: "#", icon: "📱", categoryLabel: "Mobile RPG" },
-        { name: "Puzzle Pop", category: "mobile-games", genre: "puzzle", brand: "king", path: "#", icon: "🧩", categoryLabel: "Mobile Puzzle" },
-        { name: "Pocket Racer", category: "mobile-games", genre: "racing", brand: "nintendo", path: "#", icon: "🏎️", categoryLabel: "Mobile Racing" },
-
-        // Mock Console Games (Placeholders to demonstrate sub-filters)
-        { name: "Epic Fantasy VII", category: "console-games", genre: "rpg", brand: "playstation", path: "#", icon: "🎮", categoryLabel: "Console RPG" },
-        { name: "Super Plumber Bros", category: "console-games", genre: "platformer", brand: "nintendo", path: "#", icon: "🍄", categoryLabel: "Console Platformer" },
-        { name: "Halo Strike", category: "console-games", genre: "shooter", brand: "xbox", path: "#", icon: "🔫", categoryLabel: "Console Shooter" }
-    ];
-
-    // Filter configuration for genres and brands
-    const filterConfig = {
-        'mobile-games': {
-            genres: ['All', 'RPG', 'Puzzle', 'Racing', 'Action'],
-            brands: ['All', 'Square-Enix', 'King', 'Nintendo', 'Apple']
-        },
-        'console-games': {
-            genres: ['All', 'RPG', 'Platformer', 'Shooter', 'Action'],
-            brands: ['All', 'PlayStation', 'Nintendo', 'Xbox']
-        }
-    };
-
-    const grid = document.getElementById('project-grid');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const subFiltersContainer = document.getElementById('sub-filters');
-
-    let currentCategory = 'all';
-    let currentGenre = 'All';
-    let currentBrand = 'All';
-
-    // Function to render projects based on current filters
-    function renderProjects() {
-        grid.innerHTML = ''; // Clear grid
-
-        let filteredProjects = currentCategory === 'all' 
-            ? projects 
-            : projects.filter(p => p.category === currentCategory);
-
-        // Apply sub-filters if applicable
-        if (currentCategory === 'mobile-games' || currentCategory === 'console-games') {
-            if (currentGenre !== 'All') {
-                filteredProjects = filteredProjects.filter(p => p.genre && p.genre.toLowerCase() === currentGenre.toLowerCase());
-            }
-            if (currentBrand !== 'All') {
-                filteredProjects = filteredProjects.filter(p => p.brand && p.brand.toLowerCase() === currentBrand.toLowerCase());
-            }
-        }
-
-        filteredProjects.forEach((project, index) => {
-            const card = document.createElement('a');
-            card.href = project.path;
-            card.className = 'project-card';
-            card.style.animationDelay = `${index * 0.05}s`; 
-            
-            // New Cyberworld HTML structure for Cards (Mystery Data style)
-            card.innerHTML = `
-                <div class="card-icon-wrapper">
-                    <div class="card-icon">${project.icon}</div>
-                </div>
-                <h3 class="card-title">${project.name}</h3>
-                <span class="card-category">${project.categoryLabel}</span>
-            `;
-            
-            grid.appendChild(card);
-        });
-    }
-
-    // Function to render sub-filters dynamically
-    function renderSubFilters(category) {
-        subFiltersContainer.innerHTML = '';
-        
-        if (!filterConfig[category]) {
-            subFiltersContainer.classList.add('hidden');
-            return;
-        }
-
-        subFiltersContainer.classList.remove('hidden');
-        const config = filterConfig[category];
-
-        // Genre filter group
-        const genreLabel = document.createElement('span');
-        genreLabel.style.color = 'var(--neon-green)';
-        genreLabel.style.marginRight = '0.5rem';
-        genreLabel.style.alignSelf = 'center';
-        genreLabel.textContent = 'DATA TYPE:';
-        subFiltersContainer.appendChild(genreLabel);
-
-        config.genres.forEach(genre => {
-            const btn = document.createElement('button');
-            btn.className = `sub-filter-btn ${currentGenre === genre ? 'active' : ''}`;
-            btn.textContent = genre;
-            btn.onclick = () => {
-                currentGenre = genre;
-                renderSubFilters(category);
-                renderProjects();
-            };
-            subFiltersContainer.appendChild(btn);
-        });
-
-        // Separator
-        const separator = document.createElement('span');
-        separator.style.margin = '0 1rem';
-        separator.style.borderLeft = '1px solid var(--neon-purple)';
-        subFiltersContainer.appendChild(separator);
-
-        // Brand filter group
-        const brandLabel = document.createElement('span');
-        brandLabel.style.color = 'var(--neon-green)';
-        brandLabel.style.marginRight = '0.5rem';
-        brandLabel.style.alignSelf = 'center';
-        brandLabel.textContent = 'MAKER ID:';
-        subFiltersContainer.appendChild(brandLabel);
-
-        config.brands.forEach(brand => {
-            const btn = document.createElement('button');
-            btn.className = `sub-filter-btn ${currentBrand === brand ? 'active' : ''}`;
-            btn.textContent = brand;
-            btn.onclick = () => {
-                currentBrand = brand;
-                renderSubFilters(category);
-                renderProjects();
-            };
-            subFiltersContainer.appendChild(btn);
-        });
-    }
-
-    // Initial render
+    updateStaticText();
+    initializeCyberWorldCanvas();
     renderProjects();
 
     // Main Filter functionality
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
+            filterBtns.forEach(button => button.classList.remove('active'));
             btn.classList.add('active');
-            
-            currentCategory = btn.getAttribute('data-filter');
-            currentGenre = 'All';
-            currentBrand = 'All';
 
-            if (currentCategory === 'mobile-games' || currentCategory === 'console-games') {
-                renderSubFilters(currentCategory);
-            } else {
-                subFiltersContainer.classList.add('hidden');
-            }
+            currentCategory = btn.getAttribute('data-filter');
 
             renderProjects();
         });
