@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 960" role="img" aria-labelledby="title desc">
+  <title id="title">Phantom Knights' Burial Artwork</title>
+  <desc id="desc">An original spectral graveyard illustration for the custom Phantom Knights' Burial card.</desc>
+  <defs>
+    <radialGradient id="fog" cx="50%" cy="42%" r="66%">
+      <stop offset="0%" stop-color="#7d5cff" stop-opacity="0.9"/>
+      <stop offset="42%" stop-color="#28154f" stop-opacity="0.94"/>
+      <stop offset="100%" stop-color="#03040a"/>
+    </radialGradient>
+    <linearGradient id="stone" x1="0%" x2="100%">
+      <stop offset="0%" stop-color="#141826"/>
+      <stop offset="48%" stop-color="#6c6f91"/>
+      <stop offset="100%" stop-color="#171321"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="720" height="960" fill="#03040a"/>
+  <rect width="720" height="960" fill="url(#fog)"/>
+  <path d="M0 746 C118 684 236 704 360 748 C492 795 606 760 720 698 L720 960 L0 960 Z" fill="#07080e"/>
+  <path d="M72 800 C172 746 254 764 350 808 C468 862 596 818 720 768 L720 960 L72 960 Z" fill="#101124" opacity="0.82"/>
+  <g opacity="0.42" stroke="#b9a7ff" stroke-width="3" fill="none">
+    <path d="M80 220 C158 180 220 198 282 152"/>
+    <path d="M470 180 C540 228 604 196 668 250"/>
+    <path d="M92 550 C190 504 274 534 350 492"/>
+    <path d="M410 546 C520 502 620 532 704 466"/>
+  </g>
+  <g filter="url(#glow)" opacity="0.74">
+    <ellipse cx="356" cy="608" rx="214" ry="86" fill="#5c42f0" opacity="0.22"/>
+    <ellipse cx="356" cy="608" rx="122" ry="44" fill="#9ce7ff" opacity="0.16"/>
+  </g>
+  <g transform="translate(246 230)">
+    <path d="M114 0 C190 58 228 150 226 260 C224 356 168 432 114 492 C58 432 4 356 2 260 C0 150 38 58 114 0 Z" fill="#0b0d18" stroke="#8d82c8" stroke-width="8"/>
+    <path d="M114 38 C168 88 196 160 194 254 C192 328 154 386 114 432 C72 386 36 328 34 254 C32 160 60 88 114 38 Z" fill="url(#stone)" opacity="0.8"/>
+    <path d="M74 168 L154 168 M114 112 L114 302" stroke="#d1c5ff" stroke-width="18" stroke-linecap="round" opacity="0.8"/>
+    <path d="M64 344 C90 324 138 324 166 344" stroke="#2a1b4f" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#glow)" fill="#b9f4ff" opacity="0.86">
+    <path d="M166 680 C140 626 158 584 190 548 C178 606 214 638 166 680 Z"/>
+    <path d="M554 676 C504 632 540 596 528 542 C572 582 594 626 554 676 Z"/>
+    <path d="M372 728 C330 674 354 632 366 590 C402 636 420 682 372 728 Z"/>
+  </g>
+  <g opacity="0.78">
+    <path d="M166 870 L190 690 L226 870 Z" fill="#11131c"/>
+    <path d="M500 870 L532 646 L568 870 Z" fill="#11131c"/>
+    <path d="M78 876 L96 742 L124 876 Z" fill="#11131c"/>
+    <path d="M616 880 L634 732 L666 880 Z" fill="#11131c"/>
+  </g>
+  <g filter="url(#glow)" opacity="0.55">
+    <circle cx="146" cy="322" r="5" fill="#e7dcff"/>
+    <circle cx="584" cy="286" r="4" fill="#e7dcff"/>
+    <circle cx="618" cy="520" r="6" fill="#e7dcff"/>
+    <circle cx="116" cy="560" r="4" fill="#e7dcff"/>
+    <circle cx="436" cy="164" r="5" fill="#e7dcff"/>
+  </g>
+</svg>
