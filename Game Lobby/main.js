@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- LANGUAGE / UI TEXT ---
     const languageControl = document.querySelector('.language-control');
     const languageBtns = document.querySelectorAll('.language-btn');
+    const catchphraseLogo = document.querySelector('.catchphrase-logo');
     const metaDescription = document.querySelector('meta[name="description"]');
     const supportedLanguages = ['en', 'ja'];
     const languageStorageKey = 'gameLobbyLanguage';
@@ -34,6 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             header: {
                 subtitle: 'NET AREA // CENTRAL HUB'
+            },
+            catchphrase: {
+                lineOne: 'No interest in',
+                lineTwo: 'Boring things.',
+                label: 'No interest in boring things.'
             },
             hub: {
                 areaLabel: 'AREA',
@@ -103,6 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             header: {
                 subtitle: 'ネットエリア // 中央ハブ'
+            },
+            catchphrase: {
+                lineOne: '退屈なことに',
+                lineTwo: '興味なし。',
+                label: '退屈なことに興味なし。'
             },
             hub: {
                 areaLabel: 'エリア',
@@ -811,6 +822,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (languageControl) {
             languageControl.setAttribute('aria-label', t('language.selector'));
+        }
+
+        if (catchphraseLogo) {
+            catchphraseLogo.setAttribute('aria-label', t('catchphrase.label'));
         }
 
         languageBtns.forEach(button => {
