@@ -606,7 +606,7 @@ html.catalog-return #cyber-world.hidden {
 .district-map {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(8.25rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(7.75rem, 1fr));
     gap: 0.55rem;
 }
 
@@ -615,9 +615,9 @@ html.catalog-return #cyber-world.hidden {
     position: relative;
     display: block;
     min-width: 0;
-    min-height: 3.45rem;
+    min-height: 2.9rem;
     overflow: hidden;
-    padding: 0.62rem 0.62rem 0.58rem 1.85rem;
+    padding: 0.78rem 0.62rem 0.7rem 1.85rem;
     border: 1px solid rgba(var(--district-rgb), 0.5);
     background:
         linear-gradient(135deg, rgba(var(--district-rgb), 0.19), rgba(5, 17, 29, 0.72)),
@@ -663,21 +663,11 @@ html.catalog-return #cyber-world.hidden {
     display: block;
     color: rgba(247, 253, 255, 0.86);
     font-family: var(--font-header);
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     font-weight: 700;
     line-height: 1.1;
     overflow-wrap: anywhere;
     text-shadow: 0 0 8px rgba(var(--district-rgb), 0.34);
-}
-
-.district-node span {
-    display: block;
-    margin-top: 0.24rem;
-    color: rgba(178, 200, 214, 0.86);
-    font-size: 0.64rem;
-    line-height: 1.05;
-    overflow-wrap: anywhere;
-    text-transform: uppercase;
 }
 
 .district-node:hover,
