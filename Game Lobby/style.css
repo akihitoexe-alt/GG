@@ -116,6 +116,58 @@ html.catalog-return #cyber-world.hidden {
     transform: translateY(-1px);
 }
 
+.catchphrase-logo {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1100;
+    display: grid;
+    gap: 0.06rem;
+    max-width: min(12.5rem, calc(100vw - 9rem));
+    padding: 0.55rem 0.8rem 0.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 209, 102, 0.46);
+    background:
+        linear-gradient(135deg, rgba(255, 209, 102, 0.2), transparent 38%),
+        linear-gradient(315deg, rgba(255, 79, 216, 0.16), transparent 48%),
+        rgba(3, 8, 10, 0.9);
+    box-shadow: 0 0 18px rgba(255, 209, 102, 0.2), inset 0 0 18px rgba(3, 231, 255, 0.08);
+    clip-path: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px);
+    pointer-events: none;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
+}
+
+.catchphrase-logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0.65rem;
+    left: 0.65rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(104, 255, 146, 0.7), transparent);
+}
+
+.catchphrase-logo span,
+.catchphrase-logo strong {
+    display: block;
+    overflow-wrap: anywhere;
+    line-height: 1.05;
+}
+
+.catchphrase-logo span {
+    color: var(--matrix-green);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+}
+
+.catchphrase-logo strong {
+    color: var(--sun-amber);
+    font-family: var(--font-header);
+    font-size: 0.86rem;
+    text-shadow: 0 0 12px rgba(255, 209, 102, 0.42);
+}
+
 /* =========================================
    ATMOSPHERE
    ========================================= */
@@ -1925,6 +1977,21 @@ html.catalog-return #cyber-world.hidden {
         min-height: 1.9rem;
         font-size: 0.75rem;
         padding: 0.25rem 0.5rem;
+    }
+
+    .catchphrase-logo {
+        top: 0.75rem;
+        left: 0.75rem;
+        max-width: calc(100vw - 8.25rem);
+        padding: 0.44rem 0.62rem 0.4rem;
+    }
+
+    .catchphrase-logo span {
+        font-size: 0.58rem;
+    }
+
+    .catchphrase-logo strong {
+        font-size: 0.72rem;
     }
 
     .jack-in-content {
