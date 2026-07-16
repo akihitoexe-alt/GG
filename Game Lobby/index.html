@@ -7,10 +7,11 @@
     <meta name="description" content="Centralized Game Lobby and Project Hub for Gamers' Grind.">
     <script>
         (() => {
-            const catalogTargets = ['hub', 'main-hub', 'catalog', 'archive'];
+            const catalogTargets = ['hub', 'main-hub', 'catalog', 'archive', 'quest-board', 'loadout-bay', 'guild-gathering', 'party-arena', 'signal-feed', 'review-log', 'shop'];
             const hash = window.location.hash.replace('#', '').toLowerCase();
             const params = new URLSearchParams(window.location.search);
             const view = (params.get('view') || '').toLowerCase();
+            const gate = (params.get('gate') || '').toLowerCase();
             let jackInComplete = false;
 
             try {
@@ -19,7 +20,7 @@
                 jackInComplete = false;
             }
 
-            if (jackInComplete || catalogTargets.includes(hash) || catalogTargets.includes(view) || params.has('hub') || params.has('catalog')) {
+            if (jackInComplete || catalogTargets.includes(hash) || catalogTargets.includes(view) || catalogTargets.includes(gate) || params.has('hub') || params.has('catalog')) {
                 document.documentElement.classList.add('catalog-return');
             }
         })();
@@ -90,14 +91,14 @@
                 <span class="skyway-node node-d"></span>
             </div>
             <div class="net-skyline" aria-hidden="true">
-                <div class="data-tower tower-a"><span>GATE</span></div>
+                <div class="data-tower tower-a"><span>GRID</span></div>
                 <div class="data-tower tower-b"><span>QUEST</span></div>
                 <div class="data-tower tower-c"><span>SHOP</span></div>
-                <div class="data-tower tower-d"><span>ARENA</span></div>
+                <div class="data-tower tower-d"><span>PARTY</span></div>
                 <div class="data-tower tower-e"><span>GUILD</span></div>
-                <div class="data-tower tower-f"><span>NODE</span></div>
-                <div class="data-tower tower-g"><span>DOCK</span></div>
-                <div class="data-tower tower-h"><span>LINK</span></div>
+                <div class="data-tower tower-f"><span>DEV</span></div>
+                <div class="data-tower tower-g"><span>FEED</span></div>
+                <div class="data-tower tower-h"><span>LOG</span></div>
             </div>
             <div class="floating-district" aria-hidden="true">
                 <span class="district-block block-a"></span>
@@ -139,21 +140,49 @@
                     <strong data-i18n="hub.syncValue">99.8%</strong>
                 </div>
                 <div class="console-cell">
-                    <span data-i18n="hub.partyLabel">PARTY LINK</span>
+                    <span data-i18n="hub.partyLabel">PARTY ARENA</span>
                     <strong data-i18n="hub.partyValue">ONLINE</strong>
                 </div>
                 <div class="console-cell">
-                    <span data-i18n="hub.gateLabel">QUEST GATES</span>
+                    <span data-i18n="hub.gateLabel">GRID GATES</span>
                     <strong data-i18n="hub.gateValue">READY</strong>
                 </div>
             </section>
 
-            <section class="district-map" aria-label="Net districts">
-                <span class="district-node district-quest"><b>QUEST GATE</b></span>
-                <span class="district-node district-arena"><b>ARENA</b></span>
-                <span class="district-node district-archive"><b>CARD ARCHIVE</b></span>
-                <span class="district-node district-guild"><b>GUILD DOCK</b></span>
-                <span class="district-node district-shop"><b>SHOP NODE</b></span>
+            <section class="access-grid" aria-labelledby="access-grid-title">
+                <div class="access-grid-title">
+                    <span id="access-grid-title">ACCESS THE GRID</span>
+                </div>
+                <nav class="district-map" aria-label="Cyber World gates">
+                    <a class="district-node district-quest gate-link active" href="#quest-board" data-gate="quest" aria-current="page">
+                        <b>Quest Board</b>
+                        <span>Play now</span>
+                    </a>
+                    <a class="district-node district-loadout gate-link" href="#loadout-bay" data-gate="loadout">
+                        <b>Loadout Bay</b>
+                        <span>In development</span>
+                    </a>
+                    <a class="district-node district-guild gate-link" href="#guild-gathering" data-gate="guild">
+                        <b>Guild Gathering</b>
+                        <span>Members + events</span>
+                    </a>
+                    <a class="district-node district-party gate-link" href="#party-arena" data-gate="party">
+                        <b>Party Arena</b>
+                        <span>Squad + compete</span>
+                    </a>
+                    <a class="district-node district-signal gate-link" href="#signal-feed" data-gate="signal">
+                        <b>Signal Feed</b>
+                        <span>Updates</span>
+                    </a>
+                    <a class="district-node district-review gate-link" href="#review-log" data-gate="review">
+                        <b>Review Log</b>
+                        <span>Game + place intel</span>
+                    </a>
+                    <a class="district-node district-shop gate-link" href="#shop" data-gate="shop">
+                        <b>Shop</b>
+                        <span>Drops + gear</span>
+                    </a>
+                </nav>
             </section>
 
             <div class="ui-panel">
@@ -165,11 +194,18 @@
                 <span class="terminal-depth depth-right" aria-hidden="true"></span>
                 <span class="terminal-signal signal-a" aria-hidden="true"></span>
                 <span class="terminal-signal signal-b" aria-hidden="true"></span>
+                <header class="gate-panel-header">
+                    <span id="active-gate-kicker">PLAYABLE ACCESS</span>
+                    <h2 id="active-gate-title">Quest Board</h2>
+                    <p id="active-gate-copy">Playable games and published projects are ready to launch from this gate.</p>
+                </header>
                 <nav class="filters cyber-nav">
                     <button class="filter-btn active" data-filter="all" data-i18n="filters.all">ALL DATA</button>
                     <button class="filter-btn" data-filter="card-games" data-i18n="filters.cardGames">BATTLE CARDS</button>
                     <button class="filter-btn" data-filter="misc" data-i18n="filters.misc">MISC DATA</button>
                 </nav>
+
+                <section class="gate-detail hidden" id="gate-detail" aria-live="polite"></section>
 
                 <main class="grid cyber-grid-container" id="project-grid">
                     <!-- Project cards will be injected here by JavaScript -->

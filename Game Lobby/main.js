@@ -40,18 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 areaValue: 'CENTRAL SQUARE',
                 syncLabel: 'SYNC',
                 syncValue: '99.8%',
-                partyLabel: 'PARTY LINK',
+                partyLabel: 'PARTY ARENA',
                 partyValue: 'ONLINE',
-                gateLabel: 'QUEST GATES',
+                gateLabel: 'GRID GATES',
                 gateValue: 'READY'
             },
             filters: {
-                all: 'ALL DATA',
+                all: 'ALL PLAYABLE',
                 cardGames: 'BATTLE CARDS',
                 boardGames: 'BOARD SIM',
                 mobileGames: 'MOBILE NET',
                 consoleGames: 'CONSOLE LINK',
-                misc: 'MISC DATA'
+                misc: 'ARCADE/MISC'
             },
             subFilters: {
                 dataType: 'DATA TYPE:',
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 xbox: 'Xbox'
             },
             categories: {
-                phantomKnights: '幻影騎士団',
+                phantomKnights: 'ファントム・ナイツ',
                 miscellaneous: 'その他',
                 boardGame: 'ボードゲーム',
                 mobileRpg: 'モバイルRPG',
@@ -153,31 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 consoleShooter: 'コンソールシューティング'
             }
         }
-    };
-
-    const projectNamesJa = {
-        "Dark Renaissance Xyz Dragon": "ダーク・ルネサンス・エクシーズ・ドラゴン",
-        "Dark Revolution Xyz Dragon": "ダーク・レボリューション・エクシーズ・ドラゴン",
-        "Broken Helm": "幻影騎士団ブロークン・ヘルム",
-        "Dark Star": "幻影騎士団ダーク・スター",
-        "Dreadful Hammer": "幻影騎士団ドレッドフル・ハンマー",
-        "Feeble Armor": "幻影騎士団フィーブル・アーマー",
-        "Jagged Gloves": "幻影騎士団ジャギッド・グローブ",
-        "Rebellious Soul": "幻影騎士団リベリアス・ソウル",
-        "Phantom Knights' Burial": "幻影騎士団の埋葬",
-        "Ghostly Wail": "幻影騎士団の亡霊の嘆き",
-        "Phantom Knights' Revival": "幻影騎士団の蘇生",
-        "Phantom Knights' Tombstone": "幻影騎士団の墓石",
-        "Raiders' Resistance": "レイダーズ・レジスタンス",
-        "The Phantom Knights' Coffin": "幻影騎士団の棺",
-        "RUM Rebellion": "RUMリベリオン",
-        "RUM Revolution": "RUMレボリューション",
-        "Regretful Shield": "幻影騎士団の悔恨の盾",
-        "Shattered Spear": "幻影騎士団の砕けた槍",
-        "Block Breaker": "ブロックブレイカー",
-        "Grell-me Garden": "グレルミー・ガーデン",
-        "Smoothie Slicer": "スムージー・スライサー",
-        "Tetris": "テトリス"
     };
 
     // --- DATA / PROJECTS ---
@@ -211,11 +186,80 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const availableProjects = projects;
+    const gateAreas = {
+        quest: {
+            hash: 'quest-board',
+            kicker: 'PLAYABLE ACCESS',
+            title: 'Quest Board',
+            copy: 'Playable games and published projects are ready to launch from this gate.',
+            mode: 'projects'
+        },
+        loadout: {
+            hash: 'loadout-bay',
+            kicker: 'DEV LOADOUT',
+            title: 'Loadout Bay',
+            copy: 'Games, concepts, prototypes, and ideas still in development gather here before they are ready for the Quest Board.',
+            prompt: 'Development Queue',
+            points: ['Game concepts', 'Prototype builds', 'Design ideas', 'Work-in-progress updates']
+        },
+        guild: {
+            hash: 'guild-gathering',
+            kicker: 'COMMUNITY GATE',
+            title: 'Guild Gathering',
+            copy: "Members, moments, and events related to Gamers' Grind live inside this community gate.",
+            prompt: 'Guild Records',
+            points: ['Member showcases', 'Community moments', 'Event recaps', 'Upcoming gatherings']
+        },
+        party: {
+            hash: 'party-arena',
+            kicker: 'SQUAD ACCESS',
+            title: 'Party Arena',
+            copy: 'A fused gate for party links, group play, challenges, tournaments, and community competition.',
+            prompt: 'Arena Signals',
+            points: ['Play sessions', 'Tournament paths', 'Squad links', 'Challenge boards']
+        },
+        signal: {
+            hash: 'signal-feed',
+            kicker: 'BROADCAST CHANNEL',
+            title: 'Signal Feed',
+            copy: "Updates, announcements, and Cyber World broadcasts from Gamers' Grind.",
+            prompt: 'Incoming Signals',
+            points: ['News drops', 'Patch notes', 'Event alerts', 'Community updates']
+        },
+        review: {
+            hash: 'review-log',
+            kicker: 'REFERENCE ARCHIVE',
+            title: 'Review Log',
+            copy: 'Reviews and reference points for board games, card games, tabletop RPGs, video games, shops, stores, and other gaming places.',
+            prompt: 'Scout Entries',
+            points: ['Game reviews', 'Store notes', 'Tabletop references', 'Video game coverage']
+        },
+        shop: {
+            hash: 'shop',
+            kicker: 'MARKET GATE',
+            title: 'Shop',
+            copy: "Drops, gear, merch, and future store links for Gamers' Grind.",
+            prompt: 'Shop Routing',
+            points: ['Featured drops', 'Merch links', 'Gear picks', 'Future storefront']
+        }
+    };
+
+    const gateHashMap = Object.entries(gateAreas).reduce((map, [gateKey, gate]) => {
+        map[gate.hash] = gateKey;
+        return map;
+    }, {});
 
     const grid = document.getElementById('project-grid');
     const filterBtns = document.querySelectorAll('.filter-btn');
+    const gateLinks = document.querySelectorAll('.gate-link');
+    const cyberNav = document.querySelector('.cyber-nav');
+    const activeGateKicker = document.getElementById('active-gate-kicker');
+    const activeGateTitle = document.getElementById('active-gate-title');
+    const activeGateCopy = document.getElementById('active-gate-copy');
+    const gateDetail = document.getElementById('gate-detail');
 
     let currentCategory = 'all';
+    let currentGate = 'quest';
     let jackInExecuting = false;
     let currentLanguage = getInitialLanguage();
 
@@ -622,18 +666,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function normalizeRouteToken(value) {
+        return (value || '').replace('#', '').toLowerCase();
+    }
+
+    function getGateKeyFromToken(value) {
+        const token = normalizeRouteToken(value);
+
+        if (gateAreas[token]) {
+            return token;
+        }
+
+        return gateHashMap[token] || null;
+    }
+
     function hasCatalogDeepLink() {
         const hash = window.location.hash.replace('#', '').toLowerCase();
         const catalogHashes = ['hub', 'main-hub', 'catalog', 'archive'];
 
-        if (catalogHashes.includes(hash)) {
+        if (catalogHashes.includes(hash) || getGateKeyFromToken(hash)) {
             return true;
         }
 
         const params = new URLSearchParams(window.location.search);
         const view = (params.get('view') || '').toLowerCase();
+        const gate = (params.get('gate') || '').toLowerCase();
 
-        return catalogHashes.includes(view) || params.has('hub') || params.has('catalog');
+        return catalogHashes.includes(view) || getGateKeyFromToken(view) || getGateKeyFromToken(gate) || params.has('hub') || params.has('catalog');
     }
 
     function shouldOpenCatalog() {
@@ -670,6 +729,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return browserLanguage.toLowerCase().startsWith('ja') ? 'ja' : 'en';
     }
 
+    function getInitialGate() {
+        const params = new URLSearchParams(window.location.search);
+        return getGateKeyFromToken(window.location.hash) || getGateKeyFromToken(params.get('gate')) || getGateKeyFromToken(params.get('view')) || 'quest';
+    }
+
     function t(key) {
         const parts = key.split('.');
         let value = translations[currentLanguage];
@@ -695,26 +759,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getProjectName(project) {
-        if (project.names?.[currentLanguage]) {
-            return project.names[currentLanguage];
-        }
-
-        if (currentLanguage === 'ja') {
-            return projectNamesJa[project.name] || project.name;
-        }
-
-        return project.name;
-    }
-
-    function pathWithLanguage(path) {
-        if (!path || path === '#') {
-            return path;
-        }
-
-        const [withoutHash, hash = ''] = path.split('#');
-        const separator = withoutHash.includes('?') ? '&' : '?';
-        const localizedPath = `${withoutHash}${separator}lang=${encodeURIComponent(currentLanguage)}`;
-        return hash ? `${localizedPath}#${hash}` : localizedPath;
+        return project.names?.[currentLanguage] || project.name;
     }
 
     function updateStaticText() {
@@ -752,6 +797,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function renderGateDetail(gate) {
+        gateDetail.replaceChildren();
+
+        const title = document.createElement('h3');
+        const copy = document.createElement('p');
+        const list = document.createElement('ul');
+
+        title.textContent = gate.prompt;
+        copy.textContent = gate.copy;
+
+        gate.points.forEach(point => {
+            const item = document.createElement('li');
+            item.textContent = point;
+            list.appendChild(item);
+        });
+
+        gateDetail.append(title, copy, list);
+    }
+
+    function setActiveGate(gateKey, options = {}) {
+        const nextGate = gateAreas[gateKey] ? gateKey : 'quest';
+        const gate = gateAreas[nextGate];
+
+        currentGate = nextGate;
+
+        gateLinks.forEach(link => {
+            const isActive = link.dataset.gate === currentGate;
+            link.classList.toggle('active', isActive);
+
+            if (isActive) {
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+        });
+
+        activeGateKicker.textContent = gate.kicker;
+        activeGateTitle.textContent = gate.title;
+        activeGateCopy.textContent = gate.copy;
+
+        if (gate.mode === 'projects') {
+            cyberNav.classList.remove('hidden');
+            grid.classList.remove('hidden');
+            gateDetail.classList.add('hidden');
+            renderProjects();
+        } else {
+            cyberNav.classList.add('hidden');
+            grid.classList.add('hidden');
+            gateDetail.classList.remove('hidden');
+            renderGateDetail(gate);
+        }
+
+        if (options.updateHash) {
+            history.pushState(null, '', `#${gate.hash}`);
+        }
+    }
+
     function setLanguage(language) {
         if (!supportedLanguages.includes(language)) {
             return;
@@ -760,7 +862,10 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLanguage = language;
         saveLanguage(language);
         updateStaticText();
-        renderProjects();
+
+        if (currentGate === 'quest') {
+            renderProjects();
+        }
     }
 
     // Function to render projects based on current filters
@@ -779,7 +884,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = document.createElement('h3');
             const category = document.createElement('span');
 
-            card.href = pathWithLanguage(project.path);
+            card.href = project.path;
             card.className = `project-card project-card--${project.category}`;
             card.dataset.category = project.category;
             card.style.animationDelay = `${index * 0.05}s`;
@@ -804,6 +909,13 @@ document.addEventListener('DOMContentLoaded', () => {
     languageBtns.forEach(button => {
         button.addEventListener('click', () => {
             setLanguage(button.getAttribute('data-language'));
+        });
+    });
+
+    gateLinks.forEach(link => {
+        link.addEventListener('click', event => {
+            event.preventDefault();
+            setActiveGate(link.dataset.gate, { updateHash: true });
         });
     });
 
@@ -832,11 +944,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateStaticText();
     initializeCyberWorldCanvas();
-    renderProjects();
+    setActiveGate(getInitialGate());
 
     if (shouldOpenCatalog()) {
         showCatalog({ remember: true });
     }
+
+    window.addEventListener('hashchange', () => {
+        setActiveGate(getInitialGate());
+    });
 
     window.addEventListener('pageshow', () => {
         if (shouldOpenCatalog()) {
@@ -852,6 +968,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             currentCategory = btn.getAttribute('data-filter');
 
+            setActiveGate('quest');
             renderProjects();
         });
     });
