@@ -645,6 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
             saveJackInComplete();
         }
 
+        document.documentElement.classList.add('catalog-return');
         jackInExecuting = false;
         jackInScreen.style.display = 'none';
         cyberWorld.classList.remove('hidden');

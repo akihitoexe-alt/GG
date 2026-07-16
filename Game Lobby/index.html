@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamers' Grind - Cyberworld</title>
     <meta name="description" content="Centralized Game Lobby and Project Hub for Gamers' Grind.">
+    <script>
+        (() => {
+            const catalogTargets = ['hub', 'main-hub', 'catalog', 'archive'];
+            const hash = window.location.hash.replace('#', '').toLowerCase();
+            const params = new URLSearchParams(window.location.search);
+            const view = (params.get('view') || '').toLowerCase();
+            let jackInComplete = false;
+
+            try {
+                jackInComplete = sessionStorage.getItem('gameLobbyJackInComplete') === 'true';
+            } catch (error) {
+                jackInComplete = false;
+            }
+
+            if (jackInComplete || catalogTargets.includes(hash) || catalogTargets.includes(view) || params.has('hub') || params.has('catalog')) {
+                document.documentElement.classList.add('catalog-return');
+            }
+        })();
+    </script>
     <!-- Modern Cyber Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">

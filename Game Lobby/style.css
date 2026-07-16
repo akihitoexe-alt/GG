@@ -59,6 +59,14 @@ h3 {
     display: none !important;
 }
 
+html.catalog-return #jack-in-screen {
+    display: none;
+}
+
+html.catalog-return #cyber-world.hidden {
+    display: block !important;
+}
+
 .language-control {
     position: fixed;
     top: 1rem;
