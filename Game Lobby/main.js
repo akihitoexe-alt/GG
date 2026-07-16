@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const metaDescription = document.querySelector('meta[name="description"]');
     const supportedLanguages = ['en', 'ja'];
     const languageStorageKey = 'gameLobbyLanguage';
+    const jackInSessionKey = 'gameLobbyJackInComplete';
 
     const translations = {
         en: {
@@ -605,6 +606,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function hasCompletedJackIn() {
+        try {
+            return sessionStorage.getItem(jackInSessionKey) === 'true';
+        } catch (error) {
+            return false;
+        }
+    }
+
+    function saveJackInComplete() {
+        try {
+            sessionStorage.setItem(jackInSessionKey, 'true');
+        } catch (error) {
+            // Returning to the catalog still works even when storage is unavailable.
+        }
+    }
+
+    function hasCatalogDeepLink() {
+        const hash = window.location.hash.replace('#', '').toLowerCase();
+        const catalogHashes = ['hub', 'main-hub', 'catalog', 'archive'];
+
+        if (catalogHashes.includes(hash)) {
+            return true;
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const view = (params.get('view') || '').toLowerCase();
+
+        return catalogHashes.includes(view) || params.has('hub') || params.has('catalog');
+    }
+
+    function shouldOpenCatalog() {
+        return hasCompletedJackIn() || hasCatalogDeepLink();
+    }
+
+    function showCatalog(options = {}) {
+        if (options.remember) {
+            saveJackInComplete();
+        }
+
+        jackInExecuting = false;
+        jackInScreen.style.display = 'none';
+        cyberWorld.classList.remove('hidden');
+
+        jackInFlash.classList.add('hidden');
+        jackInFlash.classList.remove('anim-flash');
+        jackInTunnel.classList.add('hidden');
+        jackInTunnel.classList.remove('anim-tunnel');
+
+        jackInBtn.style.pointerEvents = '';
+        jackInBtn.textContent = t('intro.button');
+    }
+
     function getInitialLanguage() {
         const savedLanguage = readSavedLanguage();
 
@@ -757,6 +810,7 @@ document.addEventListener('DOMContentLoaded', () => {
         jackInExecuting = true;
         jackInBtn.textContent = t('intro.executing');
         jackInBtn.style.pointerEvents = 'none';
+        saveJackInComplete();
 
         // Start tunnel expansion
         jackInTunnel.classList.remove('hidden');
@@ -769,8 +823,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Hide intro screen and show lobby during the flash
             setTimeout(() => {
-                jackInScreen.style.display = 'none';
-                cyberWorld.classList.remove('hidden');
+                showCatalog();
             }, 200);
 
         }, 600);
@@ -779,6 +832,16 @@ document.addEventListener('DOMContentLoaded', () => {
     updateStaticText();
     initializeCyberWorldCanvas();
     renderProjects();
+
+    if (shouldOpenCatalog()) {
+        showCatalog({ remember: true });
+    }
+
+    window.addEventListener('pageshow', () => {
+        if (shouldOpenCatalog()) {
+            showCatalog();
+        }
+    });
 
     // Main Filter functionality
     filterBtns.forEach(btn => {
