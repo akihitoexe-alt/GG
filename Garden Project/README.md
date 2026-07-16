@@ -1,30 +1,23 @@
 # Grell-me Garden
 
-A small, calm gardening mini-game prototype based on the Japanese design brief.
+A calm gardening mini-game prototype.
 
-Open `index.html` in a browser to play. The game is intentionally static and
-self-contained, with no install step.
+Open `index.html` in a browser to play. The game is static and self-contained,
+with no install step.
 
-The default language is Japanese. Use the title-screen language switch to play
-in English instead.
+## Current Features
 
-Language changes also update the interface style. The page sets
-`html[data-lang="..."]`, and `styles.css` uses that hook to adjust fonts,
-spacing, casing, line-height, button density, and modal sizing per language.
+- Name your gardener and choose a male, female, or non-gendered character style
+- Pick a three-day crop routine or let the game randomize the crop cycle
+- Grow varied crops: tomato, lettuce, carrot, strawberry, pepper, cucumber, and pumpkin
+- Crops have different difficulty, care needs, and tolerance for mistakes
+- Expanded tools: Inspect, Water, Sunlight, Fertilizer, Bug Net, Rodent Guard, and Harvest
+- Larger Garden Journal with readable notes, crop guide, and cycle progress
+- Gentle stress, wilt, recovery, and phase retry behavior
 
 ## Controls
 
 - Move: WASD or arrow keys
-- Select tools: click the tool buttons or press 1-4
+- Select tools: click the tool buttons or press 1-7
 - Use tool: Space, E, or the Use Tool button
-- Mouse or touch: tap the tomato bed or water barrel to move there and use the
-  selected tool
-
-## Prototype Scope
-
-- One backyard screen
-- One tomato with four stages: seed, sprout, green tomato, red tomato
-- Four tools: Inspect, Watering Can, Bug Removal, Harvest Basket
-- Garden Journal and More Info notes
-- Gentle stress, wilt, recovery, and stage retry behavior
-- Result labels: Gentle Care, Careful Gardener, Learning Gardener
+- Mouse or touch: tap the crop bed or water barrel to move there and use the selected tool

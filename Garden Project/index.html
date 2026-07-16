@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja" data-lang="ja">
+<html lang="en" data-theme="morning">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,72 +10,112 @@
     <main id="app" class="app">
       <section id="titleScreen" class="title-screen" aria-labelledby="gameTitle">
         <div class="title-copy">
-          <p id="titleEyebrow" class="eyebrow">静かなトマトのレッスン</p>
+          <p class="eyebrow">A living garden routine</p>
           <h1 id="gameTitle">Grell-me Garden</h1>
           <p id="titleDescription">
-            観察して、道具を選び、少しずつ世話をしながらトマトを育てます。
+            Choose your gardener, plan a crop cycle, and tend a small garden
+            where every fruit and vegetable asks for different care.
           </p>
-          <div
-            id="languageSwitch"
-            class="language-switch"
-            role="group"
-            aria-label="言語"
-          >
-            <span id="languageLabel">言語</span>
-            <button
-              class="language-button selected"
-              type="button"
-              data-lang="ja"
-              aria-pressed="true"
-            >
-              日本語
-            </button>
-            <button
-              class="language-button"
-              type="button"
-              data-lang="en"
-              aria-pressed="false"
-            >
-              English
-            </button>
-          </div>
+
+          <section class="setup-panel" aria-label="Garden setup">
+            <div class="setup-field">
+              <label for="playerName">Gardener name</label>
+              <input
+                id="playerName"
+                name="playerName"
+                type="text"
+                maxlength="20"
+                autocomplete="nickname"
+                placeholder="Enter a name"
+              />
+            </div>
+
+            <div class="setup-field">
+              <span class="field-label">Gardener style</span>
+              <div id="characterChoices" class="character-grid" role="group" aria-label="Gardener style">
+                <button class="character-card selected" type="button" data-character="male" aria-pressed="true">
+                  <span class="avatar-preview character-male" aria-hidden="true"></span>
+                  <strong>Male</strong>
+                  <span>Garden jacket</span>
+                </button>
+                <button class="character-card" type="button" data-character="female" aria-pressed="false">
+                  <span class="avatar-preview character-female" aria-hidden="true"></span>
+                  <strong>Female</strong>
+                  <span>Berry apron</span>
+                </button>
+                <button class="character-card" type="button" data-character="neutral" aria-pressed="false">
+                  <span class="avatar-preview character-neutral" aria-hidden="true"></span>
+                  <strong>Non-gendered</strong>
+                  <span>Field smock</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="setup-field">
+              <span class="field-label">Crop cycle</span>
+              <div id="cycleMode" class="segmented-control" role="group" aria-label="Crop cycle mode">
+                <button class="selected" type="button" data-mode="routine" aria-pressed="true">Routine</button>
+                <button type="button" data-mode="random" aria-pressed="false">Random</button>
+              </div>
+
+              <div id="scheduleBuilder" class="schedule-builder" aria-label="Routine crop schedule">
+                <label>
+                  <span>Day 1</span>
+                  <select class="schedule-select" data-day="0" aria-label="Day 1 crop"></select>
+                </label>
+                <label>
+                  <span>Day 2</span>
+                  <select class="schedule-select" data-day="1" aria-label="Day 2 crop"></select>
+                </label>
+                <label>
+                  <span>Day 3</span>
+                  <select class="schedule-select" data-day="2" aria-label="Day 3 crop"></select>
+                </label>
+              </div>
+
+              <button id="randomizeCycleButton" class="secondary-button compact-button" type="button">
+                Randomize cycle
+              </button>
+            </div>
+          </section>
+
           <div class="title-actions">
-            <button id="startButton" class="primary-button" type="button">
-              はじめる
-            </button>
-            <button id="howToButton" class="secondary-button" type="button">
-              遊び方
-            </button>
+            <button id="startButton" class="primary-button" type="button">Start Garden</button>
+            <button id="howToButton" class="secondary-button" type="button">How to Play</button>
             <a
               id="lobbyLink"
               class="secondary-button lobby-link"
               href="https://akihitoexe-alt.github.io/GG/Game%20Lobby/#project-grell-me-garden"
             >
-              Gamer's Grindへ戻る
+              Back to Gamer's Grind
             </a>
           </div>
         </div>
+
         <div class="title-garden" aria-hidden="true">
           <div class="title-sun"></div>
+          <div class="title-cloud title-cloud-one"></div>
+          <div class="title-cloud title-cloud-two"></div>
           <div class="title-bed">
-            <div class="title-plant">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+            <span class="crop-token token-tomato"></span>
+            <span class="crop-token token-carrot"></span>
+            <span class="crop-token token-strawberry"></span>
+            <span class="crop-token token-pumpkin"></span>
+            <span class="crop-token token-lettuce"></span>
           </div>
           <div class="title-path"></div>
         </div>
       </section>
 
-      <section id="gameScreen" class="game-screen hidden" aria-label="庭">
+      <section id="gameScreen" class="game-screen hidden" aria-label="Garden">
         <header class="top-bar">
           <div>
-            <p class="eyebrow">Grell-me Garden</p>
-            <h2 id="stageLabel">朝 - 種の段階</h2>
+            <p id="cycleLabel" class="eyebrow">Day 1 of 3</p>
+            <h2 id="stageLabel">Morning - Seed Check</h2>
           </div>
-          <div id="topHint" class="top-hint">
-            移動: WASD または 矢印 | 使う: Space または E
+          <div class="top-meta">
+            <span id="currentCropPill" class="crop-pill">Tomato</span>
+            <span id="topHint" class="top-hint">Move: WASD or arrows | Use: Space or E</span>
           </div>
         </header>
 
@@ -84,52 +124,44 @@
             id="garden"
             class="garden day-morning"
             tabindex="0"
-            aria-label="裏庭のプレイエリア"
+            aria-label="Backyard garden play area"
           >
             <div class="sky-light" aria-hidden="true"></div>
             <div class="fence" aria-hidden="true">
               <span></span><span></span><span></span><span></span><span></span>
             </div>
-            <div id="gardenSign" class="garden-sign" aria-hidden="true">
-              トマト
-            </div>
+            <div id="gardenSign" class="garden-sign" aria-hidden="true">Tomato</div>
 
-            <button
-              id="barrelZone"
-              class="zone water-zone"
-              type="button"
-              aria-label="水樽"
-            >
+            <button id="barrelZone" class="zone water-zone" type="button" aria-label="Water barrel">
               <span class="barrel">
                 <span class="barrel-band"></span>
                 <span class="water-line"></span>
               </span>
-              <span id="barrelLabel" class="zone-label">水樽</span>
+              <span id="barrelLabel" class="zone-label">Water Barrel</span>
             </button>
 
-            <button
-              id="tomatoZone"
-              class="zone tomato-zone"
-              type="button"
-              aria-label="トマトの畑"
-            >
+            <button id="tomatoZone" class="zone tomato-zone" type="button" aria-label="Crop bed">
               <span id="soil" class="soil dry">
                 <span class="crack crack-one"></span>
                 <span class="crack crack-two"></span>
               </span>
-              <span id="plant" class="plant stage-seed">
-                <span id="seedMarker" class="seed-marker">トマト</span>
+              <span id="plant" class="plant stage-seed" data-crop="tomato">
+                <span id="seedMarker" class="seed-marker">Tomato</span>
                 <span class="stem"></span>
                 <span class="leaf leaf-left"></span>
                 <span class="leaf leaf-right"></span>
+                <span class="leaf leaf-low"></span>
                 <span class="fruit fruit-one"></span>
                 <span class="fruit fruit-two"></span>
                 <span id="bugLayer" class="bugs">
                   <span class="bug bug-one"></span>
                   <span class="bug bug-two"></span>
                 </span>
+                <span id="rodentLayer" class="rodents">
+                  <span class="rodent rodent-one"></span>
+                </span>
               </span>
-              <span id="conditionChip" class="condition-chip">観察できます。</span>
+              <span id="conditionChip" class="condition-chip">Ready to observe.</span>
             </button>
 
             <div class="tool-shelf" aria-hidden="true">
@@ -138,7 +170,7 @@
                 <span></span><span></span><span></span>
               </div>
               <div class="basket"></div>
-              <span id="shelfLabel" class="zone-label">道具棚</span>
+              <span id="shelfLabel" class="zone-label">Tool Shelf</span>
             </div>
 
             <div class="flowers" aria-hidden="true">
@@ -148,8 +180,9 @@
               <span></span><span></span><span></span>
             </div>
 
-            <div id="player" class="player idle" aria-hidden="true">
+            <div id="player" class="player character-male idle" aria-hidden="true">
               <span class="hat"></span>
+              <span class="hair"></span>
               <span class="head"></span>
               <span class="body"></span>
               <span class="apron"></span>
@@ -161,112 +194,131 @@
             </div>
 
             <div id="sparkles" class="sparkles" aria-hidden="true"></div>
-            <div id="progressBubble" class="progress-bubble hidden">
-              ゆっくり成長中...
-            </div>
+            <div id="progressBubble" class="progress-bubble hidden">Growing gently...</div>
           </section>
 
-          <aside class="side-panel" aria-label="庭ノートとトマトの状態">
-            <button id="journalButton" class="icon-panel-button" type="button">
-              庭ノート
-            </button>
-            <button id="moreInfoButton" class="icon-panel-button" type="button">
-              もっと知る
-            </button>
+          <aside class="side-panel" aria-label="Garden notes and crop status">
+            <section class="gardener-card">
+              <span id="gardenerAvatar" class="avatar-preview character-male" aria-hidden="true"></span>
+              <div>
+                <span>Gardener</span>
+                <strong id="gardenerNameLabel">Gardener</strong>
+              </div>
+            </section>
 
-            <section id="stressPanel" class="stress-panel" aria-label="トマトのストレス">
+            <button id="journalButton" class="icon-panel-button" type="button">Garden Journal</button>
+            <button id="moreInfoButton" class="icon-panel-button" type="button">Crop Tip</button>
+
+            <section id="cropPanel" class="crop-panel" aria-label="Current crop details">
+              <span class="panel-kicker">Current crop</span>
+              <strong id="currentCropName">Tomato</strong>
+              <p id="currentCropTraits">Balanced care with steady water and sunlight.</p>
+              <div id="needBadges" class="need-badges" aria-label="Crop needs"></div>
+            </section>
+
+            <section id="stressPanel" class="stress-panel" aria-label="Crop stress">
               <div class="stress-head">
-                <span id="stressFace" class="stress-face">おだやか</span>
-                <span id="stressLabel">低い</span>
+                <span id="stressFace" class="stress-face">Calm</span>
+                <span id="stressLabel">Low</span>
               </div>
               <div class="stress-track" aria-hidden="true">
                 <span id="stressFill" class="stress-fill"></span>
               </div>
-              <p id="stressText">トマトは落ち着いています。</p>
+              <p id="stressText">The crop is steady.</p>
             </section>
           </aside>
         </div>
 
         <footer class="control-panel">
           <div class="objective-row">
-            <p id="objectiveText">目標: トマトを観察する。</p>
-            <p id="thoughtText">はじめてのトマト... まずよく見てみよう。</p>
+            <p id="objectiveText">Objective: Inspect the crop.</p>
+            <p id="thoughtText">A fresh garden bed is ready for care.</p>
           </div>
 
-          <div class="tools" role="group" aria-label="道具">
+          <div class="tools" role="group" aria-label="Tools">
             <button class="tool-button selected" type="button" data-tool="inspect">
               <span class="tool-icon inspect-icon"></span>
-              <span class="tool-label">観察</span>
+              <span class="tool-label">Inspect</span>
             </button>
             <button class="tool-button" type="button" data-tool="water">
               <span class="tool-icon water-icon">
                 <span id="waterBadge" class="water-badge hidden"></span>
               </span>
-              <span class="tool-label">じょうろ</span>
+              <span class="tool-label">Water</span>
+            </button>
+            <button class="tool-button" type="button" data-tool="sun">
+              <span class="tool-icon sun-icon"></span>
+              <span class="tool-label">Sunlight</span>
+            </button>
+            <button class="tool-button" type="button" data-tool="fertilizer">
+              <span class="tool-icon fertilizer-icon"></span>
+              <span class="tool-label">Fertilizer</span>
             </button>
             <button class="tool-button" type="button" data-tool="bugs">
               <span class="tool-icon bug-icon"></span>
-              <span class="tool-label">虫の除去</span>
+              <span class="tool-label">Bug Net</span>
+            </button>
+            <button class="tool-button" type="button" data-tool="rodents">
+              <span class="tool-icon rodent-icon"></span>
+              <span class="tool-label">Rodent Guard</span>
             </button>
             <button class="tool-button" type="button" data-tool="harvest">
               <span class="tool-icon basket-icon"></span>
-              <span class="tool-label">収穫かご</span>
+              <span class="tool-label">Harvest</span>
             </button>
           </div>
 
           <div class="use-area">
-            <button id="useButton" class="primary-button" type="button">
-              道具を使う
-            </button>
-            <p id="distanceHint">トマトか水樽の近くに立ちましょう。</p>
+            <button id="useButton" class="primary-button" type="button">Use Tool</button>
+            <p id="distanceHint">Stand near the crop bed or water barrel.</p>
           </div>
         </footer>
       </section>
 
       <dialog id="howToDialog" class="modal">
         <form method="dialog">
-          <h2 id="howToTitle">遊び方</h2>
-          <p id="howToGoal">
-            <strong>目標:</strong> 元気なトマトを1つ育てて収穫しましょう。
+          <h2 id="howToTitle">How to Play</h2>
+          <p>
+            Pick a gardener, choose a three-day crop routine, then care for each
+            crop through observation, water, sunlight, fertilizer, pest control,
+            and harvest.
           </p>
-          <p id="howToControls">
-            <strong>操作:</strong> 庭を移動し、道具を選び、トマトや水樽の近くで使います。
+          <p>
+            Easier crops tolerate more mistakes. Hard crops have more needs and
+            become stressed faster, so inspecting before acting matters.
           </p>
-          <p id="howToLoop">
-            <strong>世話の流れ:</strong> 観察し、合った道具を選び、世話をして、少し待ち、成長を見守ります。
+          <p>
+            Move with WASD or arrow keys. Select tools with the buttons or number
+            keys 1-7. Use the selected tool with Space, E, or the Use Tool button.
           </p>
-          <button id="howToCloseButton" class="primary-button" type="submit">
-            閉じる
-          </button>
+          <button id="howToCloseButton" class="primary-button" type="submit">Close</button>
         </form>
       </dialog>
 
       <dialog id="journalDialog" class="modal journal-modal">
         <form method="dialog">
-          <h2 id="journalTitle">庭ノート</h2>
+          <div class="modal-head">
+            <div>
+              <p class="eyebrow">Readable field notes</p>
+              <h2 id="journalTitle">Garden Journal</h2>
+            </div>
+            <button id="journalCloseButton" class="secondary-button compact-button" type="submit">Close</button>
+          </div>
           <div id="journalContent" class="journal-content"></div>
-          <button id="journalCloseButton" class="primary-button" type="submit">
-            閉じる
-          </button>
         </form>
       </dialog>
 
       <dialog id="resultDialog" class="modal result-modal">
         <div>
-          <h2 id="resultTitle">はじめてのトマトを収穫しました！</h2>
+          <h2 id="resultTitle">Harvest complete!</h2>
           <p id="resultCondition"></p>
           <p id="resultLearned"></p>
           <p id="resultLabel" class="result-label"></p>
-          <p id="nextGardenText" class="next-garden">
-            次の庭、準備中: いちご
-          </p>
+          <p id="nextGardenText" class="next-garden">The next crop is ready.</p>
           <div class="result-actions">
-            <button id="replayButton" class="primary-button" type="button">
-              もう一度
-            </button>
-            <button id="titleButton" class="secondary-button" type="button">
-              タイトル
-            </button>
+            <button id="nextCropButton" class="primary-button" type="button">Continue Cycle</button>
+            <button id="replayButton" class="secondary-button" type="button">Restart Garden</button>
+            <button id="titleButton" class="secondary-button" type="button">Title</button>
           </div>
         </div>
       </dialog>
