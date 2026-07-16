@@ -17,6 +17,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const translations = {
         en: {
+            accessGrid: {
+                title: 'ACCESS THE GRID',
+                navLabel: 'Cyber World gates'
+            },
+            gates: {
+                quest: {
+                    kicker: 'PLAYABLE ACCESS',
+                    title: 'Quest Board',
+                    copy: 'Playable games and published projects are ready to launch from this gate.'
+                },
+                loadout: {
+                    kicker: 'DEV LOADOUT',
+                    title: 'Loadout Bay',
+                    copy: 'Games, concepts, prototypes, and ideas still in development gather here before they are ready for the Quest Board.',
+                    prompt: 'Development Queue',
+                    points: ['Game concepts', 'Prototype builds', 'Design ideas', 'Work-in-progress updates']
+                },
+                guild: {
+                    kicker: 'COMMUNITY GATE',
+                    title: 'Guild Gathering',
+                    copy: "Members, moments, and events related to Gamers' Grind live inside this community gate.",
+                    prompt: 'Guild Records',
+                    points: ['Member showcases', 'Community moments', 'Event recaps', 'Upcoming gatherings']
+                },
+                party: {
+                    kicker: 'SQUAD ACCESS',
+                    title: 'Party Arena',
+                    copy: 'A fused gate for party links, group play, challenges, tournaments, and community competition.',
+                    prompt: 'Arena Signals',
+                    points: ['Play sessions', 'Tournament paths', 'Squad links', 'Challenge boards']
+                },
+                signal: {
+                    kicker: 'BROADCAST CHANNEL',
+                    title: 'Signal Feed',
+                    copy: "Updates, announcements, and Cyber World broadcasts from Gamers' Grind.",
+                    prompt: 'Incoming Signals',
+                    points: ['News drops', 'Patch notes', 'Event alerts', 'Community updates']
+                },
+                review: {
+                    kicker: 'REFERENCE ARCHIVE',
+                    title: 'Review Log',
+                    copy: 'Reviews and reference points for board games, card games, tabletop RPGs, video games, shops, stores, and other gaming places.',
+                    prompt: 'Scout Entries',
+                    points: ['Game reviews', 'Store notes', 'Tabletop references', 'Video game coverage']
+                },
+                shop: {
+                    kicker: 'MARKET GATE',
+                    title: 'Shop',
+                    copy: "Drops, gear, merch, and future store links for Gamers' Grind.",
+                    prompt: 'Shop Routing',
+                    points: ['Featured drops', 'Merch links', 'Gear picks', 'Future storefront']
+                }
+            },
             meta: {
                 title: "Gamers' Grind - Cyberworld",
                 description: "Centralized Game Lobby and Project Hub for Gamers' Grind."
@@ -91,6 +144,59 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         ja: {
+            accessGrid: {
+                title: 'グリッドへアクセス',
+                navLabel: 'サイバーワールドのゲート'
+            },
+            gates: {
+                quest: {
+                    kicker: 'プレイ可能アクセス',
+                    title: 'クエストボード',
+                    copy: 'プレイ可能なゲームと公開済みプロジェクトは、このゲートから起動できます。'
+                },
+                loadout: {
+                    kicker: '開発ロードアウト',
+                    title: 'ロードアウトベイ',
+                    copy: 'ゲーム、コンセプト、プロトタイプ、アイデアなど、クエストボードに出る前の開発中データを集めています。',
+                    prompt: '開発キュー',
+                    points: ['ゲームコンセプト', 'プロトタイプビルド', 'デザインアイデア', '進行中アップデート']
+                },
+                guild: {
+                    kicker: 'コミュニティゲート',
+                    title: 'ギルドギャザリング',
+                    copy: "Gamers' Grind に関わるメンバー、思い出、イベントを集めたコミュニティゲートです。",
+                    prompt: 'ギルド記録',
+                    points: ['メンバー紹介', 'コミュニティの思い出', 'イベント記録', '今後の集まり']
+                },
+                party: {
+                    kicker: 'スクワッドアクセス',
+                    title: 'パーティアリーナ',
+                    copy: 'パーティリンク、グループプレイ、チャレンジ、トーナメント、コミュニティ対戦をまとめたゲートです。',
+                    prompt: 'アリーナ信号',
+                    points: ['プレイセッション', 'トーナメントルート', 'スクワッドリンク', 'チャレンジボード']
+                },
+                signal: {
+                    kicker: 'ブロードキャストチャンネル',
+                    title: 'シグナルフィード',
+                    copy: "Gamers' Grind からの更新、告知、サイバーワールド放送を表示します。",
+                    prompt: '受信シグナル',
+                    points: ['ニュース配信', 'パッチノート', 'イベント通知', 'コミュニティ更新']
+                },
+                review: {
+                    kicker: '参照アーカイブ',
+                    title: 'レビューログ',
+                    copy: 'ボードゲーム、カードゲーム、テーブルトークRPG、ビデオゲーム、ショップ、店舗、その他ゲームスポットのレビューと参照情報です。',
+                    prompt: 'スカウト記録',
+                    points: ['ゲームレビュー', '店舗メモ', 'テーブルトーク参照', 'ビデオゲーム記事']
+                },
+                shop: {
+                    kicker: 'マーケットゲート',
+                    title: 'ショップ',
+                    copy: "Gamers' Grind のドロップ、ギア、グッズ、今後のストアリンクを集めます。",
+                    prompt: 'ショップルーティング',
+                    points: ['注目ドロップ', 'グッズリンク', 'ギアピック', '今後のストア']
+                }
+            },
             meta: {
                 title: "Gamers' Grind - サイバーワールド",
                 description: "Gamers' Grind のゲームロビーとプロジェクトハブです。"
@@ -263,6 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('project-grid');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const gateLinks = document.querySelectorAll('.gate-link');
+    const districtMap = document.querySelector('.district-map');
     const cyberNav = document.querySelector('.cyber-nav');
     const activeGateKicker = document.getElementById('active-gate-kicker');
     const activeGateTitle = document.getElementById('active-gate-title');
@@ -799,6 +906,23 @@ document.addEventListener('DOMContentLoaded', () => {
         return project.names?.[currentLanguage] || project.name;
     }
 
+    function getLocalizedGate(gateKey) {
+        const gate = gateAreas[gateKey] || gateAreas.quest;
+        const localizedGate = translations[currentLanguage].gates?.[gateKey] || {};
+        const fallbackGate = translations.en.gates?.[gateKey] || gate;
+        const localizedPoints = Array.isArray(localizedGate.points) ? localizedGate.points : null;
+        const fallbackPoints = Array.isArray(fallbackGate.points) ? fallbackGate.points : [];
+
+        return {
+            ...gate,
+            kicker: localizedGate.kicker || fallbackGate.kicker || gate.kicker,
+            title: localizedGate.title || fallbackGate.title || gate.title,
+            copy: localizedGate.copy || fallbackGate.copy || gate.copy,
+            prompt: localizedGate.prompt || fallbackGate.prompt || gate.prompt,
+            points: localizedPoints || fallbackPoints
+        };
+    }
+
     function updateStaticText() {
         document.documentElement.lang = currentLanguage;
         document.title = t('meta.title');
@@ -822,6 +946,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (languageControl) {
             languageControl.setAttribute('aria-label', t('language.selector'));
+        }
+
+        if (districtMap) {
+            districtMap.setAttribute('aria-label', t('accessGrid.navLabel'));
         }
 
         if (catchphraseLogo) {
@@ -859,12 +987,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setActiveGate(gateKey, options = {}) {
         const nextGate = gateAreas[gateKey] ? gateKey : 'quest';
-        const gate = gateAreas[nextGate];
+        const gate = getLocalizedGate(nextGate);
 
         currentGate = nextGate;
 
         gateLinks.forEach(link => {
             const isActive = link.dataset.gate === currentGate;
+            const linkGate = getLocalizedGate(link.dataset.gate);
+            const linkLabel = link.querySelector('b');
+
+            if (linkLabel) {
+                linkLabel.textContent = linkGate.title;
+            }
+
+            link.setAttribute('aria-label', linkGate.title);
             link.classList.toggle('active', isActive);
 
             if (isActive) {
@@ -903,10 +1039,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLanguage = language;
         saveLanguage(language);
         updateStaticText();
-
-        if (currentGate === 'quest') {
-            renderProjects();
-        }
+        setActiveGate(currentGate);
     }
 
     function setActiveCategory(category) {
