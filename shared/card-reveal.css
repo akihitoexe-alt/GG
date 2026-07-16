@@ -179,8 +179,8 @@ body.reveal-running #yugioh-card {
   position: relative;
   display: grid;
   place-items: center;
-  width: clamp(210px, 35vw, 330px);
-  aspect-ratio: 1;
+  width: clamp(270px, 52vw, 520px);
+  aspect-ratio: 3 / 2;
 }
 
 .card-reveal-orbit::before,
@@ -223,8 +223,8 @@ body.reveal-running #yugioh-card {
 .card-reveal-card {
   position: relative;
   z-index: 1;
-  width: clamp(138px, 23vw, 220px);
-  aspect-ratio: 2.5 / 3.5;
+  width: clamp(250px, 48vw, 500px);
+  aspect-ratio: 3 / 2;
   transform-style: preserve-3d;
   transform: rotateY(0deg) rotateZ(-8deg) scale(0.72);
   filter: drop-shadow(0 24px 30px rgba(0,0,0,0.62));
@@ -277,7 +277,7 @@ body.reveal-running #yugioh-card {
 }
 
 .card-reveal-front {
-  grid-template-rows: 22px minmax(0, 1fr) 32px;
+  grid-template-rows: minmax(0, 1fr) 32px;
   gap: 7px;
   padding: 9px;
   border: 2px solid #d9c27a;
@@ -451,27 +451,6 @@ body.reveal-running #yugioh-card {
   transition: opacity 520ms ease, transform 520ms ease;
 }
 
-body.card-page-decode #yugioh-card,
-body.card-page-decode .card-container {
-  animation: page-card-materialize 1.85s ease-out both;
-}
-
-body.card-page-decode #yugioh-card::after,
-body.card-page-decode .card-container::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 80;
-  border-radius: inherit;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, transparent 0 34%, rgba(41,247,255,0.82) 42%, rgba(255,255,255,0.9) 46%, rgba(41,247,255,0.42) 51%, transparent 62%),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.16) 0 1px, transparent 1px 8px),
-    repeating-linear-gradient(90deg, rgba(143,92,255,0.24) 0 3px, transparent 3px 22px);
-  mix-blend-mode: screen;
-  animation: page-card-decode-scan 1.85s ease-out both;
-}
-
 @keyframes reveal-radar-spin {
   to { transform: rotate(360deg); }
 }
@@ -531,52 +510,6 @@ body.card-page-decode .card-container::after {
   40% { opacity: 0.72; clip-path: polygon(0 12%, 100% 12%, 100% 58%, 0 58%); }
   66% { opacity: 0.54; clip-path: polygon(0 38%, 100% 38%, 100% 84%, 0 84%); }
   100% { opacity: 0; clip-path: polygon(0 84%, 100% 84%, 100% 100%, 0 100%); }
-}
-
-@keyframes page-card-materialize {
-  0% {
-    opacity: 0.55;
-    filter: brightness(1.7) contrast(2.1) saturate(0.35) blur(4px);
-    clip-path: inset(0 0 72% 0);
-    transform: translateY(8px) scale(0.985);
-  }
-  24% {
-    opacity: 0.78;
-    clip-path: inset(0 0 48% 0);
-  }
-  52% {
-    opacity: 0.9;
-    filter: brightness(1.35) contrast(1.55) saturate(0.78) blur(1.6px);
-    clip-path: inset(0 0 22% 0);
-  }
-  78% {
-    opacity: 1;
-    filter: brightness(1.12) contrast(1.18) saturate(1.08) blur(0.45px);
-    clip-path: inset(0 0 4% 0);
-  }
-  100% {
-    opacity: 1;
-    filter: brightness(1) contrast(1) saturate(1) blur(0);
-    clip-path: inset(0);
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes page-card-decode-scan {
-  0% {
-    opacity: 0;
-    transform: translateY(-38%);
-  }
-  18% {
-    opacity: 0.95;
-  }
-  68% {
-    opacity: 0.72;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(58%);
-  }
 }
 
 @media (max-width: 720px) {

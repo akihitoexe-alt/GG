@@ -154,10 +154,6 @@
       overlay.classList.add("is-exiting");
       body.classList.remove("reveal-running");
       body.classList.add("reveal-complete");
-      if (!reducedMotion) {
-        queue(() => body.classList.add("card-page-decode"), 180);
-        queue(() => body.classList.remove("card-page-decode"), 2200);
-      }
       queue(() => {
         overlay.remove();
         activeReveal = null;
