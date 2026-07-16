@@ -210,7 +210,7 @@ body::before {
 .card-art-frame {
     position: relative;
     width: 100%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 3 / 2;
     border: 3px solid var(--border-outer);
     border-radius: 6px;
     overflow: hidden;
