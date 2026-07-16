@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Miscellaneous
         { name: "Block Breaker", category: "misc", path: "../Block Breaker/index.html", icon: "🧱", categoryLabelKey: "miscellaneous" },
-        { name: "Grell-me Garden", category: "misc", path: "../Garden Project/index.html", icon: "🌱", categoryLabelKey: "miscellaneous" },
+        { name: "Grell-me Garden", category: "misc", path: "../Garden Project/index.html", icon: "🌱", categoryLabelKey: "miscellaneous", slug: "grell-me-garden" },
         { name: "Smoothie Slicer", category: "misc", path: "../Smoothie Slicer - Remake of Fruit Ninja/index.html", icon: "🍉", categoryLabelKey: "miscellaneous" },
         { name: "Tetris", category: "misc", path: "../Tetris/index.html", icon: "🧩", categoryLabelKey: "miscellaneous" },
 
@@ -670,6 +670,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return (value || '').replace('#', '').toLowerCase();
     }
 
+    function getProjectSlug(project) {
+        return project.slug || project.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+
+    function getProjectSlugFromToken(value) {
+        const token = normalizeRouteToken(value);
+        const prefix = 'project-';
+
+        return token.startsWith(prefix) ? token.slice(prefix.length) : null;
+    }
+
+    function getDeepLinkedProjectSlug() {
+        const params = new URLSearchParams(window.location.search);
+        return getProjectSlugFromToken(window.location.hash) || normalizeRouteToken(params.get('project'));
+    }
+
+    function getDeepLinkedProject() {
+        const slug = getDeepLinkedProjectSlug();
+        return slug ? availableProjects.find(project => getProjectSlug(project) === slug) : null;
+    }
+
     function getGateKeyFromToken(value) {
         const token = normalizeRouteToken(value);
 
@@ -684,7 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const hash = window.location.hash.replace('#', '').toLowerCase();
         const catalogHashes = ['hub', 'main-hub', 'catalog', 'archive'];
 
-        if (catalogHashes.includes(hash) || getGateKeyFromToken(hash)) {
+        if (catalogHashes.includes(hash) || getGateKeyFromToken(hash) || getProjectSlugFromToken(hash)) {
             return true;
         }
 
@@ -692,7 +713,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const view = (params.get('view') || '').toLowerCase();
         const gate = (params.get('gate') || '').toLowerCase();
 
-        return catalogHashes.includes(view) || getGateKeyFromToken(view) || getGateKeyFromToken(gate) || params.has('hub') || params.has('catalog');
+        return catalogHashes.includes(view) || getGateKeyFromToken(view) || getGateKeyFromToken(gate) || params.has('project') || params.has('hub') || params.has('catalog');
     }
 
     function shouldOpenCatalog() {
@@ -731,6 +752,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getInitialGate() {
         const params = new URLSearchParams(window.location.search);
+
+        if (getDeepLinkedProject()) {
+            return 'quest';
+        }
+
         return getGateKeyFromToken(window.location.hash) || getGateKeyFromToken(params.get('gate')) || getGateKeyFromToken(params.get('view')) || 'quest';
     }
 
@@ -868,9 +894,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function setActiveCategory(category) {
+        currentCategory = category || 'all';
+        filterBtns.forEach(button => {
+            button.classList.toggle('active', button.getAttribute('data-filter') === currentCategory);
+        });
+    }
+
+    function prepareProjectDeepLink() {
+        const project = getDeepLinkedProject();
+
+        if (project) {
+            setActiveCategory(project.category);
+        }
+    }
+
+    function scrollToDeepLinkedProject() {
+        const slug = getDeepLinkedProjectSlug();
+
+        if (!slug) {
+            return;
+        }
+
+        window.requestAnimationFrame(() => {
+            const card = document.getElementById(`project-${slug}`);
+
+            if (!card) {
+                return;
+            }
+
+            card.focus({ preventScroll: true });
+            card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        });
+    }
+
     // Function to render projects based on current filters
     function renderProjects() {
         grid.innerHTML = ''; // Clear grid
+        const linkedProjectSlug = getDeepLinkedProjectSlug();
 
         let filteredProjects = currentCategory === 'all'
             ? availableProjects
@@ -878,6 +939,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filteredProjects.forEach((project, index) => {
             const projectName = getProjectName(project);
+            const projectSlug = getProjectSlug(project);
             const card = document.createElement('a');
             const iconWrapper = document.createElement('div');
             const icon = document.createElement('div');
@@ -885,8 +947,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const category = document.createElement('span');
 
             card.href = project.path;
+            card.id = `project-${projectSlug}`;
             card.className = `project-card project-card--${project.category}`;
+            card.classList.toggle('project-card--linked', projectSlug === linkedProjectSlug);
             card.dataset.category = project.category;
+            card.dataset.project = projectSlug;
             card.style.animationDelay = `${index * 0.05}s`;
             card.setAttribute('aria-label', projectName);
 
@@ -944,14 +1009,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateStaticText();
     initializeCyberWorldCanvas();
+    prepareProjectDeepLink();
     setActiveGate(getInitialGate());
 
     if (shouldOpenCatalog()) {
         showCatalog({ remember: true });
     }
 
+    scrollToDeepLinkedProject();
+
     window.addEventListener('hashchange', () => {
+        prepareProjectDeepLink();
         setActiveGate(getInitialGate());
+        scrollToDeepLinkedProject();
     });
 
     window.addEventListener('pageshow', () => {
@@ -966,7 +1036,7 @@ document.addEventListener('DOMContentLoaded', () => {
             filterBtns.forEach(button => button.classList.remove('active'));
             btn.classList.add('active');
 
-            currentCategory = btn.getAttribute('data-filter');
+            setActiveCategory(btn.getAttribute('data-filter'));
 
             setActiveGate('quest');
             renderProjects();

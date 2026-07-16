@@ -1669,6 +1669,15 @@ html.catalog-return #cyber-world.hidden {
     transform: translateY(-0.35rem);
 }
 
+.project-card--linked {
+    border-color: rgba(var(--card-accent-rgb), 0.92);
+    box-shadow: 0 0 0 2px rgba(255, 209, 102, 0.62), 0 0 34px rgba(var(--card-accent-rgb), 0.34);
+}
+
+.project-card--linked::after {
+    color: var(--sun-amber);
+}
+
 .card-icon-wrapper {
     position: relative;
     display: flex;

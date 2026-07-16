@@ -8,6 +8,7 @@
     <script>
         (() => {
             const catalogTargets = ['hub', 'main-hub', 'catalog', 'archive', 'quest-board', 'loadout-bay', 'guild-gathering', 'party-arena', 'signal-feed', 'review-log', 'shop'];
+            const projectHashPrefix = 'project-';
             const hash = window.location.hash.replace('#', '').toLowerCase();
             const params = new URLSearchParams(window.location.search);
             const view = (params.get('view') || '').toLowerCase();
@@ -20,7 +21,7 @@
                 jackInComplete = false;
             }
 
-            if (jackInComplete || catalogTargets.includes(hash) || catalogTargets.includes(view) || catalogTargets.includes(gate) || params.has('hub') || params.has('catalog')) {
+            if (jackInComplete || hash.startsWith(projectHashPrefix) || params.has('project') || catalogTargets.includes(hash) || catalogTargets.includes(view) || catalogTargets.includes(gate) || params.has('hub') || params.has('catalog')) {
                 document.documentElement.classList.add('catalog-return');
             }
         })();

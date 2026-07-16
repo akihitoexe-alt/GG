@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grell-me Garden</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="app" class="app">
+      <section id="titleScreen" class="title-screen" aria-labelledby="gameTitle">
+        <div class="title-copy">
+          <p id="titleEyebrow" class="eyebrow">静かなトマトのレッスン</p>
+          <h1 id="gameTitle">Grell-me Garden</h1>
+          <p id="titleDescription">
+            観察して、道具を選び、少しずつ世話をしながらトマトを育てます。
+          </p>
+          <div
+            id="languageSwitch"
+            class="language-switch"
+            role="group"
+            aria-label="言語"
+          >
+            <span id="languageLabel">言語</span>
+            <button
+              class="language-button selected"
+              type="button"
+              data-lang="ja"
+              aria-pressed="true"
+            >
+              日本語
+            </button>
+            <button
+              class="language-button"
+              type="button"
+              data-lang="en"
+              aria-pressed="false"
+            >
+              English
+            </button>
+          </div>
+          <div class="title-actions">
+            <button id="startButton" class="primary-button" type="button">
+              はじめる
+            </button>
+            <button id="howToButton" class="secondary-button" type="button">
+              遊び方
+            </button>
+            <a
+              id="lobbyLink"
+              class="secondary-button lobby-link"
+              href="https://akihitoexe-alt.github.io/GG/Game%20Lobby/#project-grell-me-garden"
+            >
+              Gamer's Grindへ戻る
+            </a>
+          </div>
+        </div>
+        <div class="title-garden" aria-hidden="true">
+          <div class="title-sun"></div>
+          <div class="title-bed">
+            <div class="title-plant">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div class="title-path"></div>
+        </div>
+      </section>
+
+      <section id="gameScreen" class="game-screen hidden" aria-label="庭">
+        <header class="top-bar">
+          <div>
+            <p class="eyebrow">Grell-me Garden</p>
+            <h2 id="stageLabel">朝 - 種の段階</h2>
+          </div>
+          <div id="topHint" class="top-hint">
+            移動: WASD または 矢印 | 使う: Space または E
+          </div>
+        </header>
+
+        <div class="play-layout">
+          <section
+            id="garden"
+            class="garden day-morning"
+            tabindex="0"
+            aria-label="裏庭のプレイエリア"
+          >
+            <div class="sky-light" aria-hidden="true"></div>
+            <div class="fence" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div id="gardenSign" class="garden-sign" aria-hidden="true">
+              トマト
+            </div>
+
+            <button
+              id="barrelZone"
+              class="zone water-zone"
+              type="button"
+              aria-label="水樽"
+            >
+              <span class="barrel">
+                <span class="barrel-band"></span>
+                <span class="water-line"></span>
+              </span>
+              <span id="barrelLabel" class="zone-label">水樽</span>
+            </button>
+
+            <button
+              id="tomatoZone"
+              class="zone tomato-zone"
+              type="button"
+              aria-label="トマトの畑"
+            >
+              <span id="soil" class="soil dry">
+                <span class="crack crack-one"></span>
+                <span class="crack crack-two"></span>
+              </span>
+              <span id="plant" class="plant stage-seed">
+                <span id="seedMarker" class="seed-marker">トマト</span>
+                <span class="stem"></span>
+                <span class="leaf leaf-left"></span>
+                <span class="leaf leaf-right"></span>
+                <span class="fruit fruit-one"></span>
+                <span class="fruit fruit-two"></span>
+                <span id="bugLayer" class="bugs">
+                  <span class="bug bug-one"></span>
+                  <span class="bug bug-two"></span>
+                </span>
+              </span>
+              <span id="conditionChip" class="condition-chip">観察できます。</span>
+            </button>
+
+            <div class="tool-shelf" aria-hidden="true">
+              <div class="shelf-top"></div>
+              <div class="shelf-body">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="basket"></div>
+              <span id="shelfLabel" class="zone-label">道具棚</span>
+            </div>
+
+            <div class="flowers" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="stepping-stones" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+
+            <div id="player" class="player idle" aria-hidden="true">
+              <span class="hat"></span>
+              <span class="head"></span>
+              <span class="body"></span>
+              <span class="apron"></span>
+              <span class="arm arm-left"></span>
+              <span class="arm arm-right"></span>
+              <span class="leg leg-left"></span>
+              <span class="leg leg-right"></span>
+              <span id="heldTool" class="held-tool"></span>
+            </div>
+
+            <div id="sparkles" class="sparkles" aria-hidden="true"></div>
+            <div id="progressBubble" class="progress-bubble hidden">
+              ゆっくり成長中...
+            </div>
+          </section>
+
+          <aside class="side-panel" aria-label="庭ノートとトマトの状態">
+            <button id="journalButton" class="icon-panel-button" type="button">
+              庭ノート
+            </button>
+            <button id="moreInfoButton" class="icon-panel-button" type="button">
+              もっと知る
+            </button>
+
+            <section id="stressPanel" class="stress-panel" aria-label="トマトのストレス">
+              <div class="stress-head">
+                <span id="stressFace" class="stress-face">おだやか</span>
+                <span id="stressLabel">低い</span>
+              </div>
+              <div class="stress-track" aria-hidden="true">
+                <span id="stressFill" class="stress-fill"></span>
+              </div>
+              <p id="stressText">トマトは落ち着いています。</p>
+            </section>
+          </aside>
+        </div>
+
+        <footer class="control-panel">
+          <div class="objective-row">
+            <p id="objectiveText">目標: トマトを観察する。</p>
+            <p id="thoughtText">はじめてのトマト... まずよく見てみよう。</p>
+          </div>
+
+          <div class="tools" role="group" aria-label="道具">
+            <button class="tool-button selected" type="button" data-tool="inspect">
+              <span class="tool-icon inspect-icon"></span>
+              <span class="tool-label">観察</span>
+            </button>
+            <button class="tool-button" type="button" data-tool="water">
+              <span class="tool-icon water-icon">
+                <span id="waterBadge" class="water-badge hidden"></span>
+              </span>
+              <span class="tool-label">じょうろ</span>
+            </button>
+            <button class="tool-button" type="button" data-tool="bugs">
+              <span class="tool-icon bug-icon"></span>
+              <span class="tool-label">虫の除去</span>
+            </button>
+            <button class="tool-button" type="button" data-tool="harvest">
+              <span class="tool-icon basket-icon"></span>
+              <span class="tool-label">収穫かご</span>
+            </button>
+          </div>
+
+          <div class="use-area">
+            <button id="useButton" class="primary-button" type="button">
+              道具を使う
+            </button>
+            <p id="distanceHint">トマトか水樽の近くに立ちましょう。</p>
+          </div>
+        </footer>
+      </section>
+
+      <dialog id="howToDialog" class="modal">
+        <form method="dialog">
+          <h2 id="howToTitle">遊び方</h2>
+          <p id="howToGoal">
+            <strong>目標:</strong> 元気なトマトを1つ育てて収穫しましょう。
+          </p>
+          <p id="howToControls">
+            <strong>操作:</strong> 庭を移動し、道具を選び、トマトや水樽の近くで使います。
+          </p>
+          <p id="howToLoop">
+            <strong>世話の流れ:</strong> 観察し、合った道具を選び、世話をして、少し待ち、成長を見守ります。
+          </p>
+          <button id="howToCloseButton" class="primary-button" type="submit">
+            閉じる
+          </button>
+        </form>
+      </dialog>
+
+      <dialog id="journalDialog" class="modal journal-modal">
+        <form method="dialog">
+          <h2 id="journalTitle">庭ノート</h2>
+          <div id="journalContent" class="journal-content"></div>
+          <button id="journalCloseButton" class="primary-button" type="submit">
+            閉じる
+          </button>
+        </form>
+      </dialog>
+
+      <dialog id="resultDialog" class="modal result-modal">
+        <div>
+          <h2 id="resultTitle">はじめてのトマトを収穫しました！</h2>
+          <p id="resultCondition"></p>
+          <p id="resultLearned"></p>
+          <p id="resultLabel" class="result-label"></p>
+          <p id="nextGardenText" class="next-garden">
+            次の庭、準備中: いちご
+          </p>
+          <div class="result-actions">
+            <button id="replayButton" class="primary-button" type="button">
+              もう一度
+            </button>
+            <button id="titleButton" class="secondary-button" type="button">
+              タイトル
+            </button>
+          </div>
+        </div>
+      </dialog>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
