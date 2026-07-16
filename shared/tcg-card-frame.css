@@ -225,7 +225,7 @@ body[data-tcg-frame="true"] .artwork-frame img,
 body[data-tcg-frame="true"] .card-art-frame img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   display: block !important;
 }
 
