@@ -292,6 +292,21 @@ select:focus {
   color: var(--leaf-dark);
 }
 
+.language-switch {
+  width: min(100%, 270px);
+}
+
+.mini-language-switch {
+  width: auto;
+  grid-template-columns: repeat(2, 42px);
+  padding: 4px;
+}
+
+.mini-language-switch button {
+  min-height: 28px;
+  font-size: 0.76rem;
+}
+
 .schedule-builder {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

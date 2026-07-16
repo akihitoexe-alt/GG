@@ -10,16 +10,28 @@
     <main id="app" class="app">
       <section id="titleScreen" class="title-screen" aria-labelledby="gameTitle">
         <div class="title-copy">
-          <p class="eyebrow">A living garden routine</p>
+          <p class="eyebrow" data-i18n="titleEyebrow">A living garden routine</p>
           <h1 id="gameTitle">Grell-me Garden</h1>
-          <p id="titleDescription">
+          <p id="titleDescription" data-i18n="titleDescription">
             Choose your gardener, plan a crop cycle, and tend a small garden
             where every fruit and vegetable asks for different care.
           </p>
 
           <section class="setup-panel" aria-label="Garden setup">
             <div class="setup-field">
-              <label for="playerName">Gardener name</label>
+              <span class="field-label" data-i18n="languageLabel">Language</span>
+              <div class="segmented-control language-switch" role="group" aria-label="Language">
+                <button class="language-button selected" type="button" data-language="en" aria-pressed="true">
+                  English
+                </button>
+                <button class="language-button" type="button" data-language="ja" aria-pressed="false">
+                  日本語
+                </button>
+              </div>
+            </div>
+
+            <div class="setup-field">
+              <label for="playerName" data-i18n="nameLabel">Gardener name</label>
               <input
                 id="playerName"
                 name="playerName"
@@ -27,65 +39,67 @@
                 maxlength="20"
                 autocomplete="nickname"
                 placeholder="Enter a name"
+                data-i18n-placeholder="namePlaceholder"
               />
             </div>
 
             <div class="setup-field">
-              <span class="field-label">Gardener style</span>
+              <span class="field-label" data-i18n="characterLabel">Gardener style</span>
               <div id="characterChoices" class="character-grid" role="group" aria-label="Gardener style">
                 <button class="character-card selected" type="button" data-character="male" aria-pressed="true">
                   <span class="avatar-preview character-male" aria-hidden="true"></span>
-                  <strong>Male</strong>
-                  <span>Garden jacket</span>
+                  <strong data-i18n="characterMale">Male</strong>
+                  <span data-i18n="characterMaleDesc">Garden jacket</span>
                 </button>
                 <button class="character-card" type="button" data-character="female" aria-pressed="false">
                   <span class="avatar-preview character-female" aria-hidden="true"></span>
-                  <strong>Female</strong>
-                  <span>Berry apron</span>
+                  <strong data-i18n="characterFemale">Female</strong>
+                  <span data-i18n="characterFemaleDesc">Berry apron</span>
                 </button>
                 <button class="character-card" type="button" data-character="neutral" aria-pressed="false">
                   <span class="avatar-preview character-neutral" aria-hidden="true"></span>
-                  <strong>Non-gendered</strong>
-                  <span>Field smock</span>
+                  <strong data-i18n="characterNeutral">Non-gendered</strong>
+                  <span data-i18n="characterNeutralDesc">Field smock</span>
                 </button>
               </div>
             </div>
 
             <div class="setup-field">
-              <span class="field-label">Crop cycle</span>
+              <span class="field-label" data-i18n="cycleLabel">Crop cycle</span>
               <div id="cycleMode" class="segmented-control" role="group" aria-label="Crop cycle mode">
-                <button class="selected" type="button" data-mode="routine" aria-pressed="true">Routine</button>
-                <button type="button" data-mode="random" aria-pressed="false">Random</button>
+                <button class="selected" type="button" data-mode="routine" aria-pressed="true" data-i18n="modeRoutine">Routine</button>
+                <button type="button" data-mode="random" aria-pressed="false" data-i18n="modeRandom">Random</button>
               </div>
 
               <div id="scheduleBuilder" class="schedule-builder" aria-label="Routine crop schedule">
                 <label>
-                  <span>Day 1</span>
+                  <span data-day-label="0">Day 1</span>
                   <select class="schedule-select" data-day="0" aria-label="Day 1 crop"></select>
                 </label>
                 <label>
-                  <span>Day 2</span>
+                  <span data-day-label="1">Day 2</span>
                   <select class="schedule-select" data-day="1" aria-label="Day 2 crop"></select>
                 </label>
                 <label>
-                  <span>Day 3</span>
+                  <span data-day-label="2">Day 3</span>
                   <select class="schedule-select" data-day="2" aria-label="Day 3 crop"></select>
                 </label>
               </div>
 
-              <button id="randomizeCycleButton" class="secondary-button compact-button" type="button">
+              <button id="randomizeCycleButton" class="secondary-button compact-button" type="button" data-i18n="randomizeCycle">
                 Randomize cycle
               </button>
             </div>
           </section>
 
           <div class="title-actions">
-            <button id="startButton" class="primary-button" type="button">Start Garden</button>
-            <button id="howToButton" class="secondary-button" type="button">How to Play</button>
+            <button id="startButton" class="primary-button" type="button" data-i18n="startGarden">Start Garden</button>
+            <button id="howToButton" class="secondary-button" type="button" data-i18n="howTo">How to Play</button>
             <a
               id="lobbyLink"
               class="secondary-button lobby-link"
               href="https://akihitoexe-alt.github.io/GG/Game%20Lobby/#project-grell-me-garden"
+              data-i18n="backLobby"
             >
               Back to Gamer's Grind
             </a>
@@ -115,6 +129,14 @@
           </div>
           <div class="top-meta">
             <span id="currentCropPill" class="crop-pill">Tomato</span>
+            <div class="segmented-control language-switch mini-language-switch" role="group" aria-label="Language">
+              <button class="language-button selected" type="button" data-language="en" aria-pressed="true">
+                EN
+              </button>
+              <button class="language-button" type="button" data-language="ja" aria-pressed="false">
+                JP
+              </button>
+            </div>
             <span id="topHint" class="top-hint">Move: WASD or arrows | Use: Space or E</span>
           </div>
         </header>
@@ -201,7 +223,7 @@
             <section class="gardener-card">
               <span id="gardenerAvatar" class="avatar-preview character-male" aria-hidden="true"></span>
               <div>
-                <span>Gardener</span>
+                <span data-i18n="gardenerCardLabel">Gardener</span>
                 <strong id="gardenerNameLabel">Gardener</strong>
               </div>
             </section>
@@ -210,7 +232,7 @@
             <button id="moreInfoButton" class="icon-panel-button" type="button">Crop Tip</button>
 
             <section id="cropPanel" class="crop-panel" aria-label="Current crop details">
-              <span class="panel-kicker">Current crop</span>
+              <span class="panel-kicker" data-i18n="currentCropLabel">Current crop</span>
               <strong id="currentCropName">Tomato</strong>
               <p id="currentCropTraits">Balanced care with steady water and sunlight.</p>
               <div id="needBadges" class="need-badges" aria-label="Crop needs"></div>
@@ -277,21 +299,21 @@
 
       <dialog id="howToDialog" class="modal">
         <form method="dialog">
-          <h2 id="howToTitle">How to Play</h2>
-          <p>
+          <h2 id="howToTitle" data-i18n="howToTitle">How to Play</h2>
+          <p data-i18n="howToBodyOne">
             Pick a gardener, choose a three-day crop routine, then care for each
             crop through observation, water, sunlight, fertilizer, pest control,
             and harvest.
           </p>
-          <p>
+          <p data-i18n="howToBodyTwo">
             Easier crops tolerate more mistakes. Hard crops have more needs and
             become stressed faster, so inspecting before acting matters.
           </p>
-          <p>
+          <p data-i18n="howToBodyThree">
             Move with WASD or arrow keys. Select tools with the buttons or number
             keys 1-7. Use the selected tool with Space, E, or the Use Tool button.
           </p>
-          <button id="howToCloseButton" class="primary-button" type="submit">Close</button>
+          <button id="howToCloseButton" class="primary-button" type="submit" data-i18n="close">Close</button>
         </form>
       </dialog>
 
@@ -299,10 +321,10 @@
         <form method="dialog">
           <div class="modal-head">
             <div>
-              <p class="eyebrow">Readable field notes</p>
-              <h2 id="journalTitle">Garden Journal</h2>
+              <p class="eyebrow" data-i18n="journalEyebrow">Readable field notes</p>
+              <h2 id="journalTitle" data-i18n="journalTitle">Garden Journal</h2>
             </div>
-            <button id="journalCloseButton" class="secondary-button compact-button" type="submit">Close</button>
+            <button id="journalCloseButton" class="secondary-button compact-button" type="submit" data-i18n="close">Close</button>
           </div>
           <div id="journalContent" class="journal-content"></div>
         </form>
@@ -317,8 +339,8 @@
           <p id="nextGardenText" class="next-garden">The next crop is ready.</p>
           <div class="result-actions">
             <button id="nextCropButton" class="primary-button" type="button">Continue Cycle</button>
-            <button id="replayButton" class="secondary-button" type="button">Restart Garden</button>
-            <button id="titleButton" class="secondary-button" type="button">Title</button>
+            <button id="replayButton" class="secondary-button" type="button" data-i18n="restartGarden">Restart Garden</button>
+            <button id="titleButton" class="secondary-button" type="button" data-i18n="titleButton">Title</button>
           </div>
         </div>
       </dialog>

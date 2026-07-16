@@ -1,11 +1,175 @@
+const TOOL_ORDER = ["inspect", "water", "sun", "fertilizer", "bugs", "rodents", "harvest"];
+
 const TOOL_LABELS = {
-  inspect: "Inspect",
-  water: "Water",
-  sun: "Sunlight",
-  fertilizer: "Fertilizer",
-  bugs: "Bug Net",
-  rodents: "Rodent Guard",
-  harvest: "Harvest",
+  en: {
+    inspect: "Inspect",
+    water: "Water",
+    sun: "Sunlight",
+    fertilizer: "Fertilizer",
+    bugs: "Bug Net",
+    rodents: "Rodent Guard",
+    harvest: "Harvest",
+  },
+  ja: {
+    inspect: "観察",
+    water: "水やり",
+    sun: "日光",
+    fertilizer: "肥料",
+    bugs: "虫よけ",
+    rodents: "動物ガード",
+    harvest: "収穫",
+  },
+};
+
+const UI_TEXT = {
+  en: {
+    titleEyebrow: "A living garden routine",
+    titleDescription:
+      "Choose your gardener, plan a crop cycle, and tend a small garden where every fruit and vegetable asks for different care.",
+    languageLabel: "Language",
+    nameLabel: "Gardener name",
+    namePlaceholder: "Enter a name",
+    characterLabel: "Gardener style",
+    characterMale: "Male",
+    characterMaleDesc: "Garden jacket",
+    characterFemale: "Female",
+    characterFemaleDesc: "Berry apron",
+    characterNeutral: "Non-gendered",
+    characterNeutralDesc: "Field smock",
+    cycleLabel: "Crop cycle",
+    modeRoutine: "Routine",
+    modeRandom: "Random",
+    randomizeCycle: "Randomize cycle",
+    startGarden: "Start Garden",
+    howTo: "How to Play",
+    backLobby: "Back to Gamer's Grind",
+    topHint: "Move: WASD or arrows | Use: Space or E",
+    gardenerCardLabel: "Gardener",
+    currentCropLabel: "Current crop",
+    journalButton: "Garden Journal",
+    moreInfoButton: "Crop Tip",
+    tools: "Tools",
+    objectivePrefix: "Objective",
+    useTool: "Use Tool",
+    howToTitle: "How to Play",
+    howToBodyOne:
+      "Pick a gardener, choose a three-day crop routine, then care for each crop through observation, water, sunlight, fertilizer, pest control, and harvest.",
+    howToBodyTwo:
+      "Easier crops tolerate more mistakes. Hard crops have more needs and become stressed faster, so inspecting before acting matters.",
+    howToBodyThree:
+      "Move with WASD or arrow keys. Select tools with the buttons or number keys 1-7. Use the selected tool with Space, E, or the Use Tool button.",
+    close: "Close",
+    journalEyebrow: "Readable field notes",
+    journalTitle: "Garden Journal",
+    restartGarden: "Restart Garden",
+    titleButton: "Title",
+    defaultName: "Gardener",
+    day: "Day",
+    of: "of",
+    cycle: "Cycle",
+    waterBarrel: "Water Barrel",
+    toolShelf: "Tool Shelf",
+    cropBed: "Crop bed",
+    cropNeeds: "Crop needs",
+    readyToObserve: "Ready to observe.",
+    low: "Low",
+    calm: "Calm",
+    medium: "Medium",
+    alert: "Alert",
+    high: "High",
+    worried: "Worried",
+    wilted: "Wilted",
+    help: "Help",
+    steadyCrop: "The crop is steady.",
+    recoveryStep: "Inspect carefully and use the right recovery step.",
+    gentlerStep: "A gentler next step will help.",
+    noNotesTitle: "No notes unlocked yet",
+    noNotesText: "Inspect the first crop to begin filling the journal.",
+    unlockedNotes: "Unlocked Notes",
+    cropGuide: "Crop Guide",
+    randomizedCycle: "Randomized crop cycle",
+    plannedCycle: "Planned crop routine",
+    harvested: "Harvested",
+    inProgress: "In progress",
+    queued: "Queued",
+    steps: "steps",
+    continueCycle: "Continue Cycle",
+    continueToDay: "Continue to Day",
+  },
+  ja: {
+    titleEyebrow: "生きている庭のサイクル",
+    titleDescription:
+      "庭師を選び、作物の予定を決めて、果物や野菜ごとに違う世話をしながら小さな庭を育てます。",
+    languageLabel: "言語",
+    nameLabel: "庭師の名前",
+    namePlaceholder: "名前を入力",
+    characterLabel: "庭師スタイル",
+    characterMale: "男性",
+    characterMaleDesc: "庭仕事の上着",
+    characterFemale: "女性",
+    characterFemaleDesc: "ベリーのエプロン",
+    characterNeutral: "ノンジェンダー",
+    characterNeutralDesc: "畑のスモック",
+    cycleLabel: "作物サイクル",
+    modeRoutine: "予定",
+    modeRandom: "ランダム",
+    randomizeCycle: "サイクルをランダムにする",
+    startGarden: "庭を始める",
+    howTo: "遊び方",
+    backLobby: "Gamer's Grindへ戻る",
+    topHint: "移動: WASD/矢印 | 使う: Space/E",
+    gardenerCardLabel: "庭師",
+    currentCropLabel: "今の作物",
+    journalButton: "庭ノート",
+    moreInfoButton: "作物のヒント",
+    tools: "道具",
+    objectivePrefix: "目標",
+    useTool: "道具を使う",
+    howToTitle: "遊び方",
+    howToBodyOne:
+      "庭師を選び、3日分の作物サイクルを決めます。観察、水やり、日光、肥料、害虫対策、収穫で作物を世話します。",
+    howToBodyTwo:
+      "やさしい作物は失敗に強く、難しい作物は必要な世話が多く、早くストレスを感じます。まず観察することが大切です。",
+    howToBodyThree:
+      "WASDまたは矢印キーで移動します。ボタンまたは1-7キーで道具を選び、Space、E、または「道具を使う」で使います。",
+    close: "閉じる",
+    journalEyebrow: "読みやすい畑のメモ",
+    journalTitle: "庭ノート",
+    restartGarden: "庭をやり直す",
+    titleButton: "タイトル",
+    defaultName: "庭師",
+    day: "日目",
+    of: "/",
+    cycle: "サイクル",
+    waterBarrel: "水たる",
+    toolShelf: "道具棚",
+    cropBed: "作物の畝",
+    cropNeeds: "作物に必要な世話",
+    readyToObserve: "観察できます。",
+    low: "低い",
+    calm: "落ち着き",
+    medium: "中くらい",
+    alert: "注意",
+    high: "高い",
+    worried: "心配",
+    wilted: "しおれ",
+    help: "手当て",
+    steadyCrop: "作物は落ち着いています。",
+    recoveryStep: "よく観察して、正しい回復の世話をしましょう。",
+    gentlerStep: "次はやさしい手順が助けになります。",
+    noNotesTitle: "まだメモはありません",
+    noNotesText: "最初の作物を観察すると、庭ノートが増えます。",
+    unlockedNotes: "見つけたメモ",
+    cropGuide: "作物ガイド",
+    randomizedCycle: "ランダム作物サイクル",
+    plannedCycle: "計画した作物サイクル",
+    harvested: "収穫済み",
+    inProgress: "進行中",
+    queued: "待機中",
+    steps: "手順",
+    continueCycle: "サイクルを続ける",
+    continueToDay: "次の日へ:",
+  },
 };
 
 const PROFILE_KEY = "grellMeGardenProfile";
@@ -135,6 +299,67 @@ const crops = [
 
 const cropById = Object.fromEntries(crops.map((crop) => [crop.id, crop]));
 
+const CROP_TEXT = {
+  ja: {
+    tomato: {
+      name: "トマト",
+      type: "果物",
+      difficulty: "標準",
+      needs: ["安定した水", "よく当たる日光", "虫の確認"],
+      profile: "水と明るい日光でよく育つ、扱いやすい最初の作物です。",
+      tip: "トマトは比較的育てやすいですが、観察、水やり、日光、虫よけの順番が大切です。",
+    },
+    lettuce: {
+      name: "レタス",
+      type: "野菜",
+      difficulty: "やさしい",
+      needs: ["軽い水やり", "半日陰", "虫の確認"],
+      profile: "早く育つ葉物です。初心者向きですが、小さな虫が寄りやすいです。",
+      tip: "レタスはやさしい水やりと早めの虫チェックで葉が元気に育ちます。",
+    },
+    carrot: {
+      name: "ニンジン",
+      type: "野菜",
+      difficulty: "やさしい",
+      needs: ["均一な土", "おだやかな日光", "動物ガード"],
+      profile: "地面の下でじっくり育つ根菜です。いじりすぎないことも大切です。",
+      tip: "ニンジンは均一な土を好みます。動物の足あとにも注意しましょう。",
+    },
+    strawberry: {
+      name: "イチゴ",
+      type: "果物",
+      difficulty: "ふつう",
+      needs: ["水", "肥料", "虫の確認"],
+      profile: "甘い収穫が楽しめますが、豊かな土とこまめな虫対策が必要です。",
+      tip: "イチゴは虫が増える前に土を整えると、よい実になりやすいです。",
+    },
+    pepper: {
+      name: "ピーマン",
+      type: "果物",
+      difficulty: "ふつう",
+      needs: ["日光", "水", "肥料"],
+      profile: "あたたかさを好む作物です。日光、水、少しの肥料が助けになります。",
+      tip: "ピーマンは光に強く反応します。水の前に本当に必要な世話を観察しましょう。",
+    },
+    cucumber: {
+      name: "キュウリ",
+      type: "野菜",
+      difficulty: "ふつう",
+      needs: ["多めの水", "日光", "虫の確認"],
+      profile: "水をよく飲み、こまめな確認でぐんぐん育つ作物です。",
+      tip: "キュウリはこの庭の中でも水を多く必要とします。水たるで早めに補充しましょう。",
+    },
+    pumpkin: {
+      name: "カボチャ",
+      type: "果物",
+      difficulty: "難しい",
+      needs: ["深い水やり", "肥料", "動物ガード", "日光"],
+      profile: "大きく育つぶん、必要な世話も多い難しい作物です。",
+      tip: "カボチャは一番難しい作物です。土を肥やし、つるを守り、日光を保ちましょう。",
+    },
+  },
+};
+
 const careCopy = {
   inspect: {
     title: "Seed Check",
@@ -215,7 +440,90 @@ const careCopy = {
   },
 };
 
-const phaseTimes = ["Morning", "Late Morning", "Noon", "Afternoon", "Evening", "Golden Hour"];
+const careCopyJa = {
+  inspect: {
+    title: "種の確認",
+    visual: "seed",
+    condition: (crop) => `${cropName(crop)}の畝を観察できます。`,
+    objective: (crop) => `${cropName(crop)}の畝を観察する。`,
+    thought: (crop) => `${cropName(crop)}の新しいサイクルが始まりました。まずよく見てみましょう。`,
+    inspect: (crop) => `${cropName(crop)}の畝に、土の様子、光、小さな動きなどの手がかりがあります。`,
+    correct: (crop) => `${cropName(crop)}に何が必要か、行動の前に読み取れました。`,
+    noteTitle: "まず観察",
+    noteText: (crop) => `${cropName(crop)}の世話は、土、葉、色、近くの虫を読むところから始まります。`,
+  },
+  water: {
+    title: "水やり",
+    visual: "sprout",
+    condition: (crop) => `${cropName(crop)}は水を必要としています。`,
+    objective: (crop) => `水を入れたじょうろで${cropName(crop)}に水をあげる。`,
+    thought: (crop) => `${cropName(crop)}の土が乾いています。近くに水たるがあります。`,
+    inspect: (crop) => `${cropName(crop)}の周りの土は、水が必要なくらい乾いています。びしょびしょではありません。`,
+    correct: (crop) => `${cropName(crop)}の根にちょうどよく水が届きました。`,
+    noteTitle: "水はていねいに",
+    noteText: (crop) => `${cropName(crop)}は土が乾いたら水が必要です。ただし水のあげすぎは根にストレスをかけます。`,
+  },
+  sun: {
+    title: "日光",
+    visual: "leaf",
+    condition: (crop) => `${cropName(crop)}は光を必要としています。`,
+    objective: (crop) => `${cropName(crop)}の日当たりを整える。`,
+    thought: (crop) => `${cropName(crop)}がよりよい光の方へ伸びています。`,
+    inspect: () => "葉が明るい方へ向いています。今は日光を整えるのがよさそうです。",
+    correct: (crop) => `${cropName(crop)}にきれいな日差しが届きました。`,
+    noteTitle: "日光を整える",
+    noteText: (crop) => `${cropName(crop)}は日光で力を作ります。あてずっぽうではなく、必要なタイミングを見ることが大切です。`,
+  },
+  fertilizer: {
+    title: "肥料",
+    visual: "leaf",
+    condition: (crop) => `${cropName(crop)}は土の栄養を必要としています。`,
+    objective: (crop) => `${cropName(crop)}の畝に肥料を入れる。`,
+    thought: (crop) => `${cropName(crop)}が次に伸びる前に、少し栄養が必要そうです。`,
+    inspect: () => "葉は落ち着いていますが、土の力が少し足りません。少量の肥料が助けになります。",
+    correct: (crop) => `${cropName(crop)}の畝に、ちょうどよい量の肥料を入れました。`,
+    noteTitle: "肥料は少しずつ",
+    noteText: (crop) => `${cropName(crop)}は花や実に力が必要な時、肥料が助けになります。`,
+  },
+  bugs: {
+    title: "虫の確認",
+    visual: "fruit",
+    condition: (crop) => `${cropName(crop)}に虫が集まっています。`,
+    objective: (crop) => `${cropName(crop)}から虫をよける。`,
+    thought: (crop) => `${cropName(crop)}の葉の近くで小さなものが動いています。`,
+    inspect: () => "やわらかい葉の近くに小さな虫がいます。虫よけをやさしく使いましょう。",
+    correct: (crop) => `虫が離れて、${cropName(crop)}は安全そうです。`,
+    noteTitle: "害虫は早めに",
+    noteText: (crop) => `${cropName(crop)}は早く虫を見つけてやさしく取り除くと回復しやすいです。`,
+  },
+  rodents: {
+    title: "動物ガード",
+    visual: "fruit",
+    condition: (crop) => `${cropName(crop)}の近くに小さな動物が来ています。`,
+    objective: (crop) => `${cropName(crop)}にやさしい動物ガードを置く。`,
+    thought: (crop) => `${cropName(crop)}の畝の近くに小さな足あとがあります。`,
+    inspect: () => "足あとが畝へ向かっています。やさしいガードで近づきすぎないようにしましょう。",
+    correct: (crop) => `ガードを置き、${cropName(crop)}の畝を守りました。`,
+    noteTitle: "収穫を守る",
+    noteText: (crop) => `${cropName(crop)}は育つほど動物を引き寄せることがあります。早めの対策が大切です。`,
+  },
+  harvest: {
+    title: "収穫",
+    visual: "ripe",
+    condition: (crop) => `${cropName(crop)}は収穫できます。`,
+    objective: (crop) => `熟した${cropName(crop)}を収穫する。`,
+    thought: (crop) => `${cropName(crop)}は収穫によさそうです。ここが楽しみな瞬間です。`,
+    inspect: (crop) => `色、形、手ごたえを見ると、${cropName(crop)}はかごに入れる準備ができています。`,
+    correct: (crop) => `${cropName(crop)}をよいタイミングで収穫しました。`,
+    noteTitle: "収穫のタイミング",
+    noteText: (crop) => `${cropName(crop)}は段階、色、状態がそろった時に収穫します。`,
+  },
+};
+
+const phaseTimes = {
+  en: ["Morning", "Late Morning", "Noon", "Afternoon", "Evening", "Golden Hour"],
+  ja: ["朝", "午前", "昼", "午後", "夕方", "黄金の時間"],
+};
 const dayClasses = ["day-morning", "day-noon", "day-noon", "day-afternoon", "day-evening", "day-evening"];
 const visualSequence = ["seed", "sprout", "leaf", "fruit", "fruit", "ripe"];
 
@@ -223,6 +531,7 @@ const dom = {
   titleScreen: document.querySelector("#titleScreen"),
   gameScreen: document.querySelector("#gameScreen"),
   playerName: document.querySelector("#playerName"),
+  languageButtons: document.querySelectorAll(".language-button"),
   characterButtons: document.querySelectorAll(".character-card"),
   cycleModeButtons: document.querySelectorAll("#cycleMode button"),
   scheduleBuilder: document.querySelector("#scheduleBuilder"),
@@ -283,6 +592,7 @@ const dom = {
 };
 
 const state = {
+  language: "en",
   playerName: "Gardener",
   character: "male",
   cycleMode: "routine",
@@ -315,14 +625,70 @@ const zoneCenters = {
   shelf: { x: 84, y: 72 },
 };
 
+function currentLanguage() {
+  return state?.language === "ja" ? "ja" : "en";
+}
+
+function ui() {
+  return UI_TEXT[currentLanguage()];
+}
+
+function careSet() {
+  return currentLanguage() === "ja" ? careCopyJa : careCopy;
+}
+
+function toolLabel(tool) {
+  return TOOL_LABELS[currentLanguage()][tool] || TOOL_LABELS.en[tool] || tool;
+}
+
+function cropText(crop) {
+  return CROP_TEXT[currentLanguage()]?.[crop.id] || crop;
+}
+
+function cropName(crop) {
+  return cropText(crop).name || crop.name;
+}
+
+function cropLowerName(crop) {
+  return currentLanguage() === "ja" ? cropName(crop) : cropName(crop).toLowerCase();
+}
+
+function cropType(crop) {
+  return cropText(crop).type || crop.type;
+}
+
+function cropDifficulty(crop) {
+  return cropText(crop).difficulty || crop.difficulty;
+}
+
+function cropNeeds(crop) {
+  return cropText(crop).needs || crop.needs;
+}
+
+function cropProfile(crop) {
+  return cropText(crop).profile || crop.profile;
+}
+
+function cropTip(crop) {
+  return cropText(crop).tip || crop.tip;
+}
+
+function modeLabel(mode) {
+  return mode === "random" ? ui().modeRandom : ui().modeRoutine;
+}
+
+function dayLabel(dayNumber) {
+  return currentLanguage() === "ja" ? `${dayNumber}${ui().day}` : `${ui().day} ${dayNumber}`;
+}
+
 function cropPhases(crop = currentCrop()) {
   return crop.plan.map((tool, index) => {
-    const copy = careCopy[tool];
+    const copy = careSet()[tool];
     const isHarvest = tool === "harvest";
     return {
       tool,
       title: copy.title,
-      label: `${phaseTimes[Math.min(index, phaseTimes.length - 1)]} - ${crop.name} ${copy.title}`,
+      label: `${phaseTimes[currentLanguage()][Math.min(index, phaseTimes[currentLanguage()].length - 1)]} - ${cropName(crop)} ${copy.title}`,
       visual: isHarvest ? "ripe" : copy.visual || visualSequence[Math.min(index, visualSequence.length - 1)],
       dayClass: dayClasses[Math.min(index, dayClasses.length - 1)],
       condition: copy.condition(crop),
@@ -331,7 +697,7 @@ function cropPhases(crop = currentCrop()) {
       inspect: copy.inspect(crop),
       correct: copy.correct(crop),
       noteId: `${crop.id}:${tool}`,
-      noteTitle: `${crop.name}: ${copy.noteTitle}`,
+      noteTitle: `${cropName(crop)}: ${copy.noteTitle}`,
       noteText: copy.noteText(crop),
     };
   });
@@ -348,16 +714,63 @@ function currentPhase() {
 
 function populateScheduleOptions() {
   dom.scheduleSelects.forEach((select, index) => {
+    const selected = select.value || defaultSchedule[index] || crops[index % crops.length].id;
     select.innerHTML = crops
-      .map((crop) => `<option value="${crop.id}">${crop.name} - ${crop.difficulty}</option>`)
+      .map((crop) => `<option value="${crop.id}">${cropName(crop)} - ${cropDifficulty(crop)}</option>`)
       .join("");
-    select.value = defaultSchedule[index] || crops[index % crops.length].id;
+    select.value = cropById[selected] ? selected : defaultSchedule[index] || crops[index % crops.length].id;
+  });
+}
+
+function setLanguage(language) {
+  if (!["en", "ja"].includes(language)) return;
+  state.language = language;
+  applyLanguage();
+  populateScheduleOptions();
+  setDistanceHint();
+  renderJournal();
+  saveProfile();
+  if (!dom.gameScreen.classList.contains("hidden")) {
+    setThought(currentPhase().thought);
+    render();
+  }
+}
+
+function applyLanguage() {
+  const text = ui();
+  document.documentElement.lang = currentLanguage();
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.dataset.i18n;
+    if (text[key]) element.textContent = text[key];
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+    const key = element.dataset.i18nPlaceholder;
+    if (text[key]) element.setAttribute("placeholder", text[key]);
+  });
+  document.querySelectorAll("[data-day-label]").forEach((element) => {
+    element.textContent = dayLabel(Number(element.dataset.dayLabel) + 1);
+  });
+  dom.languageButtons.forEach((button) => {
+    const selected = button.dataset.language === currentLanguage();
+    button.classList.toggle("selected", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+  dom.topHint.textContent = text.topHint;
+  dom.journalButton.textContent = text.journalButton;
+  dom.moreInfoButton.textContent = text.moreInfoButton;
+  dom.useButton.textContent = text.useTool;
+  dom.tools.setAttribute("aria-label", text.tools || "Tools");
+  document.querySelectorAll(".tool-button").forEach((button) => {
+    button.querySelector(".tool-label").textContent = toolLabel(button.dataset.tool);
   });
 }
 
 function loadProfile() {
   try {
     const saved = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}");
+    if (["en", "ja"].includes(saved.language)) {
+      state.language = saved.language;
+    }
     if (typeof saved.name === "string") {
       dom.playerName.value = saved.name.slice(0, 20);
     }
@@ -378,6 +791,8 @@ function loadProfile() {
     localStorage.removeItem(PROFILE_KEY);
   }
 
+  applyLanguage();
+  populateScheduleOptions();
   setCharacter(state.character);
   setCycleMode(state.cycleMode);
   updateSetupScheduleState();
@@ -385,6 +800,7 @@ function loadProfile() {
 
 function saveProfile() {
   const profile = {
+    language: state.language,
     name: dom.playerName.value.trim().slice(0, 20),
     character: state.character,
     cycleMode: state.cycleMode,
@@ -395,7 +811,7 @@ function saveProfile() {
 
 function getPlayerName() {
   const name = dom.playerName.value.trim().slice(0, 20);
-  return name || "Gardener";
+  return name || ui().defaultName;
 }
 
 function getSelectedSchedule() {
@@ -502,7 +918,7 @@ function resetCropState() {
 }
 
 function selectTool(tool) {
-  if (!TOOL_LABELS[tool]) return;
+  if (!TOOL_ORDER.includes(tool)) return;
   state.selectedTool = tool;
   syncToolButtons();
   setDistanceHint();
@@ -518,19 +934,25 @@ function syncToolButtons() {
 function render() {
   const crop = currentCrop();
   const phase = currentPhase();
+  const text = ui();
 
-  dom.cycleLabel.textContent = `Day ${state.dayIndex + 1} of ${state.schedule.length} - ${capitalize(state.cycleMode)} Cycle`;
+  applyLanguage();
+  dom.cycleLabel.textContent =
+    currentLanguage() === "ja"
+      ? `${dayLabel(state.dayIndex + 1)}${text.of}${state.schedule.length} - ${modeLabel(state.cycleMode)}${text.cycle}`
+      : `${dayLabel(state.dayIndex + 1)} ${text.of} ${state.schedule.length} - ${modeLabel(state.cycleMode)} ${text.cycle}`;
   dom.stageLabel.textContent = phase.label;
-  dom.currentCropPill.textContent = `${crop.name} (${crop.difficulty})`;
-  dom.gardenSign.textContent = crop.name;
-  dom.seedMarker.textContent = crop.name;
-  dom.barrelLabel.textContent = "Water Barrel";
-  dom.shelfLabel.textContent = "Tool Shelf";
+  dom.currentCropPill.textContent = `${cropName(crop)} (${cropDifficulty(crop)})`;
+  dom.gardenSign.textContent = cropName(crop);
+  dom.seedMarker.textContent = cropName(crop);
+  dom.barrelLabel.textContent = text.waterBarrel;
+  dom.shelfLabel.textContent = text.toolShelf;
   dom.gardenerNameLabel.textContent = state.playerName || getPlayerName();
-  dom.currentCropName.textContent = crop.name;
-  dom.currentCropTraits.textContent = crop.profile;
-  dom.needBadges.innerHTML = crop.needs.map((need) => `<span class="need-badge">${escapeHtml(need)}</span>`).join("");
-  dom.tomatoZone.setAttribute("aria-label", `${crop.name} bed`);
+  dom.currentCropName.textContent = cropName(crop);
+  dom.currentCropTraits.textContent = cropProfile(crop);
+  dom.needBadges.innerHTML = cropNeeds(crop).map((need) => `<span class="need-badge">${escapeHtml(need)}</span>`).join("");
+  dom.needBadges.setAttribute("aria-label", text.cropNeeds);
+  dom.tomatoZone.setAttribute("aria-label", `${cropName(crop)} ${text.cropBed}`);
 
   dom.garden.classList.remove("day-morning", "day-noon", "day-afternoon", "day-evening");
   dom.garden.classList.add(phase.dayClass);
@@ -555,9 +977,15 @@ function render() {
   dom.rodentLayer.classList.toggle("scurry-away", state.completedPhaseTool === "rodents");
 
   dom.conditionChip.textContent = getConditionText();
-  dom.objectiveText.textContent = `Objective: ${getObjective()}`;
+  dom.objectiveText.textContent = `${text.objectivePrefix}: ${getObjective()}`;
   dom.progressBubble.textContent =
-    phase.tool === "harvest" ? "Packing the harvest..." : `Growing the ${crop.name.toLowerCase()}...`;
+    phase.tool === "harvest"
+      ? currentLanguage() === "ja"
+        ? "収穫をまとめています..."
+        : "Packing the harvest..."
+      : currentLanguage() === "ja"
+        ? `${cropName(crop)}が育っています...`
+        : `Growing the ${cropLowerName(crop)}...`;
 
   renderStress();
   renderJournal();
@@ -571,52 +999,71 @@ function getObjective() {
   const crop = currentCrop();
   const phase = currentPhase();
 
-  if (state.waiting) return `Wait while the ${crop.name.toLowerCase()} responds.`;
-  if (state.wilted && !state.inspected) return `Inspect the wilted ${crop.name.toLowerCase()}.`;
-  if (state.wilted) return `Help the ${crop.name.toLowerCase()} recover with ${TOOL_LABELS[phase.tool]}.`;
+  if (state.waiting) {
+    return currentLanguage() === "ja"
+      ? `${cropName(crop)}の反応を待つ。`
+      : `Wait while the ${cropLowerName(crop)} responds.`;
+  }
+  if (state.wilted && !state.inspected) {
+    return currentLanguage() === "ja"
+      ? `しおれた${cropName(crop)}を観察する。`
+      : `Inspect the wilted ${cropLowerName(crop)}.`;
+  }
+  if (state.wilted) {
+    return currentLanguage() === "ja"
+      ? `${toolLabel(phase.tool)}で${cropName(crop)}の回復を助ける。`
+      : `Help the ${cropLowerName(crop)} recover with ${toolLabel(phase.tool)}.`;
+  }
   if (phase.tool === "inspect") return phase.objective;
-  if (!state.inspected) return `Inspect the ${crop.name.toLowerCase()} before choosing care.`;
-  if (phase.tool === "water" && !state.canFull) return "Refill the watering can.";
+  if (!state.inspected) {
+    return currentLanguage() === "ja"
+      ? `世話を選ぶ前に${cropName(crop)}を観察する。`
+      : `Inspect the ${cropLowerName(crop)} before choosing care.`;
+  }
+  if (phase.tool === "water" && !state.canFull) {
+    return currentLanguage() === "ja" ? "じょうろに水を入れる。" : "Refill the watering can.";
+  }
   return phase.objective;
 }
 
 function getConditionText() {
   const crop = currentCrop();
   const phase = currentPhase();
-  if (state.wilted) return `${crop.name} is wilted.`;
-  if (state.completedPhaseTool === "water") return "Soil is nicely moist.";
-  if (state.completedPhaseTool === "fertilizer") return "Soil has been fed.";
-  if (state.completedPhaseTool === "sun") return "Light is balanced.";
-  if (state.completedPhaseTool === "bugs") return "Bugs have cleared.";
-  if (state.completedPhaseTool === "rodents") return "Rodent guard is set.";
-  if (phase.tool === "water" && state.canFull) return "Watering can is full.";
+  if (state.wilted) return currentLanguage() === "ja" ? `${cropName(crop)}がしおれています。` : `${cropName(crop)} is wilted.`;
+  if (state.completedPhaseTool === "water") return currentLanguage() === "ja" ? "土がちょうどよく湿っています。" : "Soil is nicely moist.";
+  if (state.completedPhaseTool === "fertilizer") return currentLanguage() === "ja" ? "土に栄養が入りました。" : "Soil has been fed.";
+  if (state.completedPhaseTool === "sun") return currentLanguage() === "ja" ? "日当たりが整いました。" : "Light is balanced.";
+  if (state.completedPhaseTool === "bugs") return currentLanguage() === "ja" ? "虫はいなくなりました。" : "Bugs have cleared.";
+  if (state.completedPhaseTool === "rodents") return currentLanguage() === "ja" ? "動物ガードを置きました。" : "Rodent guard is set.";
+  if (phase.tool === "water" && state.canFull) return currentLanguage() === "ja" ? "じょうろは満タンです。" : "Watering can is full.";
   return phase.condition;
 }
 
 function renderStress() {
   const crop = currentCrop();
-  let label = "Low";
-  let face = "Calm";
-  let text = "The crop is steady.";
+  const textSet = ui();
+  let label = textSet.low;
+  let face = textSet.calm;
+  let text = textSet.steadyCrop;
   let color = "var(--leaf)";
   let width = Math.max(12, Math.round((state.stress / crop.tolerance) * 86));
 
   if (state.wilted) {
-    label = "Wilted";
-    face = "Help";
-    text = "Inspect carefully and use the right recovery step.";
+    label = textSet.wilted;
+    face = textSet.help;
+    text = textSet.recoveryStep;
     color = "#d5735f";
     width = 100;
   } else if (state.stress >= crop.tolerance - 1) {
-    label = "High";
-    face = "Worried";
-    text = `${crop.name} is close to wilting.`;
+    label = textSet.high;
+    face = textSet.worried;
+    text = currentLanguage() === "ja" ? `${cropName(crop)}はしおれそうです。` : `${cropName(crop)} is close to wilting.`;
     color = "#e39c4f";
     width = 78;
   } else if (state.stress > 0) {
-    label = "Medium";
-    face = "Alert";
-    text = "A gentler next step will help.";
+    label = textSet.medium;
+    face = textSet.alert;
+    text = textSet.gentlerStep;
     color = "#d9b348";
     width = 44;
   }
@@ -629,16 +1076,17 @@ function renderStress() {
 }
 
 function renderJournal() {
+  const text = ui();
   const scheduleHtml = state.schedule
     .map((cropId, index) => {
       const crop = cropById[cropId] || cropById.tomato;
       const active = index === state.dayIndex && !dom.gameScreen.classList.contains("hidden");
       const complete = state.completed.some((result) => result.day === index);
-      const status = complete ? "Harvested" : active ? "In progress" : "Queued";
+      const status = complete ? text.harvested : active ? text.inProgress : text.queued;
       return `
         <li>
-          <strong>Day ${index + 1}: ${escapeHtml(crop.name)}</strong>
-          <span>${escapeHtml(crop.difficulty)} - ${status}</span>
+          <strong>${escapeHtml(dayLabel(index + 1))}: ${escapeHtml(cropName(crop))}</strong>
+          <span>${escapeHtml(cropDifficulty(crop))} - ${status}</span>
         </li>
       `;
     })
@@ -647,7 +1095,7 @@ function renderJournal() {
   const notes = getUnlockedNotes();
   const notesHtml =
     notes.length === 0
-      ? `<article class="note-card"><h3>No notes unlocked yet</h3><p>Inspect the first crop to begin filling the journal.</p></article>`
+      ? `<article class="note-card"><h3>${text.noNotesTitle}</h3><p>${text.noNotesText}</p></article>`
       : notes
           .map(
             (note) => `
@@ -663,12 +1111,12 @@ function renderJournal() {
     .map(
       (crop) => `
         <article class="crop-guide-card">
-          <h3>${escapeHtml(crop.name)}</h3>
-          <p>${escapeHtml(crop.profile)}</p>
+          <h3>${escapeHtml(cropName(crop))}</h3>
+          <p>${escapeHtml(cropProfile(crop))}</p>
           <div class="guide-meta">
-            <span>${escapeHtml(crop.type)}</span>
-            <span>${escapeHtml(crop.difficulty)}</span>
-            <span>${crop.plan.length} steps</span>
+            <span>${escapeHtml(cropType(crop))}</span>
+            <span>${escapeHtml(cropDifficulty(crop))}</span>
+            <span>${crop.plan.length} ${text.steps}</span>
           </div>
         </article>
       `,
@@ -677,17 +1125,17 @@ function renderJournal() {
 
   dom.journalContent.innerHTML = `
     <aside class="journal-card">
-      <h3>${escapeHtml(state.playerName || getPlayerName())}'s Cycle</h3>
-      <p>${state.cycleMode === "random" ? "Randomized crop cycle" : "Planned crop routine"}</p>
+      <h3>${escapeHtml(state.playerName || getPlayerName())}${currentLanguage() === "ja" ? "のサイクル" : "'s Cycle"}</h3>
+      <p>${state.cycleMode === "random" ? text.randomizedCycle : text.plannedCycle}</p>
       <ul class="cycle-list">${scheduleHtml}</ul>
     </aside>
     <section class="journal-main">
       <section>
-        <h3>Unlocked Notes</h3>
+        <h3>${text.unlockedNotes}</h3>
         <div class="note-grid">${notesHtml}</div>
       </section>
       <section>
-        <h3>Crop Guide</h3>
+        <h3>${text.cropGuide}</h3>
         <div class="crop-guide-grid">${guideHtml}</div>
       </section>
     </section>
@@ -699,10 +1147,10 @@ function getUnlockedNotes() {
     .map((noteId) => {
       const [cropId, tool] = noteId.split(":");
       const crop = cropById[cropId];
-      const copy = careCopy[tool];
+      const copy = careSet()[tool];
       if (!crop || !copy) return null;
       return {
-        title: `${crop.name}: ${copy.noteTitle}`,
+        title: `${cropName(crop)}: ${copy.noteTitle}`,
         text: copy.noteText(crop),
       };
     })
@@ -718,19 +1166,24 @@ function setDistanceHint() {
   const crop = currentCrop();
   const nearTomato = isNear("tomato");
   const nearBarrel = isNear("barrel");
-  const selected = TOOL_LABELS[state.selectedTool];
+  const selected = toolLabel(state.selectedTool);
 
   if (state.selectedTool === "water" && nearBarrel) {
-    dom.distanceHint.textContent = "Use Water here to refill the can.";
+    dom.distanceHint.textContent =
+      currentLanguage() === "ja" ? "ここで水やりを使うと、じょうろに水を入れます。" : "Use Water here to refill the can.";
     return;
   }
 
   if (nearTomato) {
-    dom.distanceHint.textContent = `Use ${selected} on the ${crop.name.toLowerCase()}.`;
+    dom.distanceHint.textContent =
+      currentLanguage() === "ja"
+        ? `${cropName(crop)}に${selected}を使えます。`
+        : `Use ${selected} on the ${cropLowerName(crop)}.`;
     return;
   }
 
-  dom.distanceHint.textContent = "Stand near the crop bed or water barrel.";
+  dom.distanceHint.textContent =
+    currentLanguage() === "ja" ? "作物の畝か水たるの近くに立ちましょう。" : "Stand near the crop bed or water barrel.";
 }
 
 function isNear(zone) {
@@ -768,23 +1221,23 @@ function useSelectedTool() {
   }
 
   if (isNear("shelf")) {
-    setThought("The tool shelf is tidy. Work near the crop bed.");
+    setThought(currentLanguage() === "ja" ? "道具棚は整っています。作物の畝の近くで作業しましょう。" : "The tool shelf is tidy. Work near the crop bed.");
     playTone(390, 0.05, "triangle", 0.04);
     return;
   }
 
-  setThought("Move closer before using that tool.");
+  setThought(currentLanguage() === "ja" ? "道具を使う前に、もう少し近づきましょう。" : "Move closer before using that tool.");
 }
 
 function fillWateringCan() {
   if (state.canFull) {
-    setThought("The watering can already has enough water.");
+    setThought(currentLanguage() === "ja" ? "じょうろにはもう十分な水があります。" : "The watering can already has enough water.");
     return;
   }
 
   animateUse();
   state.canFull = true;
-  setThought("The watering can is full.");
+  setThought(currentLanguage() === "ja" ? "じょうろに水が入りました。" : "The watering can is full.");
   playTone(540, 0.13, "sine", 0.07);
   render();
 }
@@ -800,13 +1253,21 @@ function useOnCrop() {
   }
 
   if (state.wilted && !state.inspected) {
-    setThought(`Inspect the wilted ${crop.name.toLowerCase()} before trying to recover it.`);
+    setThought(
+      currentLanguage() === "ja"
+        ? `回復させる前に、しおれた${cropName(crop)}を観察しましょう。`
+        : `Inspect the wilted ${cropLowerName(crop)} before trying to recover it.`,
+    );
     playTone(260, 0.08, "triangle", 0.04);
     return;
   }
 
   if (!state.inspected && phase.tool !== "inspect") {
-    setThought(`Inspect the ${crop.name.toLowerCase()} first so the next step is clear.`);
+    setThought(
+      currentLanguage() === "ja"
+        ? `次の世話を決めるために、まず${cropName(crop)}を観察しましょう。`
+        : `Inspect the ${cropLowerName(crop)} first so the next step is clear.`,
+    );
     playTone(300, 0.08, "triangle", 0.04);
     return;
   }
@@ -818,7 +1279,7 @@ function useOnCrop() {
 
   if (tool === "water") {
     if (!state.canFull) {
-      setThought("The watering can is empty. Refill it at the water barrel.");
+      setThought(currentLanguage() === "ja" ? "じょうろは空です。水たるで水を入れましょう。" : "The watering can is empty. Refill it at the water barrel.");
       playTone(260, 0.08, "triangle", 0.04);
       return;
     }
@@ -836,7 +1297,11 @@ function inspectCrop() {
   animateUse();
 
   if (state.wilted) {
-    setThought(`The ${crop.name.toLowerCase()} can recover if the next care step is ${TOOL_LABELS[phase.tool]}.`);
+    setThought(
+      currentLanguage() === "ja"
+        ? `${cropName(crop)}は、次に${toolLabel(phase.tool)}を使えば回復できます。`
+        : `The ${cropLowerName(crop)} can recover if the next care step is ${toolLabel(phase.tool)}.`,
+    );
     playTone(420, 0.08, "sine", 0.05);
     render();
     return;
@@ -864,7 +1329,7 @@ function correctCare(message, afterWait = advancePhase) {
     state.wilted = false;
     state.wiltedErrors = 0;
     state.stress = Math.max(0, crop.tolerance - 2);
-    setThought(`${crop.name} recovers. ${message}`);
+    setThought(currentLanguage() === "ja" ? `${cropName(crop)}は回復しました。${message}` : `${cropName(crop)} recovers. ${message}`);
   } else {
     state.stress = Math.max(0, state.stress - 1);
     setThought(message);
@@ -887,7 +1352,11 @@ function wrongCare(message) {
       resetCurrentPhase();
       return;
     }
-    setThought(`That was not gentle enough. Inspect again and use ${TOOL_LABELS[currentPhase().tool]}.`);
+    setThought(
+      currentLanguage() === "ja"
+        ? `今の世話は合いませんでした。もう一度観察して、${toolLabel(currentPhase().tool)}を使いましょう。`
+        : `That was not gentle enough. Inspect again and use ${toolLabel(currentPhase().tool)}.`,
+    );
     playTone(210, 0.12, "triangle", 0.06);
     render();
     return;
@@ -899,7 +1368,7 @@ function wrongCare(message) {
     state.cropWilted = true;
     state.didWilt = true;
     state.inspected = false;
-    setThought(`${crop.name} has wilted. Inspect it carefully to recover.`);
+    setThought(currentLanguage() === "ja" ? `${cropName(crop)}がしおれました。回復のためによく観察しましょう。` : `${cropName(crop)} has wilted. Inspect it carefully to recover.`);
     playTone(180, 0.18, "sine", 0.05);
   } else {
     setThought(message);
@@ -910,24 +1379,32 @@ function wrongCare(message) {
 
 function wrongToolMessage(tool, phase, crop) {
   if (phase.tool === "water" && tool !== "water") {
-    return `${crop.name} needs water right now, not ${TOOL_LABELS[tool]}.`;
+    return currentLanguage() === "ja"
+      ? `${cropName(crop)}には今、水が必要です。${toolLabel(tool)}ではありません。`
+      : `${cropName(crop)} needs water right now, not ${toolLabel(tool)}.`;
   }
   if (phase.tool === "sun") {
-    return `${crop.name} is asking for better light before anything else.`;
+    return currentLanguage() === "ja"
+      ? `${cropName(crop)}にはまず光が必要です。`
+      : `${cropName(crop)} is asking for better light before anything else.`;
   }
   if (phase.tool === "fertilizer") {
-    return `${crop.name} needs a measured feeding before the next growth push.`;
+    return currentLanguage() === "ja"
+      ? `${cropName(crop)}には次の成長の前に少し肥料が必要です。`
+      : `${cropName(crop)} needs a measured feeding before the next growth push.`;
   }
   if (phase.tool === "bugs") {
-    return `The bugs are still here. Use the bug net gently.`;
+    return currentLanguage() === "ja" ? "虫がまだいます。虫よけをやさしく使いましょう。" : "The bugs are still here. Use the bug net gently.";
   }
   if (phase.tool === "rodents") {
-    return `The tracks are still close. Set a rodent guard.`;
+    return currentLanguage() === "ja" ? "足あとがまだ近くにあります。動物ガードを置きましょう。" : "The tracks are still close. Set a rodent guard.";
   }
   if (phase.tool === "harvest") {
-    return `${crop.name} is ready for the basket.`;
+    return currentLanguage() === "ja" ? `${cropName(crop)}はかごに入れる準備ができています。` : `${cropName(crop)} is ready for the basket.`;
   }
-  return `That does not match what the ${crop.name.toLowerCase()} needs right now.`;
+  return currentLanguage() === "ja"
+    ? `今の${cropName(crop)}に必要な世話ではありません。`
+    : `That does not match what the ${cropLowerName(crop)} needs right now.`;
 }
 
 function resetCurrentPhase() {
@@ -937,7 +1414,11 @@ function resetCurrentPhase() {
   state.inspected = false;
   state.canFull = false;
   state.completedPhaseTool = null;
-  setThought(`${currentCrop().name} needs this care step again from a calmer start.`);
+  setThought(
+    currentLanguage() === "ja"
+      ? `${cropName(currentCrop())}は、この世話をもう一度落ち着いてやり直す必要があります。`
+      : `${cropName(currentCrop())} needs this care step again from a calmer start.`,
+  );
   playTone(230, 0.14, "sine", 0.05);
   render();
 }
@@ -999,41 +1480,47 @@ function completeCrop() {
 }
 
 function getCropResultLabel() {
-  if (state.cropWilted) return "Recovered harvest";
-  if (state.cropMistakes > 0) return "Careful harvest";
-  return "Clean harvest";
+  if (state.cropWilted) return currentLanguage() === "ja" ? "回復して収穫" : "Recovered harvest";
+  if (state.cropMistakes > 0) return currentLanguage() === "ja" ? "慎重な収穫" : "Careful harvest";
+  return currentLanguage() === "ja" ? "きれいな収穫" : "Clean harvest";
 }
 
 function showDayResult(label) {
   const crop = currentCrop();
   const nextCrop = cropById[state.schedule[state.dayIndex + 1]];
-  dom.resultTitle.textContent = `${crop.name} harvest complete`;
-  dom.resultCondition.textContent = `${crop.name} result: ${label}.`;
-  dom.resultLearned.textContent = crop.tip;
-  dom.resultLabel.textContent = `${state.playerName}: Day ${state.dayIndex + 1} cleared`;
-  dom.nextGardenText.textContent = `Next crop: ${nextCrop.name}.`;
+  dom.resultTitle.textContent = currentLanguage() === "ja" ? `${cropName(crop)}の収穫完了` : `${cropName(crop)} harvest complete`;
+  dom.resultCondition.textContent = currentLanguage() === "ja" ? `${cropName(crop)}の結果: ${label}。` : `${cropName(crop)} result: ${label}.`;
+  dom.resultLearned.textContent = cropTip(crop);
+  dom.resultLabel.textContent =
+    currentLanguage() === "ja" ? `${state.playerName}: ${dayLabel(state.dayIndex + 1)}クリア` : `${state.playerName}: Day ${state.dayIndex + 1} cleared`;
+  dom.nextGardenText.textContent = currentLanguage() === "ja" ? `次の作物: ${cropName(nextCrop)}。` : `Next crop: ${cropName(nextCrop)}.`;
   dom.nextCropButton.classList.remove("hidden");
-  dom.nextCropButton.textContent = `Continue to Day ${state.dayIndex + 2}`;
+  dom.nextCropButton.textContent = currentLanguage() === "ja" ? `${ui().continueToDay} ${dayLabel(state.dayIndex + 2)}` : `Continue to Day ${state.dayIndex + 2}`;
 }
 
 function showFinalResult() {
   const clean = state.completed.filter((result) => result.mistakes === 0).length;
   const recovered = state.completed.filter((result) => result.wilted).length;
   const label = recovered
-    ? "Resilient Gardener"
+    ? currentLanguage() === "ja" ? "回復上手な庭師" : "Resilient Gardener"
     : clean === state.completed.length
-      ? "Clean Cycle Gardener"
-      : "Adaptive Gardener";
+      ? currentLanguage() === "ja" ? "きれいなサイクルの庭師" : "Clean Cycle Gardener"
+      : currentLanguage() === "ja" ? "対応上手な庭師" : "Adaptive Gardener";
   const harvests = state.completed
-    .map((result) => cropById[result.cropId]?.name || "Crop")
+    .map((result) => cropById[result.cropId] ? cropName(cropById[result.cropId]) : currentLanguage() === "ja" ? "作物" : "Crop")
     .join(", ");
 
-  dom.resultTitle.textContent = `${state.playerName}'s garden cycle is complete`;
-  dom.resultCondition.textContent = `${state.completed.length} harvests finished: ${harvests}.`;
+  dom.resultTitle.textContent =
+    currentLanguage() === "ja" ? `${state.playerName}の庭サイクルが完了しました` : `${state.playerName}'s garden cycle is complete`;
+  dom.resultCondition.textContent =
+    currentLanguage() === "ja" ? `${state.completed.length}回の収穫が完了: ${harvests}。` : `${state.completed.length} harvests finished: ${harvests}.`;
   dom.resultLearned.textContent =
-    "You practiced crop diversity, different care needs, and timing across a full routine.";
-  dom.resultLabel.textContent = `Cycle result: ${label}`;
-  dom.nextGardenText.textContent = "The enlarged journal now keeps your notes and crop guide.";
+    currentLanguage() === "ja"
+      ? "作物の多様性、違う世話、タイミングをひとつのサイクルで練習しました。"
+      : "You practiced crop diversity, different care needs, and timing across a full routine.";
+  dom.resultLabel.textContent = currentLanguage() === "ja" ? `サイクル結果: ${label}` : `Cycle result: ${label}`;
+  dom.nextGardenText.textContent =
+    currentLanguage() === "ja" ? "大きくなった庭ノートに、メモと作物ガイドが残ります。" : "The enlarged journal now keeps your notes and crop guide.";
   dom.nextCropButton.classList.add("hidden");
 }
 
@@ -1058,7 +1545,7 @@ function unlockNote(noteId) {
 function showMoreInfo() {
   const crop = currentCrop();
   const phase = currentPhase();
-  setThought(`${crop.tip} Current clue: ${phase.inspect}`);
+  setThought(currentLanguage() === "ja" ? `${cropTip(crop)} 今の手がかり: ${phase.inspect}` : `${cropTip(crop)} Current clue: ${phase.inspect}`);
   unlockNote(phase.noteId);
   playTone(520, 0.08, "sine", 0.05);
   render();
@@ -1171,6 +1658,10 @@ function isTypingTarget(target) {
 
 document.querySelectorAll(".tool-button").forEach((button) => {
   button.addEventListener("click", () => selectTool(button.dataset.tool));
+});
+
+dom.languageButtons.forEach((button) => {
+  button.addEventListener("click", () => setLanguage(button.dataset.language));
 });
 
 dom.characterButtons.forEach((button) => {

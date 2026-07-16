@@ -8,6 +8,7 @@ with no install step.
 ## Current Features
 
 - Name your gardener and choose a male, female, or non-gendered character style
+- Switch the interface between English and Japanese
 - Pick a three-day crop routine or let the game randomize the crop cycle
 - Grow varied crops: tomato, lettuce, carrot, strawberry, pepper, cucumber, and pumpkin
 - Crops have different difficulty, care needs, and tolerance for mistakes
