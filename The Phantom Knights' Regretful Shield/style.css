@@ -206,7 +206,7 @@ body::before {
 .card-art-frame {
     position: relative;
     width: 100%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 3 / 2;
     border: 3px solid var(--border-outer);
     border-radius: 6px;
     overflow: hidden;
@@ -218,7 +218,7 @@ body::before {
 .card-art-frame img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
     filter: saturate(1.1) contrast(1.05);
 }

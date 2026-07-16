@@ -219,7 +219,7 @@ body[data-tcg-frame="true"] .card-art-frame {
   overflow: hidden !important;
   background:
     linear-gradient(rgba(5, 5, 8, 0.24), rgba(5, 5, 8, 0.24)),
-    var(--artwork-fill, none) center / cover no-repeat,
+    var(--artwork-fill, none) center / contain no-repeat,
     radial-gradient(circle at 50% 42%, rgba(255,255,255,0.12), transparent 32%),
     #050506 !important;
   box-shadow:
@@ -233,7 +233,7 @@ body[data-tcg-frame="true"] .card-art-frame img {
   z-index: 1 !important;
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   display: block !important;
 }
 
