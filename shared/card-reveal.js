@@ -92,6 +92,9 @@
     overlay.style.setProperty("--reveal-accent", settings.accent);
     overlay.style.setProperty("--reveal-accent-rgb", accentRgb);
     overlay.style.setProperty("--reveal-secondary", settings.secondary);
+    if (settings.art) {
+      overlay.style.setProperty("--reveal-art-fill", cssUrl(settings.art));
+    }
 
     const artMarkup = settings.art
       ? `<img class="card-reveal-art" src="${escapeAttribute(settings.art)}" alt="">`
@@ -224,6 +227,15 @@
       return escapeHtml(new URL(value, window.location.href).href);
     } catch {
       return escapeHtml(value);
+    }
+  }
+
+  function cssUrl(value) {
+    try {
+      const href = new URL(value, window.location.href).href;
+      return `url("${href.replace(/["\\]/g, "\\$&")}")`;
+    } catch {
+      return "none";
     }
   }
 })();

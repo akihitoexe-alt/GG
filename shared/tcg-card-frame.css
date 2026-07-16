@@ -215,7 +215,11 @@ body[data-tcg-frame="true"] .card-art-frame {
   border: 4px solid var(--tcg-border) !important;
   border-radius: 2px !important;
   overflow: hidden !important;
-  background: radial-gradient(circle at 50% 42%, rgba(255,255,255,0.12), transparent 32%), #050506 !important;
+  background:
+    linear-gradient(rgba(5, 5, 8, 0.24), rgba(5, 5, 8, 0.24)),
+    var(--artwork-fill, none) center / cover no-repeat,
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,0.12), transparent 32%),
+    #050506 !important;
   box-shadow:
     0 0 0 1px #b59d5d,
     inset 0 0 24px rgba(0,0,0,0.36) !important;
@@ -223,6 +227,8 @@ body[data-tcg-frame="true"] .card-art-frame {
 
 body[data-tcg-frame="true"] .artwork-frame img,
 body[data-tcg-frame="true"] .card-art-frame img {
+  position: relative !important;
+  z-index: 1 !important;
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
