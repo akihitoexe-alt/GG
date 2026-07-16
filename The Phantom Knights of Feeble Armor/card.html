@@ -154,6 +154,16 @@
       align-items: center;
       justify-content: center;
     }
+    .artwork-frame img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
 
     /* Dynamic CSS Spectral Artwork (Fallback for generate_image) */
     .wisps {
@@ -328,11 +338,8 @@
     </div>
 
     <!-- Artwork (Using Dynamic CSS for Spectral Armor) -->
-    <div class="artwork-frame">
-      <div class="wisps"></div>
-      <div class="spectral-armor">
-        <div class="spectral-armor-core"></div>
-      </div>
+        <div class="artwork-frame">
+      <img src="card_art.png" alt="The Phantom Knights of Feeble Armor Artwork"/>
     </div>
 
     <!-- Type Line -->
